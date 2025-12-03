@@ -1,0 +1,139 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const navItems = [
+  { name: "About Us", link: "/about-us" },
+
+  {
+    name: "Still Photography",
+    items: [
+      { name: "Studio Photography", link: "/still-photography/studio-photography" },
+      { name: "Matrimonial Snaps", link: "/still-photography/matrimonial-snaps" },
+      { name: "Baby Photoshoot", link: "/still-photography/baby-photoshoot" },
+      { name: "Product Photo Shoot", link: "/still-photography/product-photoshoot" },
+    ],
+  },
+
+  {
+    name: "Videography",
+    items: [
+      { name: "Cinematography", link: "/videography/cinematography" },
+      { name: "Invitation Video", link: "/videography/invitation-video" },
+      { name: "Teasers", link: "/videography/teasers" },
+      { name: "Video Mixing", link: "/videography/video-mixing" },
+      { name: "Drone", link: "/videography/drone" },
+      { name: "Wall LED", link: "/videography/wall-led" },
+    ],
+  },
+
+  {
+    name: "Printing Solutions",
+    items: [
+      { name: "Large Format Printing", link: "/printing-solutions/large-format-printing" },
+      { name: "Scanning A0 Size", link: "/printing-solutions/scanning-ao" },
+      { name: "Cameo 5 Cutting", link: "/printing-solutions/cameo-cutting" },
+      { name: "Copier / Printing", link: "/printing-solutions/copier-printing" },
+    ],
+  },
+
+  {
+    name: "Gifts Items",
+    items: [
+      { name: "Sublimation Items", link: "/gifts/sublimation-items" },
+      { name: "Cushions", link: "/gifts/cushions" },
+      { name: "LED Items", link: "/gifts/led-items" },
+      { name: "Magic Cups", link: "/gifts/magic-cups" },
+      { name: "Magic Mirrors", link: "/gifts/magic-mirrors" },
+      { name: "Key Rings", link: "/gifts/key-rings" },
+      { name: "Color Cups", link: "/gifts/color-cups" },
+    ],
+  },
+
+  {
+    name: "Specialised In",
+    items: [
+      { name: "Outdoor Photography", link: "/specialised/outdoor-photography" },
+      { name: "Candid Shots", link: "/specialised/candid-shots" },
+      { name: "Baby Shower Shoot", link: "/specialised/baby-shower" },
+      { name: "Outdoor Studio Setup", link: "/specialised/studio-setup" },
+    ],
+  },
+];
+---
+
+<nav class="w-full bg-gray dark:bg-gray-900 shadow">
+  
+  <!-- Top Section for Desktop -->
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Website Title -->
+    <a href="/" class="text-xl font-bold whitespace-nowrap">Ram Digital Photo Studio</a>
+
+    <!-- Desktop Menu (Full Width Tabs) -->
+    <ul class="hidden md:flex flex-1 justify-center gap-8 items-center text-lg font-medium">
+      {navItems.map((item) => (
+        item.items ? (
+          <li class="relative group">
+            <button class="hover:text-blue-500">{item.name}</button>
+
+            <ul class="absolute left-0 mt-2 hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded p-2">
+              {item.items.map((sub) => (
+                <li>
+                  <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" href={sub.link}>
+                    {sub.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ) : (
+          <li>
+            <a class="hover:text-blue-500" href={item.link}>{item.name}</a>
+          </li>
+        )
+      ))}
+    </ul>
+
+    <!-- Theme Toggle -->
+    <div class="hidden md:block">
+      <ThemeToggle />
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuBtn" class="md:hidden text-3xl font-bold">☰</button>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobileMenu" class="hidden bg-white dark:bg-gray-800 px-4 pb-4 md:hidden">
+    {navItems.map((item) => (
+      item.items ? (
+        <details class="mb-2">
+          <summary class="cursor-pointer py-2 text-lg font-medium">{item.name}</summary>
+          <ul class="ml-4">
+            {item.items.map((sub) => (
+              <li>
+                <a class="block py-2" href={sub.link}>{sub.name}</a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : (
+        <a class="block py-2 text-lg font-medium" href={item.link}>{item.name}</a>
+      )
+    ))}
+
+    <div class="mt-4">
+      <ThemeToggle />
+    </div>
+  </div>
+
+  <!-- JS for Mobile Toggle -->
+  <script>
+    const btn = document.getElementById("mobileMenuBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+
+</nav>

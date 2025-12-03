@@ -1,0 +1,29 @@
+---
+---
+
+<button
+  id="themeToggle"
+  class="p-2 border rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+>
+  🌓
+</button>
+
+<script>
+  const btn = document.getElementById("themeToggle");
+  const html = document.documentElement;
+
+  // Load saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    html.classList.add("dark");
+  }
+
+  btn.addEventListener("click", () => {
+    html.classList.toggle("dark");
+
+    if (html.classList.contains("dark")) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      localStorage.setItem("theme", "light");
+    }
+  });
+</script>
