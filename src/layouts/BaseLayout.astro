@@ -1,23 +1,24 @@
 ---
-import Header from "../components/Header.astro";
 import Navbar from "../components/Navbar.astro";
+import Header from "../components/Header.astro";
 
+// Global styles
 import "../styles/global.css";
 import "../styles/theme.css";
----
+--- 
 
-<html lang="en">
+<html lang="en" data-astro-transition-persist="root" class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ram Digital Photo Studio</title>
   </head>
 
-  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <body class="bg-[#f5f7fa] dark:bg-[#0d1117] text-gray-900 dark:text-gray-100">
     <Header />
     <Navbar />
 
-    <main class="mt-6">
+    <main class="max-w-7xl mx-auto mt-10 px-4">
       <slot />
     </main>
   </body>

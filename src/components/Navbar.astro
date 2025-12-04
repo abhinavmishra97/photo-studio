@@ -6,134 +6,209 @@ const navItems = [
 
   {
     name: "Still Photography",
+    link: "/still-photography",
     items: [
-      { name: "Studio Photography", link: "/still-photography/studio-photography" },
-      { name: "Matrimonial Snaps", link: "/still-photography/matrimonial-snaps" },
-      { name: "Baby Photoshoot", link: "/still-photography/baby-photoshoot" },
-      { name: "Product Photo Shoot", link: "/still-photography/product-photoshoot" },
+      { name: "Studio Photography", link: "/still-photography#studio" },
+      { name: "Matrimonial Snaps", link: "/still-photography#matrimonial" },
+      { name: "Baby Photoshoot", link: "/still-photography#baby" },
+      { name: "Product Photo Shoot", link: "/still-photography#product" },
     ],
   },
 
   {
     name: "Videography",
+    link: "/videography",
     items: [
-      { name: "Cinematography", link: "/videography/cinematography" },
-      { name: "Invitation Video", link: "/videography/invitation-video" },
-      { name: "Teasers", link: "/videography/teasers" },
-      { name: "Video Mixing", link: "/videography/video-mixing" },
-      { name: "Drone", link: "/videography/drone" },
-      { name: "Wall LED", link: "/videography/wall-led" },
+      { name: "Cinematography", link: "/videography#cinematography" },
+      { name: "Invitation Video", link: "/videography#invitation" },
+      { name: "Teasers", link: "/videography#teasers" },
+      { name: "Video Mixing", link: "/videography#mixing" },
+      { name: "Drone", link: "/videography#drone" },
+      { name: "Wall LED", link: "/videography#wallled" },
     ],
   },
 
   {
     name: "Printing Solutions",
+    link: "/printing-solutions",
     items: [
-      { name: "Large Format Printing", link: "/printing-solutions/large-format-printing" },
-      { name: "Scanning A0 Size", link: "/printing-solutions/scanning-ao" },
-      { name: "Cameo 5 Cutting", link: "/printing-solutions/cameo-cutting" },
-      { name: "Copier / Printing", link: "/printing-solutions/copier-printing" },
+      { name: "Large Format Printing", link: "/printing-solutions#largeformat" },
+      { name: "Scanning A0 Size", link: "/printing-solutions#scanning" },
+      { name: "Cameo 5 Cutting", link: "/printing-solutions#cameo" },
+      { name: "Copier / Printing", link: "/printing-solutions#copier" },
     ],
   },
 
   {
     name: "Gifts Items",
+    link: "/gifts-items",
     items: [
-      { name: "Sublimation Items", link: "/gifts/sublimation-items" },
-      { name: "Cushions", link: "/gifts/cushions" },
-      { name: "LED Items", link: "/gifts/led-items" },
-      { name: "Magic Cups", link: "/gifts/magic-cups" },
-      { name: "Magic Mirrors", link: "/gifts/magic-mirrors" },
-      { name: "Key Rings", link: "/gifts/key-rings" },
-      { name: "Color Cups", link: "/gifts/color-cups" },
+      { name: "Sublimation Items", link: "/gifts#sublimation" },
+      { name: "Cushions", link: "/gifts#cushions" },
+      { name: "LED Items", link: "/gifts#led" },
+      { name: "Magic Cups", link: "/gifts#magiccups" },
+      { name: "Magic Mirrors", link: "/gifts#magicmirrors" },
+      { name: "Key Rings", link: "/gifts#keyrings" },
+      { name: "Color Cups", link: "/gifts#colorcups" },
     ],
   },
 
   {
     name: "Specialised In",
+    link: "/specialised-in",
     items: [
-      { name: "Outdoor Photography", link: "/specialised/outdoor-photography" },
-      { name: "Candid Shots", link: "/specialised/candid-shots" },
-      { name: "Baby Shower Shoot", link: "/specialised/baby-shower" },
-      { name: "Outdoor Studio Setup", link: "/specialised/studio-setup" },
+      { name: "Outdoor Photography", link: "/specialised#outdoor" },
+      { name: "Candid Shots", link: "/specialised#candid" },
+      { name: "Baby Shower Shoot", link: "/specialised#baby" },
+      { name: "Outdoor Studio Setup", link: "/specialised#studiosetup" },
     ],
   },
 ];
+
+
+const path = Astro.url.pathname;
 ---
 
-<nav class="w-full bg-gray dark:bg-gray-900 shadow">
-  
-  <!-- Top Section for Desktop -->
-  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-    <!-- Website Title -->
-    <a href="/" class="text-xl font-bold whitespace-nowrap">Ram Digital Photo Studio</a>
+<nav class="w-full bg-white dark:bg-[#161b22] text-gray-800 dark:text-gray-200 shadow-md sticky top-0 z-50">
 
-    <!-- Desktop Menu (Full Width Tabs) -->
-    <ul class="hidden md:flex flex-1 justify-center gap-8 items-center text-lg font-medium">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    
+    <!-- Logo -->
+    <a href="/" class="text-xl font-bold text-gray-900 dark:text-white">
+      Ram Digital Photo Studio
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex items-center space-x-10">
+
       {navItems.map((item) => (
-        item.items ? (
-          <li class="relative group">
-            <button class="hover:text-blue-500">{item.name}</button>
+        <li class="relative group">
+          
+          <!-- Main Link -->
+          <a href={item.link ?? "#"}
+            class={`hover:text-blue-600 dark:hover:text-blue-400 transition ${
+              path.startsWith(item.link ?? "___")
+                ? "text-blue-600 dark:text-blue-400 font-semibold"
+                : ""
+            }`}>
+            {item.name}
+          </a>
 
-            <ul class="absolute left-0 mt-2 hidden group-hover:block bg-white dark:bg-gray-800 shadow-lg rounded p-2">
+          {item.items && (
+            <button
+              onclick={`toggleDropdown('${item.name}')`}
+              class="ml-1 text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-transform group-hover:rotate-180"
+            >
+              ▼
+            </button>
+          )}
+
+          <!-- Dropdown -->
+          {item.items && (
+            <ul
+              id={item.name}
+              class="dropdown hidden absolute left-0 mt-2 w-56 bg-white dark:bg-[#1f2937] border border-gray-200 dark:border-gray-700 rounded-md shadow-lg py-2 opacity-0 translate-y-3 transition-all duration-300"
+            >
               {item.items.map((sub) => (
                 <li>
-                  <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700" href={sub.link}>
+                  <a href={sub.link}
+                    class="block px-4 py-2 text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition">
                     {sub.name}
                   </a>
                 </li>
               ))}
             </ul>
-          </li>
-        ) : (
-          <li>
-            <a class="hover:text-blue-500" href={item.link}>{item.name}</a>
-          </li>
-        )
+          )}
+
+        </li>
       ))}
+
     </ul>
 
-    <!-- Theme Toggle -->
     <div class="hidden md:block">
       <ThemeToggle />
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button id="mobileMenuBtn" class="md:hidden text-3xl font-bold">☰</button>
+    <!-- Mobile Button -->
+    <button id="mobileMenuBtn" class="md:hidden text-3xl text-gray-700 dark:text-gray-300">☰</button>
+
   </div>
 
-  <!-- Mobile Dropdown Menu -->
-  <div id="mobileMenu" class="hidden bg-white dark:bg-gray-800 px-4 pb-4 md:hidden">
-    {navItems.map((item) => (
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+       class="hidden md:hidden bg-white dark:bg-[#161b22] text-gray-900 dark:text-gray-100 px-6 pb-4 space-y-2 shadow">
+
+    {navItems.map(item => (
       item.items ? (
-        <details class="mb-2">
-          <summary class="cursor-pointer py-2 text-lg font-medium">{item.name}</summary>
-          <ul class="ml-4">
-            {item.items.map((sub) => (
+        <details class="border-b border-gray-300 dark:border-gray-700 pb-2">
+          <summary class="cursor-pointer py-2 text-lg">{item.name}</summary>
+          <ul class="ml-4 mt-1 space-y-1">
+            {item.items.map(sub => (
               <li>
-                <a class="block py-2" href={sub.link}>{sub.name}</a>
+                <a href={sub.link}
+                   class="block py-2 text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                  {sub.name}
+                </a>
               </li>
             ))}
           </ul>
         </details>
       ) : (
-        <a class="block py-2 text-lg font-medium" href={item.link}>{item.name}</a>
+        <a href={item.link} class="block py-2 text-lg hover:text-blue-600 dark:hover:text-blue-400">{item.name}</a>
       )
     ))}
 
-    <div class="mt-4">
-      <ThemeToggle />
-    </div>
+    <ThemeToggle />
   </div>
 
-  <!-- JS for Mobile Toggle -->
-  <script>
-    const btn = document.getElementById("mobileMenuBtn");
-    const menu = document.getElementById("mobileMenu");
-
-    btn.addEventListener("click", () => {
-      menu.classList.toggle("hidden");
-    });
-  </script>
-
 </nav>
+
+
+<!-- JS -->
+<script is:inline>
+  function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+
+    // Close other dropdowns
+    document.querySelectorAll(".dropdown").forEach((el) => {
+      if (el.id !== id) {
+        el.classList.add("hidden", "opacity-0", "translate-y-3");
+      }
+    });
+
+    // Toggle chosen dropdown
+    dropdown.classList.toggle("hidden");
+    setTimeout(() => {
+      dropdown.classList.toggle("opacity-0");
+      dropdown.classList.toggle("translate-y-3");
+    }, 10);
+  }
+
+  // Auto-close when clicking outside
+  document.addEventListener("click", (e) => {
+    // Do NOT block theme toggle or mobile menu
+    if (
+      e.target.closest("#themeToggleBtn") ||
+      e.target.closest("#mobileMenuBtn") ||
+      e.target.closest("#mobileMenu")
+    ) {
+      return; // allow click to pass
+    }
+
+    // Close dropdown only if clicking outside dropdown area
+    if (!e.target.closest("li")) {
+      document.querySelectorAll(".dropdown").forEach((el) => {
+        el.classList.add("hidden", "opacity-0", "translate-y-3");
+      });
+    }
+  });
+
+
+  // Mobile menu toggle
+  const btn = document.getElementById("mobileMenuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  btn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>

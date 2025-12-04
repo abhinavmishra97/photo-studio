@@ -1,29 +1,38 @@
----
----
-
 <button
-  id="themeToggle"
-  class="p-2 border rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+  id="themeToggleBtn"
+  class="p-2 border rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition"
 >
-  🌓
+  <span id="themeIcon">🌙</span>
 </button>
 
-<script>
-  const btn = document.getElementById("themeToggle");
-  const html = document.documentElement;
+<script is:inline>
+if (!window.__theme_inited) {
+  window.__theme_inited = true;
+  console.log("ThemeToggle initialized!");
 
-  // Load saved theme
-  if (localStorage.getItem("theme") === "dark") {
-    html.classList.add("dark");
+  const root = document.documentElement;
+
+  function applyTheme(saved) {
+    if (saved === "dark") {
+      root.classList.add("dark");
+      document.getElementById("themeIcon").textContent = "🌞";
+    } else {
+      root.classList.remove("dark");
+      document.getElementById("themeIcon").textContent = "🌙";
+    }
   }
 
-  btn.addEventListener("click", () => {
-    html.classList.toggle("dark");
+  // Load saved theme
+  applyTheme(localStorage.getItem("theme"));
 
-    if (html.classList.contains("dark")) {
-      localStorage.setItem("theme", "dark");
-    } else {
-      localStorage.setItem("theme", "light");
+  // Attach ONE click listener
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("#themeToggleBtn")) {
+      const isDark = root.classList.toggle("dark");
+      const newTheme = isDark ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      applyTheme(newTheme);
     }
   });
+}
 </script>
