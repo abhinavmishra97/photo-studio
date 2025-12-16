@@ -3,8 +3,376 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <section class="p-10">
-    <h1 class="text-3xl font-bold">still-photography</h1>
-    <p class="mt-4">Content for still-photography page</p>
+  <section class="text-center space-y-3 md:space-y-4">
+    <p class="uppercase tracking-[0.3em] text-sm text-[#A67C52]">
+      Still Photography
+    </p>
+    <h1 class="text-3xl md:text-4xl font-semibold">
+      Portraits, matrimonial, baby, and product shoots in one studio.
+    </h1>
+    <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
+      At Ram Digital Photo Studio we design still sessions around people and
+      products — from classic portraits and matrimonial profiles to baby
+      sessions and detailed product visuals for brands.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3 pt-2">
+      <span
+        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      >
+        Studio Portraits
+      </span>
+      <span
+        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      >
+        Matrimonial Profiles
+      </span>
+      <span
+        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      >
+        Baby & Family
+      </span>
+      <span
+        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      >
+        Product & Brand
+      </span>
+    </div>
+    <div class="flex flex-wrap justify-center gap-3 pt-4">
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+          bg-[#D4A373] text-[#1F1D1A] font-semibold
+          hover:translate-y-[-1px] transition shadow"
+      >
+        Plan your still session
+      </a>
+      <a
+        href="/gallery"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+          border border-[#A67C52] text-[#A67C52]
+          dark:border-[#D4A373] dark:text-[#D4A373]
+          font-semibold hover:bg-[#A67C52]/10 transition"
+      >
+        View examples
+      </a>
+    </div>
+  </section>
+
+  <section id="studio" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
+    <div class="space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Studio Photography
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Classic portraits with crafted light.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Ideal for individual portraits, couples, small families, corporate
+        profiles, and updated social media images. We use controlled studio
+        lighting to flatter features and keep backgrounds clean.
+      </p>
+      <ul
+        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <li>
+          <strong>Best for</strong>: portraits, siblings, small families,
+          corporate.
+        </li>
+        <li>
+          <strong>Includes</strong>: guided posing, multiple backgrounds,
+          curated edits.
+        </li>
+        <li>
+          <strong>Add-ons</strong>: framed prints, albums, digital packages.
+        </li>
+      </ul>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80"
+          alt="Studio portrait example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80"
+          alt="Family studio portrait example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="matrimonial"
+    class="mt-16 grid gap-8 md:grid-cols-2 items-center"
+  >
+    <div class="order-2 md:order-1 grid grid-cols-2 gap-4">
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80"
+          alt="Matrimonial portrait example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1529636137413-4eabc0b332bf?auto=format&fit=crop&w=800&q=80"
+          alt="Profile style portrait example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+    </div>
+    <div class="order-1 md:order-2 space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Matrimonial Snaps
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Confident profiles for matrimonial and bio-data.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Clean, flattering portraits designed specifically for matrimonial
+        profiles, bios, and personal introductions. We help with outfits,
+        posing, and expression so you look confident and approachable.
+      </p>
+      <ul
+        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <li>
+          <strong>Backgrounds</strong>: classic studio, soft gradients, or
+          simple textured.
+        </li>
+        <li>
+          <strong>Guidance</strong>: outfit suggestions, posture, and angles.
+        </li>
+        <li>
+          <strong>Output</strong>: high-resolution files ready for print and
+          digital use.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="baby" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
+    <div class="space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Baby Photoshoot
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Soft, patient sessions for little ones.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        From newborns to toddlers, we create a safe, cozy space for little ones
+        to just be themselves. We move at their pace, with plenty of breaks and
+        playful prompts.
+      </p>
+      <div
+        class="grid sm:grid-cols-3 gap-4 text-sm text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
+          <h3 class="font-semibold">Newborn</h3>
+          <p class="mt-1">
+            Gentle posing, blankets, and close-ups of details like hands and
+            feet.
+          </p>
+        </div>
+        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
+          <h3 class="font-semibold">Toddlers</h3>
+          <p class="mt-1">
+            Play-based sessions capturing expressions, laughter, and curiosity.
+          </p>
+        </div>
+        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
+          <h3 class="font-semibold">Family</h3>
+          <p class="mt-1">
+            Parents, grandparents, and siblings all together in warm, natural
+            frames.
+          </p>
+        </div>
+      </div>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        These sessions pair beautifully with albums, wall frames, and gift items
+        available in our studio.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80"
+          alt="Baby photoshoot example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=800&q=80"
+          alt="Family with baby photoshoot example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id="product" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
+    <div class="order-2 md:order-1 grid grid-cols-2 gap-4">
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=800&q=80"
+          alt="Product photography example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1513708927295-2d087090f19e?auto=format&fit=crop&w=800&q=80"
+          alt="Styled product shot example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+    </div>
+    <div class="order-1 md:order-2 space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Product Photo Shoot
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Detailed visuals for brands and businesses.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Whether you’re updating your menu, e-commerce catalog, or social feed,
+        we create consistent, color-true images that highlight the best of your
+        products.
+      </p>
+      <ul
+        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <li>
+          <strong>Styles</strong>: clean white, lifestyle with props, flat-lays.
+        </li>
+        <li>
+          <strong>Prep</strong>: cleaning, arranging, and planning angles for
+          consistency.
+        </li>
+        <li>
+          <strong>Delivery</strong>: web-ready and high-resolution files for
+          print.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="outdoor" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
+    <div class="space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Outdoor Photography
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Natural light portraits and on-location stories.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Perfect for pre-wedding, couples, families, and lifestyle portraits. We
+        scout spots, plan the best time for light, and guide posing so you feel
+        comfortable outdoors.
+      </p>
+      <ul
+        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <li>
+          <strong>Locations</strong>: parks, city streets, rooftops, or a
+          favorite hangout.
+        </li>
+        <li>
+          <strong>Timing</strong>: golden hour sessions for warm, soft light.
+        </li>
+        <li>
+          <strong>Guidance</strong>: prompts and poses to keep things natural
+          and relaxed.
+        </li>
+      </ul>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1517840545246-bbb3e5d0f7b2?auto=format&fit=crop&w=800&q=80"
+          alt="Outdoor portrait example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=80"
+          alt="Couple outdoor photoshoot example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="mt-16 mb-6 mx-0 p-6 md:p-8 rounded-2xl
+      bg-gradient-to-r from-[#2F2A25] to-[#1F1C19]
+      text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-4"
+  >
+    <div>
+      <p class="uppercase tracking-[0.25em] text-sm text-[#D4A373]">
+        Ready to create
+      </p>
+      <h3 class="text-2xl md:text-3xl font-semibold">
+        Let’s plan your next still photography session.
+      </h3>
+      <p class="text-[#E8DFD3]/90 mt-2">
+        Share your date, type of session, and any reference images — we’ll
+        respond quickly with availability and a simple plan.
+      </p>
+    </div>
+    <div class="flex gap-3">
+      <a
+        href="tel:+91XXXXXXXXXX"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+          bg-white text-[#1F1D1A] font-semibold
+          hover:translate-y-[-1px] transition shadow"
+      >
+        Call Now
+      </a>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+          border border-white/70 text-white font-semibold
+          hover:bg-white/10 transition"
+      >
+        Plan your shoot
+      </a>
+    </div>
   </section>
 </BaseLayout>

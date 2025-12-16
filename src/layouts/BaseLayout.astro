@@ -7,19 +7,116 @@ import "../styles/global.css";
 import "../styles/theme.css";
 --- 
 
-<html lang="en" data-astro-transition-persist="root" class="">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ram Digital Photo Studio</title>
   </head>
 
-  <body class="bg-[#f5f7fa] dark:bg-[#0d1117] text-gray-900 dark:text-gray-100">
+  <body
+    class="
+      bg-[#F5EFE6] text-[#2A2A2A]
+      dark:bg-[#23211E] dark:text-[#EEEAE3]
+      transition-colors duration-500
+    "
+  >
+    <div
+      id="topContactBar"
+      class="w-full bg-[#2F2A25] text-[#EDEAE6] text-sm px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-center gap-2 md:gap-4 relative"
+    >
+      <div class="flex items-center gap-2">
+        <span aria-hidden="true">📞</span>
+        <a href="tel:+91XXXXXXXXXX" class="hover:text-[#D4A373] transition">
+          +91 XXXXX-XXXXX
+        </a>
+      </div>
+      <div class="hidden md:block h-4 w-px bg-[#EDEAE6]/40"></div>
+      <div class="flex items-center gap-2">
+        <span aria-hidden="true">💬</span>
+        <a href="https://wa.me/91XXXXXXXXXX" class="hover:text-[#D4A373] transition">
+          WhatsApp us
+        </a>
+      </div>
+      <button
+        id="closeTopBar"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-lg px-2 hover:text-[#D4A373] transition"
+        aria-label="Hide contact bar"
+        type="button"
+      >
+        ✕
+      </button>
+    </div>
     <Header />
     <Navbar />
 
     <main class="max-w-7xl mx-auto mt-10 px-4">
       <slot />
     </main>
+    <footer
+      class="
+        mt-16 border-t border-[#3F3C38]
+        bg-[#1F1C19]
+        text-[#EDEAE6]
+      "
+    >
+      <div class="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
+        <div>
+          <h3 class="text-lg font-semibold">Ram Digital Photo Studio</h3>
+          <p class="mt-2 text-[#CFC6BC]">
+            Warm, crafted imagery for weddings, portraits, products, and keepsakes.
+          </p>
+        </div>
+        <div class="space-y-2">
+          <h4 class="font-semibold">Contact</h4>
+          <a href="tel:+91XXXXXXXXXX" class="block hover:text-[#D4A373]">
+            +91 XXXXX-XXXXX
+          </a>
+          <a href="https://wa.me/91XXXXXXXXXX" class="block hover:text-[#D4A373]">
+            WhatsApp
+          </a>
+          <a href="mailto:studio@example.com" class="block hover:text-[#D4A373]">
+            studio@example.com
+          </a>
+          <a
+            href="https://maps.google.com"
+            class="block hover:text-[#D4A373]"
+          >
+            View on map
+          </a>
+        </div>
+        <div class="space-y-2">
+          <h4 class="font-semibold">Social</h4>
+          <a href="https://instagram.com" class="block hover:text-[#D4A373]">
+            Instagram
+          </a>
+          <a href="https://youtube.com" class="block hover:text-[#D4A373]">
+            YouTube
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-[#3F3C38] py-4 text-center text-sm text-[#CFC6BC]">
+        © {new Date().getFullYear()} Ram Digital Photo Studio. All rights reserved.
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        const topBar = document.getElementById("topContactBar");
+        const closeBtn = document.getElementById("closeTopBar");
+
+        if (!topBar || !closeBtn) return;
+
+        const HIDDEN_KEY = "topBarHidden";
+        if (localStorage.getItem(HIDDEN_KEY) === "1") {
+          topBar.style.display = "none";
+        }
+
+        closeBtn.addEventListener("click", () => {
+          topBar.style.display = "none";
+          localStorage.setItem(HIDDEN_KEY, "1");
+        });
+      })();
+    </script>
   </body>
 </html>

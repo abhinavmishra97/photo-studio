@@ -1,0 +1,155 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <section class="text-center space-y-3 md:space-y-4">
+    <p class="uppercase tracking-[0.3em] text-sm text-[#A67C52]">
+      Contact
+    </p>
+    <h1 class="text-3xl md:text-4xl font-semibold">Let’s plan your shoot</h1>
+    <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
+      Tell us what you’re looking for—weddings, portraits, products, events, or gifts—and we’ll respond quickly with details and availability.
+    </p>
+  </section>
+
+  <section class="mt-10 grid gap-6 md:grid-cols-2">
+    <div
+      class="
+        rounded-2xl border border-[#E2D8CB] dark:border-[#3A3630]
+        bg-white/80 dark:bg-[#2B2824]
+        p-6 space-y-4 shadow-sm
+      "
+    >
+      <h2 class="text-xl font-semibold">Reach us directly</h2>
+      <div class="space-y-3 text-[#5A5246] dark:text-[#CDC3B7]">
+        <div>
+          <p class="font-semibold">Phone / WhatsApp</p>
+          <div class="flex gap-3 mt-1">
+            <a href="tel:+91XXXXXXXXXX" class="text-[#A67C52] dark:text-[#D4A373] hover:underline">
+              +91 XXXXX-XXXXX
+            </a>
+            <a href="https://wa.me/91XXXXXXXXXX" class="text-[#A67C52] dark:text-[#D4A373] hover:underline">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+        <div>
+          <p class="font-semibold">Email</p>
+          <a href="mailto:studio@example.com" class="text-[#A67C52] dark:text-[#D4A373] hover:underline">
+            studio@example.com
+          </a>
+        </div>
+        <div>
+          <p class="font-semibold">Studio</p>
+          <p>123 Main Street, City, State</p>
+          <a href="https://maps.google.com" class="text-[#A67C52] dark:text-[#D4A373] hover:underline">
+            Open in Maps
+          </a>
+        </div>
+        <div>
+          <p class="font-semibold">Hours</p>
+          <p>Mon–Sat: 10:00 AM – 8:00 PM</p>
+          <p>Sunday: By appointment</p>
+        </div>
+        <div>
+          <p class="font-semibold">Social</p>
+          <div class="flex gap-4">
+            <a href="https://instagram.com" class="text-[#A67C52] dark:text-[#D4A373] hover:underline">Instagram</a>
+            <a href="https://youtube.com" class="text-[#A67C52] dark:text-[#D4A373] hover:underline">YouTube</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-3 pt-2 flex-wrap">
+        <a
+          href="tel:+91XXXXXXXXXX"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#2F2A25] text-white font-semibold hover:translate-y-[-1px] transition"
+        >
+          Call
+        </a>
+        <a
+          href="https://wa.me/91XXXXXXXXXX"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#25D366] text-white font-semibold hover:translate-y-[-1px] transition"
+        >
+          WhatsApp
+        </a>
+        <a
+          href="mailto:studio@example.com"
+          class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#A67C52] text-[#A67C52] dark:border-[#D4A373] dark:text-[#D4A373] font-semibold hover:bg-[#A67C52]/10 transition"
+        >
+          Email
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="
+        rounded-2xl border border-[#E2D8CB] dark:border-[#3A3630]
+        bg-white/90 dark:bg-[#26231F]
+        p-6 shadow-sm space-y-4
+      "
+    >
+      <h2 class="text-xl font-semibold">Tell us about your shoot</h2>
+      <form class="space-y-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <label class="block">
+            <span class="text-sm font-semibold">Name</span>
+            <input
+              type="text"
+              required
+              class="mt-1 w-full rounded-lg border border-[#D9D3CC] dark:border-[#3A3835] bg-transparent px-3 py-2 outline-none focus:border-[#A67C52]"
+              placeholder="Your name"
+            />
+          </label>
+          <label class="block">
+            <span class="text-sm font-semibold">Email / Phone</span>
+            <input
+              type="text"
+              required
+              class="mt-1 w-full rounded-lg border border-[#D9D3CC] dark:border-[#3A3835] bg-transparent px-3 py-2 outline-none focus:border-[#A67C52]"
+              placeholder="name@email.com / +91..."
+            />
+          </label>
+        </div>
+        <label class="block">
+          <span class="text-sm font-semibold">Preferred date</span>
+          <input
+            type="date"
+            class="mt-1 w-full rounded-lg border border-[#D9D3CC] dark:border-[#3A3835] bg-transparent px-3 py-2 outline-none focus:border-[#A67C52]"
+          />
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold">Service</span>
+          <select
+            class="mt-1 w-full rounded-lg border border-[#D9D3CC] dark:border-[#3A3835] bg-transparent px-3 py-2 outline-none focus:border-[#A67C52]"
+          >
+            <option>Wedding / Candid</option>
+            <option>Portrait / Studio</option>
+            <option>Baby / Family</option>
+            <option>Product / Brand</option>
+            <option>Event / Corporate</option>
+            <option>Printing / Gifts</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold">Message</span>
+          <textarea
+            rows="4"
+            required
+            class="mt-1 w-full rounded-lg border border-[#D9D3CC] dark:border-[#3A3835] bg-transparent px-3 py-2 outline-none focus:border-[#A67C52]"
+            placeholder="Share details, location, timing, or references"
+          ></textarea>
+        </label>
+        <button
+          type="submit"
+          class="w-full md:w-auto px-5 py-3 rounded-full bg-[#D4A373] text-[#1F1D1A] font-semibold hover:translate-y-[-1px] transition shadow"
+        >
+          Send message
+        </button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
