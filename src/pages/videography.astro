@@ -1,46 +1,237 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CTASection from "../components/CTASection.astro";
 ---
 
 <BaseLayout>
-  <section class="p-10">
-    <h1 class="text-3xl font-bold">videography</h1>
-    <p class="mt-4">Content for videography page</p>
-  </section>
-
-  <section
-    class="mt-10 mx-4 md:mx-0 p-6 md:p-8 rounded-2xl
-      bg-gradient-to-r from-[#2F2A25] to-[#1F1C19]
-      text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-4"
-  >
-    <div>
-      <p class="uppercase tracking-[0.25em] text-sm text-[#D4A373]">
-        Plan your shoot
-      </p>
-      <h3 class="text-2xl md:text-3xl font-semibold">
-        Ready to book videography coverage?
-      </h3>
-      <p class="text-[#E8DFD3]/90 mt-2">
-        Tell us your event date and style—cinema, teaser, drone, or LED—and we’ll respond fast.
-      </p>
+  <!-- Hero Section -->
+  <section class="text-center space-y-3 md:space-y-4">
+    <p class="uppercase tracking-[0.3em] text-sm text-[#A67C52]">Videography</p>
+    <h1 class="text-3xl md:text-4xl font-semibold">
+      Cinematic storytelling for weddings and events.
+    </h1>
+    <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
+      From full wedding films to highlight teasers, drone coverage to LED walls
+      — we capture your moments with cinematic quality and creative vision.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3 pt-2">
+      <span
+        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      >
+        Cinematography
+      </span>
+      <span
+        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      >
+        Invitation Videos
+      </span>
+      <span
+        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      >
+        Teasers
+      </span>
+      <span
+        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      >
+        Drone & LED
+      </span>
     </div>
-    <div class="flex gap-3">
+    <div class="flex flex-wrap justify-center gap-3 pt-4">
       <a
         href="/contact"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-white text-[#1F1D1A] font-semibold
+          bg-[#D4A373] text-[#1F1D1A] font-semibold
           hover:translate-y-[-1px] transition shadow"
       >
-        Plan your shoot
+        Plan your video shoot
       </a>
       <a
-        href="tel:+91XXXXXXXXXX"
+        href="/gallery"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          border border-white/70 text-white font-semibold
-          hover:bg-white/10 transition"
+          border border-[#A67C52] text-[#A67C52]
+          dark:border-[#D4A373] dark:text-[#D4A373]
+          font-semibold hover:bg-[#A67C52]/10 transition"
       >
-        Call now
+        View examples
       </a>
     </div>
   </section>
+
+  <!-- Cinematography -->
+  <section
+    id="cinematography"
+    class="mt-16 grid gap-8 md:grid-cols-2 items-center"
+  >
+    <div class="space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Cinematography
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Full wedding films with cinematic quality.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Multi-camera coverage of your entire event, from getting ready to the
+        final dance. We capture emotions, details, and authentic moments with
+        professional color grading and smooth editing.
+      </p>
+      <ul
+        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <li>
+          <strong>Coverage</strong>: Full-day or custom hour packages.
+        </li>
+        <li>
+          <strong>Delivery</strong>: 4K/HD films with cinematic color grading.
+        </li>
+        <li>
+          <strong>Add-ons</strong>: Drone footage, same-day edits, highlight
+          reels.
+        </li>
+      </ul>
+    </div>
+    <div
+      class="rounded-2xl overflow-hidden aspect-video bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80"
+        alt="Wedding cinematography"
+        loading="lazy"
+        class="w-full h-full object-cover transition duration-700 hover:scale-105"
+      />
+    </div>
+  </section>
+
+  <!-- Invitation Video & Teasers -->
+  <section id="invitation" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
+    <div
+      class="order-2 md:order-1 rounded-2xl overflow-hidden aspect-video bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80"
+        alt="Video editing and invitation videos"
+        loading="lazy"
+        class="w-full h-full object-cover transition duration-700 hover:scale-105"
+      />
+    </div>
+    <div class="order-1 md:order-2 space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Invitation Videos & Teasers
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Quick, shareable videos for every occasion.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Digital wedding invitations with custom animations and couple stories,
+        plus 1-2 minute highlight teasers perfect for social media. Fast
+        turnaround and optimized for WhatsApp, Instagram, and Facebook.
+      </p>
+      <div
+        class="grid sm:grid-cols-2 gap-4 text-sm text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
+          <h3 class="font-semibold">Invitation Videos</h3>
+          <p class="mt-1">
+            Animated graphics, music sync, and couple story integration.
+          </p>
+        </div>
+        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
+          <h3 class="font-semibold" id="teasers">Teasers</h3>
+          <p class="mt-1">
+            24-48 hour delivery with trending music and dynamic effects.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Mixing & Editing -->
+  <section id="mixing" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
+    <div class="space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Video Mixing & Editing
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Professional post-production for polished results.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Expert editing with multi-camera synchronization, color correction,
+        audio enhancement, and custom transitions. We transform raw footage into
+        cinematic stories that you'll treasure forever.
+      </p>
+      <ul
+        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <li>
+          <strong>Color Grading</strong>: Cinematic look with consistent tones.
+        </li>
+        <li>
+          <strong>Audio</strong>: Professional mixing, music sync, and
+          enhancement.
+        </li>
+        <li>
+          <strong>Transitions</strong>: Smooth cuts and creative effects.
+        </li>
+      </ul>
+    </div>
+    <div
+      class="rounded-2xl overflow-hidden aspect-video bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80"
+        alt="Video editing workspace"
+        loading="lazy"
+        class="w-full h-full object-cover transition duration-700 hover:scale-105"
+      />
+    </div>
+  </section>
+
+  <!-- Drone & LED Wall -->
+  <section id="drone" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
+    <div
+      class="order-2 md:order-1 rounded-2xl overflow-hidden aspect-video bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1200&q=80"
+        alt="Drone aerial cinematography"
+        loading="lazy"
+        class="w-full h-full object-cover transition duration-700 hover:scale-105"
+      />
+    </div>
+    <div class="order-1 md:order-2 space-y-4">
+      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+        Drone Coverage & LED Wall
+      </p>
+      <h2 class="text-3xl font-semibold">
+        Aerial views and interactive LED displays.
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Stunning 4K aerial cinematography with licensed drone operators for
+        venue establishing shots and outdoor ceremonies. Plus customizable LED
+        wall backdrops with live photo/video playback and themed graphics.
+      </p>
+      <div
+        class="grid sm:grid-cols-2 gap-4 text-sm text-[#5A5246] dark:text-[#CDC3B7]"
+      >
+        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
+          <h3 class="font-semibold">Drone</h3>
+          <p class="mt-1">
+            Licensed operators, 4K footage, venue and landscape coverage.
+          </p>
+        </div>
+        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
+          <h3 class="font-semibold" id="wallled">LED Wall</h3>
+          <p class="mt-1">
+            Custom displays, live playback, and interactive event elements.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTASection
+    title="Ready to create"
+    subtitle="Let's plan your videography coverage."
+    description="Share your event date, style preferences, and any special requests — we'll respond with packages, availability, and creative ideas."
+  />
 </BaseLayout>
