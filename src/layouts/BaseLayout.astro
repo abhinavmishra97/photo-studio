@@ -5,6 +5,12 @@ import Header from "../components/Header.astro";
 // Global styles
 import "../styles/global.css";
 import "../styles/theme.css";
+
+interface Props {
+  showHeader?: boolean;
+}
+
+const { showHeader = false } = Astro.props;
 ---
 
 <html lang="en">
@@ -25,15 +31,15 @@ import "../styles/theme.css";
     >
       <div class="flex items-center gap-2">
         <span aria-hidden="true">📞</span>
-        <a href="tel:+91XXXXXXXXXX" class="hover:text-[#D4A373] transition">
-          +91 XXXXX-XXXXX
+        <a href="tel:+919412000718" class="hover:text-[#D4A373] transition">
+          +91 94120 00718
         </a>
       </div>
       <div class="hidden md:block h-4 w-px bg-[#EDEAE6]/40"></div>
       <div class="flex items-center gap-2">
         <span aria-hidden="true">💬</span>
         <a
-          href="https://wa.me/91XXXXXXXXXX"
+          href="https://wa.me/919412000718"
           class="hover:text-[#D4A373] transition"
         >
           WhatsApp us
@@ -48,44 +54,54 @@ import "../styles/theme.css";
         ✕
       </button>
     </div>
-    <Header />
+    {showHeader && <Header />}
     <Navbar />
 
     <main class="max-w-7xl mx-auto mt-10 px-4">
       <slot />
     </main>
     <footer
-      class="mt-16 border-t border-[#3E3630]
-        bg-gradient-to-b from-[#211D1A] via-[#2C2622] to-[#332E29]
-        text-[#E8E1D5]
-        shadow-[0_-8px_16px_rgba(0,0,0,0.5)]"
+      class="mt-16 border-t border-[#A8C5E0]
+        dark:border-t dark:border-[#3A4A5E]
+        bg-gradient-to-b from-[#C4DDF0] via-[#D6E7F4] to-[#E8F1F8]
+        dark:bg-gradient-to-b dark:from-[#243040] dark:via-[#1E2838] dark:to-[#1A2332]
+        text-[#1A2332]
+        dark:text-[#E8F1F8]
+        shadow-[0_-8px_16px_rgba(0,0,0,0.1)]
+        dark:shadow-[0_-8px_16px_rgba(0,0,0,0.5)]"
     >
       <div class="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
         <div>
           <h3 class="text-lg font-semibold">Ram Digital Photo Studio</h3>
-          <p class="mt-2 text-[#CFC6BC]">
+          <p class="mt-2 text-[#334E68] dark:text-[#B8D4F0]">
             Warm, crafted imagery for weddings, portraits, products, and
             keepsakes.
           </p>
         </div>
         <div class="space-y-2">
           <h4 class="font-semibold">Contact</h4>
-          <a href="tel:+91XXXXXXXXXX" class="block hover:text-[#D4A373]">
-            +91 XXXXX-XXXXX
+          <a
+            href="tel:+919412000718"
+            class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
+          >
+            +91 94120 00718
           </a>
           <a
-            href="https://wa.me/91XXXXXXXXXX"
-            class="block hover:text-[#D4A373]"
+            href="https://wa.me/919412000718"
+            class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
           >
             WhatsApp
           </a>
           <a
-            href="mailto:studio@example.com"
-            class="block hover:text-[#D4A373]"
+            href="mailto:ramdigitalphotostudio@gmail.com"
+            class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
           >
-            studio@example.com
+            ramdigitalphotostudio@gmail.com
           </a>
-          <a href="https://maps.google.com" class="block hover:text-[#D4A373]">
+          <a
+            href="https://maps.google.com"
+            class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
+          >
             View on map
           </a>
         </div>
@@ -93,8 +109,10 @@ import "../styles/theme.css";
           <h4 class="font-semibold">Social</h4>
           <div class="flex gap-4">
             <a
-              href="https://instagram.com"
-              class="hover:text-[#D4A373] transition"
+              href="https://www.instagram.com/ram_photo_studio204101?igsh=OWp3cWMweWgybDJj"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
               aria-label="Instagram"
             >
               <svg
@@ -109,8 +127,10 @@ import "../styles/theme.css";
               </svg>
             </a>
             <a
-              href="https://youtube.com"
-              class="hover:text-[#D4A373] transition"
+              href="https://www.youtube.com/@ramdigitalphotostudioHathras"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
               aria-label="YouTube"
             >
               <svg
@@ -124,11 +144,29 @@ import "../styles/theme.css";
                 ></path>
               </svg>
             </a>
+            <a
+              href="https://www.facebook.com/share/1BkGu124uF/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
+              aria-label="Facebook"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                ></path>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
       <div
-        class="border-t border-[#3E3630] py-4 text-center text-sm text-[#CFC6BC]"
+        class="border-t border-[#A8C5E0] dark:border-t dark:border-[#3A4A5E] py-4 text-center text-sm text-[#334E68] dark:text-[#B8D4F0]"
       >
         © {new Date().getFullYear()} Ram Digital Photo Studio. All rights reserved.
       </div>

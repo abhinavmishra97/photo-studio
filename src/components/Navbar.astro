@@ -1,5 +1,4 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
 
 const navItems = [
   { name: "About Us", link: "/about-us" },
@@ -64,10 +63,11 @@ const path = Astro.url.pathname;
 <nav
   class="
     w-full sticky top-0 z-40
-    bg-[#211D1A] text-[#E8E1D5]
-    dark:bg-[#211D1A] dark:text-[#E8E1D5]
-    border-b border-[#3E3630]
-    shadow-[0_8px_12px_rgba(0,0,0,0.5)] transition-colors duration-300
+    bg-[#C4DDF0] text-[#1A2332]
+    dark:bg-[#243040] dark:text-[#E8F1F8]
+    border-b border-[#A8C5E0]
+    dark:border-b dark:border-[#3A4A5E]
+    shadow-[0_4px_12px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.5)] transition-colors duration-300
     hidden md:block
   "
 >
@@ -78,7 +78,7 @@ const path = Astro.url.pathname;
       href="/"
       class="
         text-xl md:text-2xl font-bold tracking-wide
-        hover:text-[#D4A373]
+        hover:text-[#2563A8] dark:hover:text-[#60A5FA]
         transition
       "
     >
@@ -97,10 +97,10 @@ const path = Astro.url.pathname;
               <a
                 href={item.link ?? "#"}
                 class={`text-sm md:text-base transition
-                  hover:text-[#D4A373]
+                  hover:text-[#2563A8] dark:hover:text-[#60A5FA]
                   ${
                     path.startsWith(item.link ?? "___")
-                      ? "text-[#D4A373] font-semibold"
+                      ? "text-[#2563A8] dark:text-[#60A5FA] font-semibold"
                       : ""
                   }
                 `}
@@ -159,10 +159,6 @@ const path = Astro.url.pathname;
       })}
     </ul>
 
-    <!-- Theme Toggle -->
-    <div class="hidden md:block">
-      <ThemeToggle />
-    </div>
   </div>
 </nav>
 
@@ -233,7 +229,7 @@ const path = Astro.url.pathname;
   )}
 
   <div class="pt-4">
-    <ThemeToggle />
+
   </div>
 </div>
 
@@ -256,7 +252,6 @@ const path = Astro.url.pathname;
 
   document.addEventListener("click", (e) => {
     if (
-      e.target.closest("#themeToggleBtn") ||
       e.target.closest("#mobileMenuBtn") ||
       e.target.closest("#mobileMenu")
     ) return;
