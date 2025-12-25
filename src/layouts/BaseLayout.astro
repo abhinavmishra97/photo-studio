@@ -1,16 +1,9 @@
 ---
 import Navbar from "../components/Navbar.astro";
-import Header from "../components/Header.astro";
 
 // Global styles
 import "../styles/global.css";
 import "../styles/theme.css";
-
-interface Props {
-  showHeader?: boolean;
-}
-
-const { showHeader = false } = Astro.props;
 ---
 
 <html lang="en">
@@ -18,62 +11,73 @@ const { showHeader = false } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ram Digital Photo Studio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body
-    class="bg-[#F5EFE6] text-[#2A2A2A]
-      dark:bg-[#23211E] dark:text-[#EEEAE3]
+    class="bg-white text-gray-900
+      dark:bg-gray-900 dark:text-gray-100
       transition-colors duration-500"
   >
     <div
       id="topContactBar"
-      class="w-full bg-[#2F2A25] text-[#EDEAE6] text-sm px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-center gap-2 md:gap-4 relative"
+      class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-center gap-2 md:gap-4 relative shadow-md"
     >
       <div class="flex items-center gap-2">
         <span aria-hidden="true">📞</span>
-        <a href="tel:+919412000718" class="hover:text-[#D4A373] transition">
+        <a
+          href="tel:+919412000718"
+          class="hover:text-blue-200 transition font-medium"
+        >
           +91 94120 00718
         </a>
       </div>
-      <div class="hidden md:block h-4 w-px bg-[#EDEAE6]/40"></div>
+      <div class="hidden md:block h-4 w-px bg-white/30"></div>
       <div class="flex items-center gap-2">
         <span aria-hidden="true">💬</span>
         <a
           href="https://wa.me/919412000718"
-          class="hover:text-[#D4A373] transition"
+          class="hover:text-blue-200 transition font-medium"
         >
           WhatsApp us
         </a>
       </div>
       <button
         id="closeTopBar"
-        class="absolute right-3 top-1/2 -translate-y-1/2 text-lg px-2 hover:text-[#D4A373] transition"
+        class="absolute right-3 top-1/2 -translate-y-1/2 text-lg px-2 hover:text-blue-200 transition"
         aria-label="Hide contact bar"
         type="button"
       >
         ✕
       </button>
     </div>
-    {showHeader && <Header />}
+
     <Navbar />
 
     <main class="max-w-7xl mx-auto mt-10 px-4">
       <slot />
     </main>
     <footer
-      class="mt-16 border-t border-[#A8C5E0]
-        dark:border-t dark:border-[#3A4A5E]
-        bg-gradient-to-b from-[#C4DDF0] via-[#D6E7F4] to-[#E8F1F8]
-        dark:bg-gradient-to-b dark:from-[#243040] dark:via-[#1E2838] dark:to-[#1A2332]
-        text-[#1A2332]
-        dark:text-[#E8F1F8]
-        shadow-[0_-8px_16px_rgba(0,0,0,0.1)]
-        dark:shadow-[0_-8px_16px_rgba(0,0,0,0.5)]"
+      class="mt-16 border-t-4 border-[#E8D5B5]
+        bg-gradient-to-b from-[#E8D5B5] via-[#F5EFE0] to-[#FBF7F2]
+        text-[#1a1a1a]
+        shadow-[0_-8px_24px_rgba(212,175,55,0.2)]"
     >
       <div class="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
         <div>
-          <h3 class="text-lg font-semibold">Ram Digital Photo Studio</h3>
-          <p class="mt-2 text-[#334E68] dark:text-[#B8D4F0]">
+          <h3
+            class="text-lg font-semibold hover:scale-105 transition-transform duration-300 inline-block"
+          >
+            Ram Digital Photo Studio
+          </h3>
+          <p class="mt-2 text-[#1a1a1a]/80">
             Warm, crafted imagery for weddings, portraits, products, and
             keepsakes.
           </p>
@@ -82,25 +86,25 @@ const { showHeader = false } = Astro.props;
           <h4 class="font-semibold">Contact</h4>
           <a
             href="tel:+919412000718"
-            class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
+            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300"
           >
             +91 94120 00718
           </a>
           <a
             href="https://wa.me/919412000718"
-            class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
+            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300"
           >
             WhatsApp
           </a>
           <a
             href="mailto:ramdigitalphotostudio@gmail.com"
-            class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
+            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300"
           >
             ramdigitalphotostudio@gmail.com
           </a>
           <a
             href="https://maps.google.com"
-            class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
+            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300"
           >
             View on map
           </a>
@@ -112,7 +116,7 @@ const { showHeader = false } = Astro.props;
               href="https://www.instagram.com/ram_photo_studio204101?igsh=OWp3cWMweWgybDJj"
               target="_blank"
               rel="noopener noreferrer"
-              class="hover:text-[#2563A8] dark:hover:text-[#60A5FA] transition"
+              class="hover:text-[#8B6F47] hover:scale-125 hover:rotate-12 transition-all duration-300"
               aria-label="Instagram"
             >
               <svg

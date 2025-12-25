@@ -173,9 +173,12 @@ const saveBtn = document.getElementById('saveBtn');
 // Form inputs
 const customerIdInput = document.getElementById('customerId');
 const customerNameInput = document.getElementById('customerName');
+const customerSpouseNameInput = document.getElementById('customerSpouseName');
 const customerPhoneInput = document.getElementById('customerPhone');
 const customerBirthdayInput = document.getElementById('customerBirthday');
 const customerAnniversaryInput = document.getElementById('customerAnniversary');
+const customerLocationInput = document.getElementById('customerLocation');
+const customerCityInput = document.getElementById('customerCity');
 const customerNotesInput = document.getElementById('customerNotes');
 
 // Search
@@ -211,9 +214,12 @@ customerForm?.addEventListener('submit', async (e) => {
   const customerData = {
     id: customerId || undefined,
     name: customerNameInput.value.trim(),
+    spouse_name: customerSpouseNameInput.value.trim() || null,
     phone: customerPhoneInput.value.trim(),
     birthday: customerBirthdayInput.value || null,
     anniversary: customerAnniversaryInput.value || null,
+    location: customerLocationInput.value.trim() || null,
+    city: customerCityInput.value.trim() || null,
     notes: customerNotesInput.value.trim() || null,
   };
 
@@ -252,9 +258,12 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
     modalTitle.textContent = 'Edit Customer';
     customerIdInput.value = customerData.id;
     customerNameInput.value = customerData.name;
+    customerSpouseNameInput.value = customerData.spouse_name || '';
     customerPhoneInput.value = customerData.phone;
     customerBirthdayInput.value = customerData.birthday || '';
     customerAnniversaryInput.value = customerData.anniversary || '';
+    customerLocationInput.value = customerData.location || '';
+    customerCityInput.value = customerData.city || '';
     customerNotesInput.value = customerData.notes || '';
 
     modal.classList.remove('hidden');
