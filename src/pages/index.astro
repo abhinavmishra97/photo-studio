@@ -47,12 +47,12 @@ const services = [
 ];
 
 const featuredShots = [
-  "/images/hero/recent-work-1.JPG",
-  "/images/gallery/gallery-4.JPG",
-  "/images/hero/recent-work-4.JPG",
-  "/images/gallery/gallery-3.JPG",
-  "/images/gallery/gallery-14.jpg",
-  "/images/gallery/gallery-16.JPG",
+  { image: "/images/hero/recent-work-1.JPG", category: "Studio Photoshoot" },
+  { image: "/images/gallery/gallery-4.JPG", category: "Outdoor Photography" },
+  { image: "/images/hero/recent-work-4.JPG", category: "Wedding Photography" },
+  { image: "/images/gallery/gallery-3.JPG", category: "Product Photoshoot" },
+  { image: "/images/gallery/gallery-14.jpg", category: "Baby Photoshoot" },
+  { image: "/images/gallery/gallery-20.webp", category: "Gift Items" },
 ];
 ---
 
@@ -69,7 +69,7 @@ const featuredShots = [
           <div
             data-slide
             data-index={index}
-            class={`absolute inset-0 transition-opacity duration-700 ease-in-out
+            class={`absolute inset-0 transition-opacity duration-500 ease-in-out
             ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}
           `}
             style={`background-image: url('${slide.image}'); background-size: cover; background-position: center;`}
@@ -78,7 +78,7 @@ const featuredShots = [
             <div class="relative h-full flex items-center px-6 md:px-12">
               <div class="max-w-2xl space-y-4 md:space-y-6">
                 <p class="uppercase tracking-widest text-sm text-[#D4AF37] font-medium">
-                  Ram Digital Photo Studio
+                  Ram Photo Studio
                 </p>
                 <h2 class="text-3xl md:text-5xl font-bold leading-tight text-white">
                   {slide.title}
@@ -91,8 +91,10 @@ const featuredShots = [
                     href="/contact"
                     class="
                     inline-flex items-center gap-2
-                    bg-[#D4AF37] text-white px-6 py-3 rounded-lg
-                    font-semibold hover:bg-[#C19A2E] transition shadow-lg
+                    bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white px-6 py-3 rounded-lg
+                    font-semibold hover:from-[#10A37F] hover:to-[#0D8F6E] 
+                    hover:scale-105 hover:shadow-[0_0_20px_rgba(32,201,151,0.5)]
+                    transition-all duration-300 shadow-lg
                   "
                   >
                     Book a session
@@ -102,11 +104,12 @@ const featuredShots = [
                     href="/gallery"
                     class="
                     inline-flex items-center gap-2
-                    text-[#D4AF37] font-semibold
-                    hover:text-[#C19A2E] transition
+                    text-[#F59E0B] font-bold text-lg
+                    hover:text-[#D97706] hover:gap-3
+                    transition-all duration-300
                   "
                   >
-                    View recent work
+                    View recent work →
                   </a>
                 </div>
               </div>
@@ -197,30 +200,34 @@ const featuredShots = [
         <h3
           class="text-2xl md:text-3xl font-bold leading-tight text-gray-900 dark:text-white"
         >
-          Warm, crafted imagery for every milestone.
+          Crafting Timeless Visual Stories for Over Five Decades
         </h3>
-        <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-          From family portraits and weddings to brand stories and bespoke gifts,
-          we design every session around you. Expect thoughtful lighting,
-          patient direction, and a seamless experience from shoot to print.
+        <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+          Ram Photo Studio is a trusted name in professional
+          photography, videography, and printing, proudly serving generations
+          for more than <b>50 years</b>. Rooted in experience and driven by innovation,
+          we combine artistic vision with advanced technology to preserve
+          memories with authenticity, elegance, and precision.
         </p>
         <div class="flex gap-3">
           <a
             href="/about-us"
             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
-              bg-[#D4AF37] text-white
-              font-semibold hover:bg-[#C19A2E] transition shadow-lg"
+              bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white
+              font-semibold hover:from-[#10A37F] hover:to-[#0D8F6E]
+              hover:scale-105 hover:shadow-[0_0_20px_rgba(32,201,151,0.5)]
+              transition-all duration-300 shadow-lg"
           >
             About Us
           </a>
           <a
             href="/gifts-items"
-            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
-              border border-gray-300 text-gray-700
-              dark:border-gray-600 dark:text-gray-300
-              font-semibold hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+            class="inline-flex items-center gap-2
+              text-[#F59E0B] font-bold text-base
+              hover:text-[#D97706] hover:gap-3
+              transition-all duration-300"
           >
-            See Gifts
+            See Gifts →
           </a>
         </div>
       </div>
@@ -238,7 +245,7 @@ const featuredShots = [
     <div class="flex items-center justify-between mb-6">
       <div>
         <p
-          class="uppercase tracking-widest text-xs text-blue-600 dark:text-blue-400 font-semibold"
+          class="uppercase tracking-widest text-xs text-[#D97706] font-semibold"
         >
           Featured work
         </p>
@@ -269,14 +276,14 @@ const featuredShots = [
           "
           >
             <img
-              src={shot}
-              alt={`Featured shot ${index + 1}`}
+              src={shot.image}
+              alt={`${shot.category} - Featured shot ${index + 1}`}
               loading="lazy"
               class="w-full h-full object-cover transition duration-300 group-hover:scale-105"
             />
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition flex items-center justify-center">
-              <span class="opacity-0 group-hover:opacity-100 transition text-white font-semibold text-sm px-5 py-2 bg-blue-600 rounded-lg">
-                View
+            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
+              <span class="text-white font-semibold text-lg md:text-xl tracking-wide">
+                {shot.category}
               </span>
             </div>
           </div>
@@ -304,7 +311,7 @@ const featuredShots = [
         Let’s plan your next shoot or gift.
       </h3>
       <p class="text-[#1a1a1a] mt-2">
-        Quick response via call/WhatsApp. Flexible studio and on-location
+        Quick response via call/WhatsApp. Flexible studio and on-location ```
         options.
       </p>
     </div>
@@ -312,16 +319,19 @@ const featuredShots = [
       <a
         href="tel:+91XXXXXXXXXX"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-[#8B6F47] text-[#FBF7F2] font-semibold
-          hover:bg-[#6B5744] hover:shadow-xl transition-all duration-300"
+          bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white font-semibold
+          hover:from-[#10A37F] hover:to-[#0D8F6E]
+          hover:scale-105 hover:shadow-[0_0_25px_rgba(32,201,151,0.6)]
+          transition-all duration-300 shadow-lg"
       >
         Call Now
       </a>
       <a
         href="/contact"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-[#FBF7F2] text-[#6B5744] font-semibold border-2 border-[#8B6F47]
-          hover:bg-[#8B6F47] hover:text-[#FBF7F2] transition-all duration-300"
+          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
+          hover:scale-105 hover:shadow-lg
+          transition-all duration-300"
       >
         Book a session
       </a>

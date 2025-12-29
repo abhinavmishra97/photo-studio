@@ -125,7 +125,7 @@ function getStatusColor(status: string): string {
                 <div class="flex flex-col gap-3 md:items-end md:min-w-[200px]">
                   <!-- Contact Info -->
                   <div class="text-left md:text-right text-xs space-y-1">
-                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${enquiry.email}&su=Re: Your enquiry - Ram Digital Photo Studio&authuser=ramdigitalphotostudio@gmail.com`} target="_blank" rel="noopener noreferrer" class="block text-blue-700 dark:text-[#60A5FA] hover:underline truncate md:max-w-[200px]" title={`Email ${enquiry.email}`}>
+                    <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${enquiry.email}&su=Re: Your enquiry - Ram Photo Studio&authuser=ramdigitalphotostudio@gmail.com`} target="_blank" rel="noopener noreferrer" class="block text-blue-700 dark:text-[#60A5FA] hover:underline truncate md:max-w-[200px]" title={`Email ${enquiry.email}`}>
                       {enquiry.email}
                     </a>
                     <a href={`tel:${enquiry.phone}`} class="block text-blue-700 dark:text-[#60A5FA] hover:underline">
@@ -297,14 +297,14 @@ function getStatusColor(status: string): string {
 
           // Create formatted email text
           const emailText = `To: ${email}
-Subject: Re: Your enquiry - Ram Digital Photo Studio
+Subject: Re: Your enquiry - Ram Photo Studio
 
 Hi ${name},
 
 ${message}
 
 Best regards,
-Ram Digital Photo Studio
+Ram Photo Studio
 Contact: +91 9412000718`;
 
           try {
@@ -344,7 +344,7 @@ Contact: +91 9412000718`;
           }
 
           // Create WhatsApp link with pre-filled message
-          const whatsappMessage = encodeURIComponent(`Hi ${name},\n\n${message}\n\nBest regards,\nRam Digital Photo Studio`);
+          const whatsappMessage = encodeURIComponent(`Hi ${name},\n\n${message}\n\nBest regards,\nRam Photo Studio`);
           const whatsappLink = `https://wa.me/${phone}?text=${whatsappMessage}`;
 
           // Open WhatsApp in new tab
@@ -366,7 +366,7 @@ Contact: +91 9412000718`;
           }
 
           // Create SMS link with pre-filled message
-          const smsMessage = encodeURIComponent(`Hi ${name},\n\n${message}\n\nBest regards,\nRam Digital Photo Studio\nContact: +91 9412000718`);
+          const smsMessage = encodeURIComponent(`Hi ${name},\n\n${message}\n\nBest regards,\nRam Photo Studio\nContact: +91 9412000718`);
           const smsLink = `sms:${phone}?body=${smsMessage}`;
 
           // Open SMS app

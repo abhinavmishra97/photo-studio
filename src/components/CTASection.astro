@@ -13,18 +13,24 @@ const {
 ---
 
 <section
-    class="mt-16 mb-6 mx-0 p-6 md:p-8 rounded-2xl
-    bg-[#2C2622]
-    text-[#E8E1D5] shadow-lg flex flex-col md:flex-row items-center justify-between gap-4"
+    class="mt-16 mb-6
+      flex flex-col md:flex-row items-center justify-between
+      gap-4 md:gap-6
+      p-6 md:p-8 rounded-2xl
+      bg-[#E8D5B5]
+      border-2 border-[#E8D5B5]
+      text-[#1a1a1a] shadow-lg"
 >
     <div>
-        <p class="uppercase tracking-[0.25em] text-sm text-[#D4A373]">
+        <p
+            class="uppercase tracking-[0.25em] text-sm text-[#6B5744] font-semibold"
+        >
             {title}
         </p>
         <h3 class="text-2xl md:text-3xl font-semibold">
             {subtitle}
         </h3>
-        <p class="text-[#E8DFD3]/90 mt-2">
+        <p class="text-[#1a1a1a] mt-2">
             {description}
         </p>
     </div>
@@ -32,16 +38,19 @@ const {
         <a
             href="tel:+919412000718"
             class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-        bg-white text-[#1F1D1A] font-semibold
-        hover:translate-y-[-1px] transition shadow"
+          bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white font-semibold
+          hover:from-[#10A37F] hover:to-[#0D8F6E]
+          hover:scale-105 hover:shadow-[0_0_25px_rgba(32,201,151,0.6)]
+          transition-all duration-300 shadow-lg"
         >
             Call Now
         </a>
         <a
             href="/contact"
             class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-        border border-white/70 text-white font-semibold
-        hover:bg-white/10 transition"
+          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
+          hover:scale-105 hover:shadow-lg
+          transition-all duration-300"
         >
             Plan your shoot
         </a>

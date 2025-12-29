@@ -4,55 +4,59 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout>
   <section class="text-center space-y-3 md:space-y-4">
-    <p class="uppercase tracking-[0.3em] text-sm text-[#A67C52]">About</p>
+    <p class="uppercase tracking-[0.3em] text-sm text-[#D97706]">About</p>
     <h1 class="text-3xl md:text-4xl font-semibold">
-      Timeless, warm storytelling for every milestone
+      Crafting Timeless Visual Stories for Over Five Decades
     </h1>
-    <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
-      We’re Ram Digital Photo Studio—a team that blends candid emotion with
-      crafted lighting to create wedding stories, studio portraits, product
-      visuals, and bespoke keepsakes. Based in your city, available for studio
-      and on-location shoots.
+    <p
+      class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto text-justify"
+    >
+      With a legacy spanning over five decades, Ram Photo Studio has grown
+      alongside the evolution of photography itself. From the early days of
+      black-and-white imagery to today's digital, cinematic, and large-format
+      technologies, we have continuously pioneered advancements in the region.
     </p>
     <div class="flex flex-wrap justify-center gap-3 pt-2">
       <span
-        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
       >
-        Weddings & Candid
+        Premium Quality
       </span>
       <span
-        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
       >
-        Studio Portraits
+        Candid Storytelling
       </span>
       <span
-        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
       >
-        Product & Brand
+        On-Time Delivery
       </span>
       <span
-        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
       >
-        Albums, Prints & Gifts
+        Professional Studio
       </span>
     </div>
     <div class="flex flex-wrap justify-center gap-3 pt-4">
       <a
         href="/contact"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-[#D4A373] text-[#1F1D1A] font-semibold
-          hover:translate-y-[-1px] transition shadow"
+          bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white font-semibold
+          hover:from-[#10A37F] hover:to-[#0D8F6E]
+          hover:scale-105 hover:shadow-[0_0_20px_rgba(32,201,151,0.5)]
+          transition-all duration-300 shadow-lg"
       >
         Plan your shoot
       </a>
       <a
         href="/gallery"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          border border-[#A67C52] text-[#A67C52]
-          dark:border-[#D4A373] dark:text-[#D4A373]
-          font-semibold hover:bg-[#A67C52]/10 transition"
+        class="inline-flex items-center gap-2
+          text-[#F59E0B] font-bold text-lg
+          hover:text-[#D97706] hover:gap-3
+          transition-all duration-300"
       >
-        View recent work
+        View recent work →
       </a>
     </div>
   </section>
@@ -74,8 +78,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         },
       ].map((item) => (
         <div
-          class="rounded-2xl bg-white/80 dark:bg-[#2B2824]
-          border border-[#E2D8CB] dark:border-[#3A3630]
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824]
+          border-2 border-[#E2D8CB] dark:border-[#3A3630]
           p-6 shadow-sm"
         >
           <h3 class="text-xl font-semibold mb-2">{item.title}</h3>
@@ -86,36 +90,46 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <section
-    class="mt-12 rounded-3xl bg-white/90 dark:bg-[#26231F]
-      border border-[#E2D8CB] dark:border-[#36322D] shadow-sm p-8 md:p-12"
+    class="mt-12 rounded-3xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824]
+      border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-8 md:p-12"
   >
     <div class="grid md:grid-cols-2 gap-10 items-center">
       <div class="space-y-4">
-        <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
-          Our process
+        <p class="uppercase tracking-[0.25em] text-sm text-[#D97706]">
+          Our Approach
         </p>
-        <h2 class="text-3xl font-semibold">Smooth, guided, and reliable.</h2>
-        <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-          From planning to delivery, we keep communication clear and timelines
-          on track. Expect thoughtful lighting, calm direction, and
-          well-organized backups.
+        <h2 class="text-3xl font-semibold">
+          Five Decades of Excellence, Perfected
+        </h2>
+        <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+          Our strength lies in a passionate team of photographers,
+          cinematographers, editors, and designers who seamlessly blend candid
+          emotions with crafted lighting and refined composition. Beyond
+          photography and videography, we also offer customized sublimation
+          gifts and bespoke photo keepsakes—helping you preserve your memories
+          in forms that last.
         </p>
-        <div class="grid sm:grid-cols-3 gap-4">
+        <div class="grid sm:grid-cols-3 gap-4 mt-6">
           {
             [
-              { title: "Plan", desc: "Brief call, mood, locations, timeline." },
               {
-                title: "Shoot",
-                desc: "Guided posing + candid flow; pro lighting and audio.",
+                title: "Consultation",
+                desc: "Understanding your vision and planning every detail.",
+              },
+              {
+                title: "Capture",
+                desc: "Professional shoots with expert lighting and direction.",
               },
               {
                 title: "Deliver",
-                desc: "Edits, albums/prints/gifts, fast handoff.",
+                desc: "Edited media, prints, albums, and custom gifts.",
               },
             ].map((step) => (
-              <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-4">
-                <h4 class="font-semibold">{step.title}</h4>
-                <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7] mt-1">
+              <div class="rounded-xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] border-2 border-[#E2D8CB] dark:border-[#3A3630] dark:bg-[#2F2A25] p-5 hover:shadow-lg transition-shadow duration-300">
+                <h4 class="font-semibold text-lg text-[#D97706]">
+                  {step.title}
+                </h4>
+                <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7] mt-2 leading-relaxed">
                   {step.desc}
                 </p>
               </div>
@@ -135,47 +149,172 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section class="mt-12 grid gap-6 md:grid-cols-3">
-    <div
-      class="rounded-2xl bg-white/80 dark:bg-[#2B2824] border border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm"
-    >
-      <p class="text-4xl font-bold text-[#D4A373]">500+</p>
-      <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">Sessions covered</p>
-    </div>
-    <div
-      class="rounded-2xl bg-white/80 dark:bg-[#2B2824] border border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm"
-    >
-      <p class="text-4xl font-bold text-[#D4A373]">4.8★</p>
-      <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">Client satisfaction</p>
-    </div>
-    <div
-      class="rounded-2xl bg-white/80 dark:bg-[#2B2824] border border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm"
-    >
-      <p class="text-4xl font-bold text-[#D4A373]">Quick</p>
-      <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
-        Turnaround on edits & prints
+  <!-- Why Choose Us - Key Highlights -->
+  <section class="mt-16">
+    <div class="text-center space-y-3 mb-8">
+      <p class="uppercase tracking-[0.3em] text-sm text-[#D97706]">
+        Why Choose Us
       </p>
+      <h2 class="text-3xl md:text-4xl font-semibold">
+        50+ Years of Trusted Excellence
+      </h2>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
+        Serving generations with consistent quality, professionalism, and
+        reliability making us one of the most experienced studios in the region.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+      >
+        <h3 class="text-lg font-semibold mb-2">One-Stop Solution</h3>
+        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+          From studio and outdoor photography to videography, large-format
+          printing, scanning, and customized gifts everything under one roof.
+        </p>
+      </div>
+
+      <div
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+      >
+        <h3 class="text-lg font-semibold mb-2">Candid Storytelling</h3>
+        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+          We capture real emotions, natural expressions, and meaningful moments
+          not just posed images.
+        </p>
+      </div>
+
+      <div
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+      >
+        <h3 class="text-lg font-semibold mb-2">On-Time Delivery</h3>
+        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+          Clear communication, guided sessions, fast turnarounds, and dependable
+          timelines you can trust.
+        </p>
+      </div>
+
+      <div
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+      >
+        <h3 class="text-lg font-semibold mb-2">Expert Creative Team</h3>
+        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+          Our photographers, cinematographers, editors, and designers blend
+          creativity with technical precision.
+        </p>
+      </div>
+
+      <div
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+      >
+        <h3 class="text-lg font-semibold mb-2">Customized Services</h3>
+        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+          Flexible packages for weddings, portraits, baby shoots, events,
+          products, and printing tailored to your needs.
+        </p>
+      </div>
+
+      <div
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+      >
+        <h3 class="text-lg font-semibold mb-2">Local Expertise</h3>
+        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+          Based in your city, available for studio and on location work
+          combining local understanding with professional execution.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology & Quality Section -->
+  <section
+    class="mt-12 rounded-3xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:from-[#2B2824] dark:to-[#2F2A25] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-lg p-8 md:p-12"
+  >
+    <div class="text-center space-y-3 mb-8">
+      <p class="uppercase tracking-[0.3em] text-sm text-[#D97706]">
+        Technology & Quality
+      </p>
+      <h2 class="text-3xl md:text-4xl font-semibold">
+        Pioneers of the Latest Technology
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold text-[#D97706]">Advanced Equipment</h3>
+        <ul class="space-y-3 text-[#5A5246] dark:text-[#CDC3B7]">
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">✓</span>
+            <span
+              >Digital photography with cinematic videography capabilities</span
+            >
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">✓</span>
+            <span
+              >Large-format printers and A0 scanners for professional output</span
+            >
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">✓</span>
+            <span>Drone cameras for aerial photography and videography</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">✓</span>
+            <span
+              >8-color pigment printing for superior detail and longevity</span
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-xl font-semibold text-[#D97706]">
+          Premium Quality Output
+        </h3>
+        <ul class="space-y-3 text-[#5A5246] dark:text-[#CDC3B7]">
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">✓</span>
+            <span>Accurate colors and sharp details in every shot</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">✓</span>
+            <span>Cinematic finishes for videos and films</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">✓</span>
+            <span>Long-lasting prints with archival quality</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">✓</span>
+            <span>Consistent quality maintained across all services</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section class="mt-12 grid gap-6 md:grid-cols-2">
     <div
-      class="rounded-2xl bg-white/90 dark:bg-[#26231F]
-        border border-[#E2D8CB] dark:border-[#36322D] shadow-sm p-6"
+      class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824]
+        border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-6"
     >
-      <h3 class="text-xl font-semibold mb-3">Studio & team</h3>
+      <h3 class="text-xl font-semibold mb-3">Studio & Team</h3>
       <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        We work with a tight-knit crew that knows how to keep sessions calm and
-        efficient. Our studio is equipped for portraits, products, and family
-        sessions, with mobile lighting kits for on-location shoots.
+        Our air-conditioned studios feature dedicated baby photography setups,
+        advanced lighting systems, and a calm, client-friendly environment
+        designed for comfort and creativity.
       </p>
       <p class="text-[#5A5246] dark:text-[#CDC3B7] mt-3">
-        Service areas: City & nearby regions. Travel available on request.
+        Our photographers, cinematographers, editors, and designers blend
+        creativity with technical precision to deliver refined, emotion-driven
+        results.
       </p>
     </div>
     <div
-      class="rounded-2xl bg-white/90 dark:bg-[#26231F]
-        border border-[#E2D8CB] dark:border-[#36322D] shadow-sm p-6 space-y-4"
+      class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824]
+        border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-6 space-y-4"
     >
       <h3 class="text-xl font-semibold">Words from clients</h3>
       <div class="space-y-3">
@@ -183,33 +322,37 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           “They captured every candid moment without ever feeling intrusive.
           Loved the colors and framing.”
         </blockquote>
-        <p class="text-sm text-[#A67C52] dark:text-[#D4A373]">
-          — Ayesha & Rohit
-        </p>
+        <p class="text-sm text-[#D97706]">— Ayesha & Rohit</p>
       </div>
       <div class="space-y-3">
         <blockquote class="text-[#5A5246] dark:text-[#CDC3B7]">
           “Super smooth product shoot. Clean lighting, quick edits, and spot-on
           styling.”
         </blockquote>
-        <p class="text-sm text-[#A67C52] dark:text-[#D4A373]">— Krafted Co.</p>
+        <p class="text-sm text-[#D97706]">— Krafted Co.</p>
       </div>
     </div>
   </section>
 
   <section
-    class="mt-12 mb-4 p-6 md:p-8 rounded-2xl
-      bg-gradient-to-r from-[#2F2A25] to-[#1F1C19]
-      text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-4"
+    class="mt-16 mb-6
+      flex flex-col md:flex-row items-center justify-between
+      gap-4 md:gap-6
+      p-6 md:p-8 rounded-2xl
+      bg-[#E8D5B5]
+      border-2 border-[#E8D5B5]
+      text-[#1a1a1a] shadow-lg"
   >
     <div>
-      <p class="uppercase tracking-[0.25em] text-sm text-[#D4A373]">
+      <p
+        class="uppercase tracking-[0.25em] text-sm text-[#6B5744] font-semibold"
+      >
         Ready to create
       </p>
       <h3 class="text-2xl md:text-3xl font-semibold">
         Let’s plan your next shoot or gift.
       </h3>
-      <p class="text-[#E8DFD3]/90 mt-2">
+      <p class="text-[#1a1a1a] mt-2">
         Quick response via call/WhatsApp. Flexible studio and on-location
         options.
       </p>
@@ -218,16 +361,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <a
         href="tel:+91XXXXXXXXXX"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-white text-[#1F1D1A] font-semibold
-          hover:translate-y-[-1px] transition shadow"
+          bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white font-semibold
+          hover:from-[#10A37F] hover:to-[#0D8F6E]
+          hover:scale-105 hover:shadow-[0_0_25px_rgba(32,201,151,0.6)]
+          transition-all duration-300 shadow-lg"
       >
         Call Now
       </a>
       <a
         href="/contact"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          border border-white/70 text-white font-semibold
-          hover:bg-white/10 transition"
+          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
+          hover:scale-105 hover:shadow-lg
+          transition-all duration-300"
       >
         Book a session
       </a>

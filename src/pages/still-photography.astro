@@ -9,41 +9,59 @@ import CTASection from "../components/CTASection.astro";
       Still Photography
     </p>
     <h1 class="text-3xl md:text-4xl font-semibold">
-      Portraits, matrimonial, baby, and product shoots in one studio.
+      Still Photography – Studio Experience
     </h1>
     <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
-      At Ram Digital Photo Studio we design still sessions around people and
-      products — from classic portraits and matrimonial profiles to baby
-      sessions and detailed product visuals for brands.
+      Our fully air-conditioned studio is designed to create elegant, timeless
+      still photographs using controlled lighting and carefully curated
+      backgrounds. Each session is conducted in a calm, professional
+      environment, ensuring comfort and confidence for every client.
     </p>
     <div class="flex flex-wrap justify-center gap-3 pt-2">
-      <span
-        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+      <a
+        href="#studio"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
       >
-        Studio Portraits
-      </span>
-      <span
-        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+        Studio Photography
+      </a>
+      <a
+        href="#matrimonial"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
       >
-        Matrimonial Profiles
-      </span>
-      <span
-        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+        Matrimonial Photography
+      </a>
+      <a
+        href="#baby"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
       >
-        Baby & Family
-      </span>
-      <span
-        class="px-4 py-2 rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
+        Baby Photoshoot
+      </a>
+      <a
+        href="#product"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
       >
-        Product & Brand
-      </span>
+        Product Photo Shoot
+      </a>
+      <a
+        href="#outdoor"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
+      >
+        Outdoor Photography
+      </a>
+      <a
+        href="#events"
+        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
+      >
+        Event & Celebration
+      </a>
     </div>
     <div class="flex flex-wrap justify-center gap-3 pt-4">
       <a
         href="/contact"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-[#D4A373] text-[#1F1D1A] font-semibold
-          hover:translate-y-[-1px] transition shadow"
+          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
+          hover:scale-105 hover:shadow-lg
+          transition-all duration-300"
       >
         Plan your still session
       </a>
@@ -61,32 +79,47 @@ import CTASection from "../components/CTASection.astro";
 
   <section id="studio" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
     <div class="space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
-        Studio Photography
-      </p>
-      <h2 class="text-3xl font-semibold">
-        Classic portraits with crafted light.
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        Studio Portrait Photography
       </h2>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        Ideal for individual portraits, couples, small families, corporate
-        profiles, and updated social media images. We use controlled studio
-        lighting to flatter features and keep backgrounds clean.
+      <p class="text-lg text-[#A67C52] font-medium">
+        Timeless portraits created with carefully controlled lighting.
       </p>
-      <ul
-        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Timeless portraits created with carefully controlled lighting and clean,
+        elegant backgrounds. Ideal for individuals, couples, families, and
+        professionals seeking polished images for personal or corporate use.
+      </p>
+      <div
+        class="grid sm:grid-cols-3 gap-4 text-sm text-[#5A5246] dark:text-[#CDC3B7]"
       >
-        <li>
-          <strong>Best for</strong>: portraits, siblings, small families,
-          corporate.
-        </li>
-        <li>
-          <strong>Includes</strong>: guided posing, multiple backgrounds,
-          curated edits.
-        </li>
-        <li>
-          <strong>Add-ons</strong>: framed prints, albums, digital packages.
-        </li>
-      </ul>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Best for</h3>
+          <p class="mt-1">
+            Individual portraits, couples, siblings, small families, corporate
+            profiles
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Includes</h3>
+          <p class="mt-1">
+            Guided posing, multiple background options, curated professional
+            edits
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Add-ons</h3>
+          <p class="mt-1">
+            Premium framed prints, albums, and digital image packages
+          </p>
+        </div>
+      </div>
     </div>
     <div class="grid grid-cols-2 gap-4">
       <div
@@ -140,71 +173,85 @@ import CTASection from "../components/CTASection.astro";
       </div>
     </div>
     <div class="order-1 md:order-2 space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
-        Marriage Photography
-      </p>
-      <h2 class="text-3xl font-semibold">
-        Timeless moments from your special day.
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        Matrimonial & Bio-Data Photography
       </h2>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        Capture the joy, emotions, and traditions of your wedding ceremony. From
-        intimate rituals to grand celebrations, we document every precious
-        moment so you can relive your special day for years to come.
+      <p class="text-lg text-[#A67C52] font-medium">
+        Clean, confident, and approachable portraits.
       </p>
-      <ul
-        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        Our matrimonial photography services focus on creating clean, confident,
+        and approachable portraits. Special attention is given to posture,
+        expressions, styling, and background selection, resulting in photographs
+        that present you at your best. These sessions are thoughtfully guided,
+        ensuring natural expressions and high-resolution outputs that meet both
+        traditional and modern requirements.
+      </p>
+      <div
+        class="grid sm:grid-cols-3 gap-4 text-sm text-[#5A5246] dark:text-[#CDC3B7]"
       >
-        <li>
-          <strong>Coverage</strong>: ceremonies, rituals, candid moments, and
-          family portraits.
-        </li>
-        <li>
-          <strong>Style</strong>: traditional, candid, and artistic shots
-          blended seamlessly.
-        </li>
-        <li>
-          <strong>Deliverables</strong>: edited albums, digital gallery, and
-          highlight prints.
-        </li>
-      </ul>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Best for</h3>
+          <p class="mt-1">
+            High-resolution images ready for print and digital platforms
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Includes</h3>
+          <p class="mt-1">
+            Outfit suggestions, posture correction, best angles
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Add-On</h3>
+          <p class="mt-1">Classic studio, soft gradients, subtle textures</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="baby" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
     <div class="space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
-        Baby Photoshoot
-      </p>
-      <h2 class="text-3xl font-semibold">
-        Soft, patient sessions for little ones.
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        Dedicated Baby Photo Studio
       </h2>
+      <p class="text-lg text-[#A67C52] font-medium">
+        Specialized setup for newborns and infants.
+      </p>
       <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        From newborns to toddlers, we create a safe, cozy space for little ones
-        to just be themselves. We move at their pace, with plenty of breaks and
-        playful prompts.
+        We proudly offer a separate, dedicated baby photography studio—one of
+        the few specialized setups in the region. Designed with a soothing
+        ambience, soft lighting, and baby-safe props, this space ensures comfort
+        and safety for newborns and infants. Each baby session is handled
+        patiently and gently, allowing us to capture precious smiles and
+        milestone moments naturally.
       </p>
       <div
         class="grid sm:grid-cols-3 gap-4 text-sm text-[#5A5246] dark:text-[#CDC3B7]"
       >
-        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
-          <h3 class="font-semibold">Newborn</h3>
-          <p class="mt-1">
-            Gentle posing, blankets, and close-ups of details like hands and
-            feet.
-          </p>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Best for</h3>
+          <p class="mt-1">Newborns, infants, and milestone baby shoots</p>
         </div>
-        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
-          <h3 class="font-semibold">Toddlers</h3>
-          <p class="mt-1">
-            Play-based sessions capturing expressions, laughter, and curiosity.
-          </p>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Includes</h3>
+          <p class="mt-1">Soft lighting and temperature-controlled comfort</p>
         </div>
-        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
-          <h3 class="font-semibold">Family</h3>
-          <p class="mt-1">
-            Parents, grandparents, and siblings all together in warm, natural
-            frames.
-          </p>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Add-On</h3>
+          <p class="mt-1">Multiple backgrounds and baby-friendly props</p>
         </div>
       </div>
       <p class="text-[#5A5246] dark:text-[#CDC3B7]">
@@ -261,63 +308,96 @@ import CTASection from "../components/CTASection.astro";
       </div>
     </div>
     <div class="order-1 md:order-2 space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
         Product Photo Shoot
-      </p>
-      <h2 class="text-3xl font-semibold">
-        Detailed visuals for brands and businesses.
       </h2>
+      <p class="text-lg text-[#A67C52] font-medium">
+        Detailed visuals for brands and businesses.
+      </p>
       <p class="text-[#5A5246] dark:text-[#CDC3B7]">
         Whether you’re updating your menu, e-commerce catalog, or social feed,
         we create consistent, color-true images that highlight the best of your
         products.
       </p>
-      <ul
-        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
-      >
-        <li>
-          <strong>Styles</strong>: clean white, lifestyle with props, flat-lays.
-        </li>
-        <li>
-          <strong>Prep</strong>: cleaning, arranging, and planning angles for
-          consistency.
-        </li>
-        <li>
-          <strong>Delivery</strong>: web-ready and high-resolution files for
-          print.
-        </li>
-      </ul>
+      <div class="grid sm:grid-cols-3 gap-3 text-sm">
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Styles</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Clean white, lifestyle with props, flat-lays
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Prep</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Cleaning, arranging, and planning angles for consistency
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Delivery</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Web-ready and high-resolution files for print
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="outdoor" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
     <div class="space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
-        Outdoor Photography
-      </p>
-      <h2 class="text-3xl font-semibold">
-        Natural light portraits and on-location stories.
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        Outdoor Photography – Natural Light, Timeless Moments
       </h2>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        Perfect for pre-wedding, couples, families, and lifestyle portraits. We
-        scout spots, plan the best time for light, and guide posing so you feel
-        comfortable outdoors.
+      <p class="text-lg text-[#A67C52] font-medium mt-4">
+        Natural Light & On-Location Portraits
       </p>
-      <ul
-        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
-      >
-        <li>
-          <strong>Locations</strong>: parks, city streets, rooftops, or a
-          favorite hangout.
-        </li>
-        <li>
-          <strong>Timing</strong>: golden hour sessions for warm, soft light.
-        </li>
-        <li>
-          <strong>Guidance</strong>: prompts and poses to keep things natural
-          and relaxed.
-        </li>
-      </ul>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        We carefully plan every outdoor session—selecting the right location,
+        scouting angles, and timing the shoot to make the most of soft,
+        flattering natural light. Our gentle guidance and posing prompts ensure
+        you feel comfortable, confident, and completely yourself.
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Ideal for</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Pre-wedding shoots, couples, families, baby showers, lifestyle
+            portraits
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Locations</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Parks, city streets, rooftops, heritage spots, or your favorite
+            hangout
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Timing</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Golden hour sessions for warm, cinematic light
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Guidance</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Natural prompts and relaxed posing for candid expressions
+          </p>
+        </div>
+      </div>
     </div>
     <div class="grid grid-cols-2 gap-4">
       <div
@@ -339,6 +419,81 @@ import CTASection from "../components/CTASection.astro";
           loading="lazy"
           class="w-full h-full object-cover transition duration-700 hover:scale-105"
         />
+      </div>
+    </div>
+  </section>
+
+  <section id="events" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
+    <div class="grid grid-cols-2 gap-4">
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="images/hero/hero-slide-1.jpg"
+          alt="Event photography example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="images/hero/hero-slide-2.jpg"
+          alt="Celebration photography example"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+    </div>
+    <div class="space-y-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        Event & Celebration Photography
+      </h2>
+      <p class="text-lg text-[#A67C52] font-medium">
+        Preserving your priceless milestones.
+      </p>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+        We are committed to preserving your priceless milestones—from pre-birth
+        celebrations and a child's sacred rituals, to pre-wedding, wedding, and
+        post-wedding ceremonies, including haldi, mehendi, ring ceremonies,
+        anniversaries, and receptions. Our experienced team is always present to
+        capture genuine moments, emotions, and unscripted memories as they
+        unfold.
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm">
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Ideal for</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Wedding shoots, Destination wedding, Birthdays, Ceremonies
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Locations</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Resorts, Hotels, Gardens
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Timing</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Round the clock, ready to capture precious Moments
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Guidance</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Entries, poses, backgrounds, lighting
+          </p>
+        </div>
       </div>
     </div>
   </section>
