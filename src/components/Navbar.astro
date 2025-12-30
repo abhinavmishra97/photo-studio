@@ -11,6 +11,7 @@ const navItems = [
       { name: "Baby Photoshoot", link: "/still-photography#baby" },
       { name: "Product Photo Shoot", link: "/still-photography#product" },
       { name: "Outdoor Photography", link: "/still-photography#outdoor" },
+      { name: "Event Photography", link: "/still-photography#event" },
     ],
   },
   {
@@ -58,16 +59,18 @@ const path = Astro.url.pathname;
     hidden md:block"
 >
   <div
-    class="max-w-7xl mx-auto flex justify-between items-center px-4 py-2 md:px-6 md:py-3"
+    class="max-w-7xl mx-auto flex justify-between items-center px-4 py-0.5 md:px-4"
   >
     <!-- Logo - Left Side -->
     <a
       href="/"
-      class="text-xl md:text-2xl font-bold tracking-wide text-[#1a1a1a]
-        hover:scale-105
-        transition-all duration-300"
+      class="flex items-center hover:scale-105 transition-all duration-300"
     >
-      Ram Photo Studio
+      <img 
+        src="/rps-favicon.png" 
+        alt="Ram Photo Studio" 
+        class="h-12 w-auto md:h-14 drop-shadow-md"
+      />
     </a>
 
     <!-- Desktop Menu - Right Side -->
@@ -83,7 +86,7 @@ const path = Astro.url.pathname;
             <div class="flex items-center gap-1">
               <a
                 href={item.link}
-                class={`text-sm md:text-base font-semibold transition-all duration-300 text-[#1a1a1a] relative inline-block
+                class={`text-base font-semibold transition-all duration-300 text-[#1a1a1a] relative inline-block
                 hover:scale-110 hover:text-[#8B6F47] hover:drop-shadow-[0_0_8px_rgba(139,111,71,0.6)]
                 ${isActive ? "scale-110 text-[#8B6F47]" : ""}
               `}
@@ -154,12 +157,16 @@ const path = Astro.url.pathname;
   class="md:hidden sticky top-0 z-40 bg-gradient-to-b from-[#FBF7F2] via-[#F5EFE0] to-[#E8D5B5] border-b-2 border-[#E8D5B5] shadow-lg"
 >
   <div class="flex justify-between items-center px-4 py-2">
-    <!-- Studio Name - Left -->
+    <!-- Studio Logo - Left -->
     <a
       href="/"
-      class="text-base font-bold text-[#1a1a1a] hover:scale-105 hover:drop-shadow-[0_0_8px_rgba(26,26,26,0.4)] transition-all duration-300"
+      class="flex items-center hover:scale-105 transition-all duration-300"
     >
-      Ram Photo Studio
+      <img 
+        src="/rps-favicon.png" 
+        alt="Ram Photo Studio" 
+        class="h-10 w-auto drop-shadow-md"
+      />
     </a>
 
     <!-- Hamburger Button - Right -->

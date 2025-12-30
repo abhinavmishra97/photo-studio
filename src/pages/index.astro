@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CTASection from "../components/CTASection.astro";
 
 const slides = [
   {
@@ -59,9 +60,10 @@ const featuredShots = [
 <BaseLayout showHeader={true}>
   <section
     id="heroSlider"
-    class="relative w-full max-w-[100%] h-[80vh] md:h-[80vh] mx-auto
-      overflow-hidden rounded-2xl shadow-2xl
-      bg-gray-900 text-white mb-4"
+    class="relative w-full max-w-[100%] h-[60vh] sm:h-[70vh] md:h-[80vh] mx-auto
+      overflow-hidden rounded-lg md:rounded-2xl shadow-2xl
+      bg-gray-900 text-white my-auto"
+    style="margin-top: calc((100vh - 80vh) / 2 - 60px); margin-bottom: calc((100vh - 80vh) / 2);"
   >
     <div class="absolute inset-0">
       {
@@ -69,47 +71,78 @@ const featuredShots = [
           <div
             data-slide
             data-index={index}
-            class={`absolute inset-0 transition-opacity duration-500 ease-in-out
+            class={`absolute inset-0 transition-opacity duration-700 ease-in-out
             ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}
           `}
             style={`background-image: url('${slide.image}'); background-size: cover; background-position: center;`}
           >
-            <div class="absolute inset-0 bg-black/50" />
-            <div class="relative h-full flex items-center px-6 md:px-12">
-              <div class="max-w-2xl space-y-4 md:space-y-6">
-                <p class="uppercase tracking-widest text-sm text-[#D4AF37] font-medium">
+            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/70" />
+            <div class="relative h-full flex items-center px-4 sm:px-6 md:px-12">
+              <div class="max-w-2xl flex flex-col items-start">
+                <p
+                  class="uppercase tracking-widest text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FF8C00] drop-shadow-[0_2px_8px_rgba(255,215,0,0.8)] animate-pulse"
+                  style="text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);"
+                >
                   Ram Photo Studio
                 </p>
-                <h2 class="text-3xl md:text-5xl font-bold leading-tight text-white">
+                <h2
+                  class="mt-4 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+                  style="line-height: 1.1;"
+                >
                   {slide.title}
                 </h2>
-                <p class="text-lg md:text-xl text-[#F5F5F5]">
+                <p
+                  class="mt-6 text-sm sm:text-base md:text-lg text-[#F3F4F6] max-w-xl leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
+                  style="line-height: 1.6;"
+                >
                   {slide.subtitle}
                 </p>
-                <div class="flex items-center space-x-3">
+                <div class="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                   <a
                     href="/contact"
                     class="
-                    inline-flex items-center gap-2
-                    bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white px-6 py-3 rounded-lg
-                    font-semibold hover:from-[#10A37F] hover:to-[#0D8F6E] 
-                    hover:scale-105 hover:shadow-[0_0_20px_rgba(32,201,151,0.5)]
-                    transition-all duration-300 shadow-lg
+                    group relative inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 md:py-3.5 rounded-full overflow-hidden
+                    bg-gradient-to-br from-[#20C997] via-[#17B589] to-[#10A37F] text-white font-bold text-sm sm:text-base
+                    hover:from-[#25E5B0] hover:via-[#1AC99A] hover:to-[#12B588]
+                    transition-all duration-300
+                    shadow-[0_4px_12px_rgba(32,201,151,0.3),0_2px_6px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-1px_0_rgba(0,0,0,0.15)]
+                    hover:shadow-[0_6px_20px_rgba(32,201,151,0.4),0_3px_10px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.4)]
+                    hover:scale-105 sm:hover:scale-110 hover:-translate-y-1
+                    active:scale-100 sm:active:scale-105 active:translate-y-0
+                    border border-[#2DFFC7]/20
+                    w-full sm:w-auto justify-center
                   "
                   >
-                    Book a session
-                    <span aria-hidden="true">→</span>
+                    <span class="relative z-10 flex items-center gap-1.5 sm:gap-2">
+                      Book a session
+                      <span
+                        class="group-hover:translate-x-1 transition-transform duration-300"
+                        aria-hidden="true"
+                      >
+                        →
+                      </span>
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                   </a>
                   <a
                     href="/gallery"
                     class="
-                    inline-flex items-center gap-2
-                    text-[#F59E0B] font-bold text-lg
-                    hover:text-[#D97706] hover:gap-3
+                    group inline-flex items-center gap-1.5 sm:gap-2
+                    text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FF8C00] font-bold text-sm sm:text-base md:text-lg
+                    hover:from-[#FFA500] hover:via-[#FF8C00] hover:to-[#FF6B00]
+                    drop-shadow-[0_2px_6px_rgba(255,165,0,0.8)]
+                    hover:gap-2 sm:hover:gap-3 hover:drop-shadow-[0_4px_12px_rgba(255,140,0,1)]
                     transition-all duration-300
                   "
+                    style="filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.6));"
                   >
-                    View recent work →
+                    View recent work
+                    <span
+                      class="group-hover:translate-x-1 transition-transform duration-300"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
                   </a>
                 </div>
               </div>
@@ -126,7 +159,7 @@ const featuredShots = [
     </div>
 
     <div
-      class="absolute inset-x-0 bottom-8 flex justify-center items-center gap-2.5 z-20"
+      class="absolute inset-x-0 bottom-4 sm:bottom-6 md:bottom-8 flex justify-center items-center gap-2 sm:gap-2.5 z-20"
     >
       {
         slides.map((_, index) => (
@@ -159,16 +192,6 @@ const featuredShots = [
           hover:-translate-y-1 hover:border-[#D4AF37]
         "
         >
-          <div
-            class="
-            w-12 h-12 rounded-lg
-            bg-[#D4AF37]/20 text-[#D4AF37]
-            flex items-center justify-center text-xl font-bold
-            mb-4
-          "
-          >
-            ✦
-          </div>
           <h3 class="text-xl font-bold mb-2 text-[#2A2E35]">{service.title}</h3>
           <p class="text-[#3A3A3A] leading-relaxed text-sm">{service.copy}</p>
           <span
@@ -202,28 +225,34 @@ const featuredShots = [
         >
           Crafting Timeless Visual Stories for Over Five Decades
         </h3>
-        <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
-          Ram Photo Studio is a trusted name in professional
-          photography, videography, and printing, proudly serving generations
-          for more than <b>50 years</b>. Rooted in experience and driven by innovation,
-          we combine artistic vision with advanced technology to preserve
-          memories with authenticity, elegance, and precision.
+        <p
+          class="text-base text-gray-600 dark:text-gray-300 leading-relaxed text-justify"
+        >
+          Ram Photo Studio is a trusted name in professional photography,
+          videography, and printing, proudly serving generations for more than <b
+            >50 years</b
+          >. Rooted in experience and driven by innovation, we combine artistic
+          vision with advanced technology to preserve memories with
+          authenticity, elegance, and precision.
         </p>
         <div class="flex gap-3">
           <a
             href="/about-us"
-            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
-              bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white
-              font-semibold hover:from-[#10A37F] hover:to-[#0D8F6E]
-              hover:scale-105 hover:shadow-[0_0_20px_rgba(32,201,151,0.5)]
-              transition-all duration-300 shadow-lg"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+              bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white font-semibold
+              hover:from-[#10A37F] hover:to-[#0D8F6E]
+              hover:scale-105 hover:shadow-[0_8px_20px_rgba(0,0,0,0.25)]
+              transition-all duration-300
+              shadow-[0_4px_10px_rgba(0,0,0,0.2),inset_0_-2px_5px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.3)]
+              hover:translate-y-[-2px]
+              active:translate-y-[1px] active:shadow-[0_2px_8px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(0,0,0,0.3)]"
           >
             About Us
           </a>
           <a
             href="/gifts-items"
             class="inline-flex items-center gap-2
-              text-[#F59E0B] font-bold text-base
+              text-[#D97706] font-bold text-base
               hover:text-[#D97706] hover:gap-3
               transition-all duration-300"
           >
@@ -292,51 +321,11 @@ const featuredShots = [
     </div>
   </section>
 
-  <section
-    class="mt-16 mb-6
-      flex flex-col md:flex-row items-center justify-between
-      gap-4 md:gap-6
-      p-6 md:p-8 rounded-2xl
-      bg-[#E8D5B5]
-      border-2 border-[#E8D5B5]
-      text-[#1a1a1a] shadow-lg"
-  >
-    <div>
-      <p
-        class="uppercase tracking-[0.25em] text-sm text-[#6B5744] font-semibold"
-      >
-        Ready to create
-      </p>
-      <h3 class="text-2xl md:text-3xl font-semibold">
-        Let’s plan your next shoot or gift.
-      </h3>
-      <p class="text-[#1a1a1a] mt-2">
-        Quick response via call/WhatsApp. Flexible studio and on-location ```
-        options.
-      </p>
-    </div>
-    <div class="flex gap-3">
-      <a
-        href="tel:+91XXXXXXXXXX"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white font-semibold
-          hover:from-[#10A37F] hover:to-[#0D8F6E]
-          hover:scale-105 hover:shadow-[0_0_25px_rgba(32,201,151,0.6)]
-          transition-all duration-300 shadow-lg"
-      >
-        Call Now
-      </a>
-      <a
-        href="/contact"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
-          hover:scale-105 hover:shadow-lg
-          transition-all duration-300"
-      >
-        Book a session
-      </a>
-    </div>
-  </section>
+  <CTASection
+    title="Ready to create"
+    subtitle="Let’s plan your next shoot or gift."
+    description="Quick response via call/WhatsApp. Flexible studio and on-location options."
+  />
 
   <script is:inline>
     const hero = document.getElementById("heroSlider");

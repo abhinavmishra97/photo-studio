@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CTASection from "../components/CTASection.astro";
 ---
 
 <BaseLayout>
@@ -42,17 +43,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <a
         href="/contact"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white font-semibold
-          hover:from-[#10A37F] hover:to-[#0D8F6E]
-          hover:scale-105 hover:shadow-[0_0_20px_rgba(32,201,151,0.5)]
-          transition-all duration-300 shadow-lg"
+          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
+          hover:from-[#D4A056] hover:to-[#C9954D]
+          hover:scale-105 hover:shadow-[0_8px_30px_rgba(201,149,77,0.5),0_2px_10px_rgba(0,0,0,0.2)]
+          transition-all duration-300
+          shadow-[0_4px_15px_rgba(201,149,77,0.4),0_2px_5px_rgba(0,0,0,0.15),inset_0_-2px_5px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.3)]
+          hover:translate-y-[-2px]
+          active:translate-y-[1px] active:shadow-[0_2px_10px_rgba(201,149,77,0.3),inset_0_2px_5px_rgba(0,0,0,0.3)]"
       >
         Plan your shoot
       </a>
       <a
         href="/gallery"
         class="inline-flex items-center gap-2
-          text-[#F59E0B] font-bold text-lg
+          text-[#D97706] font-bold text-lg
           hover:text-[#D97706] hover:gap-3
           transition-all duration-300"
       >
@@ -334,49 +338,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <section
-    class="mt-16 mb-6
-      flex flex-col md:flex-row items-center justify-between
-      gap-4 md:gap-6
-      p-6 md:p-8 rounded-2xl
-      bg-[#E8D5B5]
-      border-2 border-[#E8D5B5]
-      text-[#1a1a1a] shadow-lg"
-  >
-    <div>
-      <p
-        class="uppercase tracking-[0.25em] text-sm text-[#6B5744] font-semibold"
-      >
-        Ready to create
-      </p>
-      <h3 class="text-2xl md:text-3xl font-semibold">
-        Let’s plan your next shoot or gift.
-      </h3>
-      <p class="text-[#1a1a1a] mt-2">
-        Quick response via call/WhatsApp. Flexible studio and on-location
-        options.
-      </p>
-    </div>
-    <div class="flex gap-3">
-      <a
-        href="tel:+91XXXXXXXXXX"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-gradient-to-r from-[#20C997] to-[#10A37F] text-white font-semibold
-          hover:from-[#10A37F] hover:to-[#0D8F6E]
-          hover:scale-105 hover:shadow-[0_0_25px_rgba(32,201,151,0.6)]
-          transition-all duration-300 shadow-lg"
-      >
-        Call Now
-      </a>
-      <a
-        href="/contact"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
-          hover:scale-105 hover:shadow-lg
-          transition-all duration-300"
-      >
-        Book a session
-      </a>
-    </div>
-  </section>
+  <CTASection
+    title="Ready to create"
+    subtitle="Let’s plan your next shoot or gift."
+    description="Quick response via call/WhatsApp. Flexible studio and on-location options."
+  />
 </BaseLayout>

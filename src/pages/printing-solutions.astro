@@ -6,15 +6,26 @@ import CTASection from "../components/CTASection.astro";
 <BaseLayout>
   <!-- Hero Section -->
   <section class="text-center space-y-3 md:space-y-4">
-    <p class="uppercase tracking-[0.3em] text-sm text-[#A67C52]">
+    <p class="uppercase tracking-[0.3em] text-sm text-[#D97706]">
       Printing Solutions
     </p>
     <h1 class="text-3xl md:text-4xl font-semibold">
-      Professional printing for photos, designs, and projects.
+      Printing Solutions – Precision & Quality
     </h1>
-    <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
-      From large-format posters to precise A0 scanning and custom cutting — we
-      deliver high-quality prints with accurate colors and sharp details.
+    <p
+      class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto text-justify"
+    >
+      Our advanced printing solutions are trusted by photographers, designers,
+      businesses, and individuals. From large-format printing and A0 scanning to
+      cameo cutting and high-end copier services, we deliver sharp details,
+      accurate colors, and long-lasting output.
+    </p>
+    <p
+      class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto text-justify"
+    >
+      Using premium materials and state-of-the-art equipment, we support both
+      creative and technical printing needs—ensuring consistency, durability,
+      and professional finish across every project.
     </p>
     <div class="flex flex-wrap justify-center gap-3 pt-2">
       <a
@@ -47,17 +58,21 @@ import CTASection from "../components/CTASection.astro";
         href="/contact"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
           bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
-          hover:scale-105 hover:shadow-lg
-          transition-all duration-300"
+          hover:from-[#D4A056] hover:to-[#C9954D]
+          hover:scale-105 hover:shadow-[0_8px_30px_rgba(201,149,77,0.5),0_2px_10px_rgba(0,0,0,0.2)]
+          transition-all duration-300
+          shadow-[0_4px_15px_rgba(201,149,77,0.4),0_2px_5px_rgba(0,0,0,0.15),inset_0_-2px_5px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.3)]
+          hover:translate-y-[-2px]
+          active:translate-y-[1px] active:shadow-[0_2px_10px_rgba(201,149,77,0.3),inset_0_2px_5px_rgba(0,0,0,0.3)]"
       >
         Get a quote
       </a>
       <a
         href="/gallery"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          border border-[#A67C52] text-[#A67C52]
+          border border-[#D97706] text-[#D97706]
           dark:border-[#D4A373] dark:text-[#D4A373]
-          font-semibold hover:bg-[#A67C52]/10 transition"
+          font-semibold hover:bg-[#D97706]/10 transition"
       >
         View samples
       </a>
@@ -70,39 +85,52 @@ import CTASection from "../components/CTASection.astro";
     class="mt-16 grid gap-8 md:grid-cols-2 items-center"
   >
     <div class="space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
         Large Format Printing
-      </p>
-      <h2 class="text-3xl font-semibold">
-        Posters, banners, and displays up to wide sizes.
       </h2>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        Perfect for events, exhibitions, retail displays, and architectural
-        plans. We print on premium paper, canvas, vinyl, and fabric with vibrant
-        colors and sharp detail that lasts.
+      <p class="text-lg text-[#D97706] font-medium">
+        High-impact prints for displays, events, and technical needs.
       </p>
-      <ul
-        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
-      >
-        <li>
-          <strong>Materials</strong>: Photo paper, canvas, vinyl, fabric, and
-          more.
-        </li>
-        <li>
-          <strong>Sizes</strong>: A4 to A0 and custom dimensions.
-        </li>
-        <li>
-          <strong>Uses</strong>: Posters, banners, signage, architectural
-          prints.
-        </li>
-      </ul>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+        Our large-format printing services are ideal for visual communication
+        that demands scale and clarity. Whether it's a promotional banner or a
+        technical drawing, we produce prints that stand out.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-3 text-sm">
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Materials</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Premium photo paper, canvas, vinyl, fabric, and specialty media
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Sizes</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            A4 to A0, Man-size prints, up to 42" × 30 meters, and custom
+            dimensions
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Applications</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Posters, banners, signage, maps, architectural and engineering
+            prints
+          </p>
+        </div>
+      </div>
     </div>
     <div class="grid grid-cols-2 gap-4">
       <div
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
       >
         <img
-          src="https://images.unsplash.com/photo-1612178537253-bccd437b730e?auto=format&fit=crop&w=800&q=80"
+          src="images/printing-solutions/banner.jpeg"
           alt="Large format printing example"
           loading="lazy"
           class="w-full h-full object-cover transition duration-700 hover:scale-105"
@@ -112,7 +140,7 @@ import CTASection from "../components/CTASection.astro";
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
       >
         <img
-          src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80"
+          src="images/printing-solutions/paper.jpeg"
           alt="Poster printing example"
           loading="lazy"
           class="w-full h-full object-cover transition duration-700 hover:scale-105"
@@ -128,7 +156,7 @@ import CTASection from "../components/CTASection.astro";
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
       >
         <img
-          src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=800&q=80"
+          src="images/printing-solutions/a4paper-1.avif"
           alt="Document scanning services"
           loading="lazy"
           class="w-full h-full object-cover transition duration-700 hover:scale-105"
@@ -138,68 +166,91 @@ import CTASection from "../components/CTASection.astro";
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
       >
         <img
-          src="https://images.unsplash.com/photo-1554224311-beee4f0d696c?auto=format&fit=crop&w=800&q=80"
+          src="images/printing-solutions/scanner-1.png"
           alt="High resolution scanning"
           loading="lazy"
-          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+          class="w-full h-full object-contain transition duration-700 scale-105 hover:scale-110"
+          style="background-color: rgba(87, 84, 84, 0.136)"
         />
       </div>
     </div>
     <div class="order-1 md:order-2 space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
-        Scanning A0 Size
-      </p>
-      <h2 class="text-3xl font-semibold">
-        High-resolution scanning for large documents.
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        A0 Size Scanning
       </h2>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        Digitize architectural plans, engineering drawings, artwork, and
-        historical documents up to A0 size. We deliver high-resolution files
-        perfect for archiving, sharing, or reprinting.
+      <p class="text-lg text-[#D97706] font-medium">
+        High-resolution digitization for large documents.
       </p>
-      <ul
-        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
-      >
-        <li>
-          <strong>Resolution</strong>: Up to 600 DPI for crisp, detailed scans.
-        </li>
-        <li>
-          <strong>Formats</strong>: PDF, JPEG, TIFF, and more.
-        </li>
-        <li>
-          <strong>Best for</strong>: Blueprints, maps, posters, and artwork.
-        </li>
-      </ul>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+        We provide precise scanning services for oversized documents, preserving
+        every detail with exceptional clarity.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-3 text-sm">
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Resolution</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Up to 600 DPI for crisp, accurate scans
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Formats</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            PDF, JPEG, TIFF, and more
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Best for</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Blueprints, architectural plans, maps, posters, artwork, and
+            archives
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Cameo 5 Cutting -->
   <section id="cameo" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
     <div class="space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
-        Cameo 5 Cutting
-      </p>
-      <h2 class="text-3xl font-semibold">
-        Precision cutting for custom designs and crafts.
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        Cameo Cutting
       </h2>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        Create custom stickers, decals, labels, and intricate paper designs with
-        our Cameo 5 cutting machine. Perfect for personalized gifts, branding,
-        and creative projects with clean, precise cuts.
+      <p class="text-lg text-[#D97706] font-medium">
+        Precision vinyl cutting for customized designs.
       </p>
-      <div
-        class="grid sm:grid-cols-2 gap-4 text-sm text-[#5A5246] dark:text-[#CDC3B7]"
-      >
-        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
-          <h3 class="font-semibold">Stickers & Decals</h3>
-          <p class="mt-1">
-            Custom shapes, logos, and designs on vinyl or paper.
+      <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+        Using advanced Cameo cutting technology, we offer clean and accurate
+        cutting for creative and professional applications.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-3 text-sm">
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Ideal for</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Vinyl graphics, decals, logos, and custom shapes
           </p>
         </div>
-        <div class="rounded-xl bg-[#F7F1E9] dark:bg-[#2F2A25] p-3">
-          <h3 class="font-semibold">Paper Crafts</h3>
-          <p class="mt-1">
-            Intricate cuts for invitations, cards, and decorations.
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Specialty</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Heat-transfer material cutting for apparel and merchandise
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Finish</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Smooth edges with precise detailing
           </p>
         </div>
       </div>
@@ -209,20 +260,22 @@ import CTASection from "../components/CTASection.astro";
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
       >
         <img
-          src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80"
+          src="images/printing-solutions/EpSON-P8000.jpg"
           alt="Precision cutting and crafts"
           loading="lazy"
-          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+          class="w-full h-full object-contain transition duration-700 hover:scale-105"
+          style="background-color: white"
         />
       </div>
       <div
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
       >
         <img
-          src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80"
+          src="images/printing-solutions/cameo5-1.jpg"
           alt="Custom stickers and decals"
           loading="lazy"
-          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+          class="w-full h-full object-contain transition duration-700 hover:scale-105"
+          style="background-color: white"
         />
       </div>
     </div>
@@ -235,17 +288,18 @@ import CTASection from "../components/CTASection.astro";
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
       >
         <img
-          src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=800&q=80"
+          src="images/printing-solutions/Canon5300-2.jpg"
           alt="Document printing and copying"
           loading="lazy"
-          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+          class="w-full h-full object-contain transition duration-700 hover:scale-105"
+          style="background-color: white"
         />
       </div>
       <div
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
       >
         <img
-          src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=80"
+          src="images/printing-solutions/Canon5300-1.webp"
           alt="Professional printing services"
           loading="lazy"
           class="w-full h-full object-cover transition duration-700 hover:scale-105"
@@ -253,30 +307,36 @@ import CTASection from "../components/CTASection.astro";
       </div>
     </div>
     <div class="order-1 md:order-2 space-y-4">
-      <p class="uppercase tracking-[0.25em] text-sm text-[#A67C52]">
-        Copier / Printing
-      </p>
-      <h2 class="text-3xl font-semibold">
-        Fast, reliable copying and document printing.
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        Copier Services
       </h2>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
-        From single pages to bulk orders, we handle all your document printing
-        and copying needs. Black & white or color, single or double-sided, with
-        binding and finishing options available.
+      <p class="text-lg text-[#D97706] font-medium">
+        Reliable copying and enlargement solutions.
       </p>
-      <ul
-        class="list-disc list-inside space-y-1 text-[#5A5246] dark:text-[#CDC3B7]"
-      >
-        <li>
-          <strong>Options</strong>: B&W or color, single/double-sided.
-        </li>
-        <li>
-          <strong>Sizes</strong>: A4, A3, legal, and custom.
-        </li>
-        <li>
-          <strong>Finishing</strong>: Binding, lamination, and stapling.
-        </li>
-      </ul>
+      <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+        From simple A4 photocopying to large-scale enlargements, our copier
+        services cater to both everyday and specialized requirements.
+      </p>
+      <div class="grid sm:grid-cols-2 gap-3 text-sm">
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Services</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            Monochrome and color copying, multi-fold enlargement for maps,
+            plans, and designs
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+        >
+          <h3 class="font-semibold text-[#D97706]">Technology</h3>
+          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+            High-resolution printing using 8-color pigment ink technology for
+            superior detail beyond standard CMYK
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
