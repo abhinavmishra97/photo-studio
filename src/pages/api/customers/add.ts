@@ -1,6 +1,6 @@
 // API endpoint to add a new customer
 import type { APIRoute } from 'astro';
-import { supabaseAdmin } from '../../../lib/supabaseAdmin';
+import { supabaseAdmin } from '../../../lib/supabaseAdmin.js';
 
 export const prerender = false;
 
