@@ -3,16 +3,16 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-  "dev": "node ./node_modules/astro/astro.js dev",
-  "build": "node ./node_modules/astro/astro.js build",
-  "preview": "node ./node_modules/astro/astro.js preview"
+    "dev": "astro dev",
+    "build": "npx astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
+    "astro": "^5.16.2",
     "@astrojs/tailwind": "^6.0.2",
     "@astrojs/vercel": "^9.0.2",
     "@supabase/supabase-js": "^2.89.0",
-    "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.16.2"
+    "@tailwindcss/vite": "^4.1.17"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.22",
