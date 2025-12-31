@@ -3,10 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "npx astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+  "dev": "astro dev",
+  "build": "node ./node_modules/astro/astro.js build",
+  "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
