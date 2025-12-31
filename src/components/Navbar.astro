@@ -196,8 +196,7 @@ const path = Astro.url.pathname;
   class="fixed inset-y-0 right-0 w-3/5 max-w-xs
     translate-x-full
     md:hidden
-    bg-[#1F1C19]/95 text-[#EDEAE6]
-    backdrop-blur-xl
+    bg-[#1F1C19]/95 backdrop-blur-xl
     px-6 pb-6 pt-4 space-y-2
     border-l border-[#3F3C38]/50
     shadow-2xl transition-transform duration-300
@@ -208,7 +207,7 @@ const path = Astro.url.pathname;
   <div class="flex justify-end mb-4">
     <button
       id="closeMobileMenu"
-      class="p-2 rounded-lg hover:bg-[#3F3C38]/50 transition-all duration-300"
+      class="p-2 rounded-lg hover:bg-[#3F3C38]/50 transition-all duration-300 text-[#EDEAE6]"
       aria-label="Close menu"
     >
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -217,37 +216,43 @@ const path = Astro.url.pathname;
     </button>
   </div>
 
-  {navItems.map((item) =>
+  {navItems.map((item, index) =>
     item.items ? (
-      <details class="border-b border-[#3F3C38]/50 pb-2">
-        <summary class="cursor-pointer py-2 text-base font-medium">
-          {item.name}
-        </summary>
-        <ul class="ml-3 mt-1 space-y-1">
+      <div class="border-b border-[#3F3C38]/50 pb-2" data-menu-item={index}>
+        <!-- Clickable heading + dropdown arrow -->
+        <div class="flex items-center justify-between py-2">
+          <a
+            href={item.link}
+            class="mobile-menu-link flex-1 text-base font-medium text-[#EDEAE6] hover:text-[#D4A373] transition"
+          >
+            {item.name}
+          </a>
+          <button
+            class="dropdown-toggle p-2 text-[#EDEAE6] hover:text-[#D4A373] transition-all duration-300"
+            data-dropdown={index}
+            aria-label={`Toggle ${item.name} submenu`}
+          >
+            <svg class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+        </div>
+        <!-- Dropdown content -->
+        <div class="dropdown-content hidden ml-3 mt-1 space-y-1" data-dropdown-content={index}>
           {item.items.map((sub) => (
-            <li>
-              <a
-                href={sub.link}
-                class="mobile-menu-link
-                block py-1.5 text-sm
-                hover:text-[#D4A373]
-                transition
-              "
-              >
-                {sub.name}
-              </a>
-            </li>
+            <a
+              href={sub.link}
+              class="mobile-menu-link block py-1.5 text-sm text-[#EDEAE6] hover:text-[#D4A373] transition"
+            >
+              {sub.name}
+            </a>
           ))}
-        </ul>
-      </details>
+        </div>
+      </div>
     ) : (
       <a
         href={item.link}
-        class="mobile-menu-link
-          block py-2 text-base font-medium border-b border-[#3F3C38]/50
-          hover:text-[#D4A373]
-          transition
-        "
+        class="mobile-menu-link block py-2 text-base font-medium border-b border-[#3F3C38]/50 text-[#EDEAE6] hover:text-[#D4A373] transition"
       >
         {item.name}
       </a>
@@ -270,6 +275,7 @@ const path = Astro.url.pathname;
   const closeBtn = document.getElementById("closeMobileMenu");
   const hamburgerLines = btn.querySelectorAll(".hamburger-line");
   const menuLinks = document.querySelectorAll(".mobile-menu-link");
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
 
   function closeMenu() {
     mobileMenu.classList.remove("translate-x-0");
@@ -283,6 +289,9 @@ const path = Astro.url.pathname;
     hamburgerLines[1].style.opacity = "1";
     hamburgerLines[2].style.transform =
       "rotate(0) translateY(0) translateX(0)";
+    
+    // Close all dropdowns when menu closes
+    closeAllDropdowns();
   }
 
   function openMenu() {
@@ -297,6 +306,34 @@ const path = Astro.url.pathname;
     hamburgerLines[1].style.opacity = "0";
     hamburgerLines[2].style.transform =
       "rotate(-45deg) translateY(-4px) translateX(4px)";
+  }
+
+  function closeAllDropdowns() {
+    const allDropdowns = document.querySelectorAll(".dropdown-content");
+    const allToggles = document.querySelectorAll(".dropdown-toggle svg");
+    
+    allDropdowns.forEach((dropdown) => {
+      dropdown.classList.add("hidden");
+    });
+    
+    allToggles.forEach((svg) => {
+      svg.classList.remove("rotate-180");
+    });
+  }
+
+  function toggleDropdown(index) {
+    const dropdown = document.querySelector(`[data-dropdown-content="${index}"]`);
+    const toggle = document.querySelector(`[data-dropdown="${index}"] svg`);
+    const isOpen = !dropdown.classList.contains("hidden");
+
+    // Close all other dropdowns first (accordion behavior)
+    closeAllDropdowns();
+
+    // If this dropdown was closed, open it
+    if (!isOpen) {
+      dropdown.classList.remove("hidden");
+      toggle.classList.add("rotate-180");
+    }
   }
 
   // Hamburger button click
@@ -318,5 +355,15 @@ const path = Astro.url.pathname;
   // Close menu when clicking any menu link
   menuLinks.forEach((link) => {
     link.addEventListener("click", closeMenu);
+  });
+
+  // Dropdown toggle buttons
+  dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const index = toggle.getAttribute("data-dropdown");
+      toggleDropdown(index);
+    });
   });
 </script>

@@ -1,5 +1,6 @@
 ---
 import Navbar from "../components/Navbar.astro";
+import Analytics from "@vercel/analytics/astro";
 
 // Global styles
 import "../styles/global.css";
@@ -223,5 +224,8 @@ import "../styles/theme.css";
         }
       });
     </script>
+
+    <!-- Vercel Analytics -->
+    <Analytics />
   </body>
 </html>
