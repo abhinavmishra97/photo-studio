@@ -2,9 +2,9 @@
 // NEVER import this in client-side code!
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-// In Astro, server-side env vars are accessed directly without PUBLIC_ prefix
-const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
+// In server-side TypeScript files, use process.env
+const supabaseUrl = process.env.PUBLIC_SUPABASE_URL || '';
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
 console.log('Environment check:', {
     hasUrl: !!supabaseUrl,
@@ -17,7 +17,7 @@ console.log('Environment check:', {
 
 if (!supabaseUrl || !supabaseServiceKey) {
     console.error('Missing environment variables!');
-    console.error('Available env vars:', Object.keys(import.meta.env));
+    console.error('Available env vars:', Object.keys(process.env));
     throw new Error('Missing Supabase admin environment variables. Please check your .env file.');
 }
 
