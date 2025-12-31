@@ -198,12 +198,25 @@ const path = Astro.url.pathname;
     md:hidden
     bg-[#1F1C19]/95 text-[#EDEAE6]
     backdrop-blur-xl
-    px-6 pb-6 pt-20 space-y-2
+    px-6 pb-6 pt-4 space-y-2
     border-l border-[#3F3C38]/50
     shadow-2xl transition-transform duration-300
-    overflow-y-auto z-40"
+    overflow-y-auto z-50"
   style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"
 >
+  <!-- Close Button -->
+  <div class="flex justify-end mb-4">
+    <button
+      id="closeMobileMenu"
+      class="p-2 rounded-lg hover:bg-[#3F3C38]/50 transition-all duration-300"
+      aria-label="Close menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
   {navItems.map((item) =>
     item.items ? (
       <details class="border-b border-[#3F3C38]/50 pb-2">
@@ -215,7 +228,7 @@ const path = Astro.url.pathname;
             <li>
               <a
                 href={sub.link}
-                class="
+                class="mobile-menu-link
                 block py-1.5 text-sm
                 hover:text-[#D4A373]
                 transition
@@ -230,7 +243,7 @@ const path = Astro.url.pathname;
     ) : (
       <a
         href={item.link}
-        class="
+        class="mobile-menu-link
           block py-2 text-base font-medium border-b border-[#3F3C38]/50
           hover:text-[#D4A373]
           transition
@@ -244,35 +257,66 @@ const path = Astro.url.pathname;
   <div class="pt-4"></div>
 </div>
 
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobileMenuOverlay"
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm opacity-0 invisible transition-all duration-300 z-40 md:hidden"
+></div>
+
 <script is:inline>
   const btn = document.getElementById("mobileMenuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("mobileMenuOverlay");
+  const closeBtn = document.getElementById("closeMobileMenu");
   const hamburgerLines = btn.querySelectorAll(".hamburger-line");
+  const menuLinks = document.querySelectorAll(".mobile-menu-link");
 
+  function closeMenu() {
+    mobileMenu.classList.remove("translate-x-0");
+    mobileMenu.classList.add("translate-x-full");
+    overlay.classList.remove("opacity-100", "visible");
+    overlay.classList.add("opacity-0", "invisible");
+
+    // Animate back to hamburger
+    hamburgerLines[0].style.transform =
+      "rotate(0) translateY(0) translateX(0)";
+    hamburgerLines[1].style.opacity = "1";
+    hamburgerLines[2].style.transform =
+      "rotate(0) translateY(0) translateX(0)";
+  }
+
+  function openMenu() {
+    mobileMenu.classList.remove("translate-x-full");
+    mobileMenu.classList.add("translate-x-0");
+    overlay.classList.remove("opacity-0", "invisible");
+    overlay.classList.add("opacity-100", "visible");
+
+    // Animate to cross (X)
+    hamburgerLines[0].style.transform =
+      "rotate(45deg) translateY(4px) translateX(4px)";
+    hamburgerLines[1].style.opacity = "0";
+    hamburgerLines[2].style.transform =
+      "rotate(-45deg) translateY(-4px) translateX(4px)";
+  }
+
+  // Hamburger button click
   btn.addEventListener("click", () => {
     const isOpen = mobileMenu.classList.contains("translate-x-0");
     if (isOpen) {
-      // Close menu
-      mobileMenu.classList.remove("translate-x-0");
-      mobileMenu.classList.add("translate-x-full");
-
-      // Animate back to hamburger
-      hamburgerLines[0].style.transform =
-        "rotate(0) translateY(0) translateX(0)";
-      hamburgerLines[1].style.opacity = "1";
-      hamburgerLines[2].style.transform =
-        "rotate(0) translateY(0) translateX(0)";
+      closeMenu();
     } else {
-      // Open menu
-      mobileMenu.classList.remove("translate-x-full");
-      mobileMenu.classList.add("translate-x-0");
-
-      // Animate to cross (X) with margins - shifted 5px right
-      hamburgerLines[0].style.transform =
-        "rotate(45deg) translateY(4px) translateX(4px)";
-      hamburgerLines[1].style.opacity = "0";
-      hamburgerLines[2].style.transform =
-        "rotate(-45deg) translateY(-4px) translateX(4px)";
+      openMenu();
     }
+  });
+
+  // Close button click
+  closeBtn.addEventListener("click", closeMenu);
+
+  // Overlay click to close
+  overlay.addEventListener("click", closeMenu);
+
+  // Close menu when clicking any menu link
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 </script>

@@ -82,39 +82,6 @@ import "../styles/theme.css";
       <img src="/rps-favicon.png" alt="Loading..." class="preloader-logo" />
     </div>
 
-    <div
-      id="topContactBar"
-      class="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-center gap-2 md:gap-4 relative shadow-md"
-    >
-      <div class="flex items-center gap-2">
-        <span aria-hidden="true">📞</span>
-        <a
-          href="tel:+915722297297"
-          class="hover:text-blue-200 transition font-medium"
-        >
-          91-5722-297297
-        </a>
-      </div>
-      <div class="hidden md:block h-4 w-px bg-white/30"></div>
-      <div class="flex items-center gap-2">
-        <span aria-hidden="true">💬</span>
-        <a
-          href="https://wa.me/919412733288"
-          class="hover:text-blue-200 transition font-medium"
-        >
-          WhatsApp us
-        </a>
-      </div>
-      <button
-        id="closeTopBar"
-        class="absolute right-3 top-1/2 -translate-y-1/2 text-lg px-2 hover:text-blue-200 transition"
-        aria-label="Hide contact bar"
-        type="button"
-      >
-        ✕
-      </button>
-    </div>
-
     <Navbar />
 
     <main class="max-w-7xl mx-auto mt-10 px-4">
@@ -255,24 +222,6 @@ import "../styles/theme.css";
           }, 500);
         }
       });
-
-      // Top Contact Bar
-      (function () {
-        const topBar = document.getElementById("topContactBar");
-        const closeBtn = document.getElementById("closeTopBar");
-
-        if (!topBar || !closeBtn) return;
-
-        const HIDDEN_KEY = "topBarHidden";
-        if (localStorage.getItem(HIDDEN_KEY) === "1") {
-          topBar.style.display = "none";
-        }
-
-        closeBtn.addEventListener("click", () => {
-          topBar.style.display = "none";
-          localStorage.setItem(HIDDEN_KEY, "1");
-        });
-      })();
     </script>
   </body>
 </html>
