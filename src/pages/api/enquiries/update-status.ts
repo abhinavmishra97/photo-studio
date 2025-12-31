@@ -1,6 +1,6 @@
 // API endpoint to update enquiry status (server-side only)
 import type { APIRoute } from 'astro';
-import { supabaseAdmin } from '../../../lib/supabaseAdmin';
+import { supabaseAdmin } from "../../../lib/supabaseAdmin.js";
 
 // Disable prerendering for this API route
 export const prerender = false;
