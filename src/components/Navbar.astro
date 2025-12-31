@@ -156,7 +156,7 @@ const path = Astro.url.pathname;
 <nav
   class="md:hidden sticky top-0 z-40 bg-gradient-to-b from-[#FBF7F2] via-[#F5EFE0] to-[#E8D5B5] border-b-2 border-[#E8D5B5] shadow-lg"
 >
-  <div class="flex justify-between items-center px-4 py-2">
+  <div class="flex justify-between items-center px-4 py-0.5">
     <!-- Studio Logo - Left -->
     <a
       href="/"
@@ -165,7 +165,7 @@ const path = Astro.url.pathname;
       <img 
         src="/rps-favicon.png" 
         alt="Ram Photo Studio" 
-        class="h-10 w-auto drop-shadow-md"
+        class="h-14 w-auto drop-shadow-md"
       />
     </a>
 
@@ -196,9 +196,9 @@ const path = Astro.url.pathname;
   class="fixed inset-y-0 right-0 w-3/5 max-w-xs
     translate-x-full
     md:hidden
-    bg-[#1F1C19]/95 backdrop-blur-xl
+    bg-gradient-to-b from-[#FBF7F2] via-[#F5EFE0] to-[#E8D5B5] backdrop-blur-xl
     px-6 pb-6 pt-4 space-y-2
-    border-l border-[#3F3C38]/50
+    border-l-2 border-[#D4AF37]
     shadow-2xl transition-transform duration-300
     overflow-y-auto z-50"
   style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"
@@ -207,7 +207,7 @@ const path = Astro.url.pathname;
   <div class="flex justify-end mb-4">
     <button
       id="closeMobileMenu"
-      class="p-2 rounded-lg hover:bg-[#3F3C38]/50 transition-all duration-300 text-[#EDEAE6]"
+      class="p-2 rounded-lg hover:bg-[#D4AF37]/20 transition-all duration-300 text-[#1a1a1a]"
       aria-label="Close menu"
     >
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,17 +218,17 @@ const path = Astro.url.pathname;
 
   {navItems.map((item, index) =>
     item.items ? (
-      <div class="border-b border-[#3F3C38]/50 pb-2" data-menu-item={index}>
+      <div class="border-b border-[#D4AF37]/30 pb-2" data-menu-item={index}>
         <!-- Clickable heading + dropdown arrow -->
         <div class="flex items-center justify-between py-2">
           <a
             href={item.link}
-            class="mobile-menu-link flex-1 text-base font-medium text-[#EDEAE6] hover:text-[#D4A373] transition"
+            class="mobile-menu-link flex-1 text-base font-medium text-[#1a1a1a] hover:text-[#8B6F47] transition"
           >
             {item.name}
           </a>
           <button
-            class="dropdown-toggle p-2 text-[#EDEAE6] hover:text-[#D4A373] transition-all duration-300"
+            class="dropdown-toggle p-2 text-[#1a1a1a] hover:text-[#8B6F47] transition-all duration-300"
             data-dropdown={index}
             aria-label={`Toggle ${item.name} submenu`}
           >
@@ -242,7 +242,7 @@ const path = Astro.url.pathname;
           {item.items.map((sub) => (
             <a
               href={sub.link}
-              class="mobile-menu-link block py-1.5 text-sm text-[#EDEAE6] hover:text-[#D4A373] transition"
+              class="mobile-menu-link block py-1.5 text-sm text-[#3A3A3A] hover:text-[#8B6F47] transition"
             >
               {sub.name}
             </a>
@@ -252,7 +252,7 @@ const path = Astro.url.pathname;
     ) : (
       <a
         href={item.link}
-        class="mobile-menu-link block py-2 text-base font-medium border-b border-[#3F3C38]/50 text-[#EDEAE6] hover:text-[#D4A373] transition"
+        class="mobile-menu-link block py-2 text-base font-medium border-b border-[#D4AF37]/30 text-[#1a1a1a] hover:text-[#8B6F47] transition"
       >
         {item.name}
       </a>

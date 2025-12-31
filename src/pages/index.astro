@@ -76,8 +76,10 @@ const featuredShots = [
           `}
             style={`background-image: url('${slide.image}'); background-size: cover; background-position: center;`}
           >
-            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-black/70" />
-            <div class="relative h-full flex items-center px-4 sm:px-6 md:px-12">
+            <!-- Mobile: lighter overlay for brighter images, Desktop: darker overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 md:from-black/60 md:via-black/50 md:to-black/70" />
+            <!-- Mobile: content positioned lower with top padding to prevent cutoff, Desktop: centered -->
+            <div class="relative h-full flex items-end md:items-center px-4 sm:px-6 md:px-12 pt-16 pb-20 md:pt-0 md:pb-0">
               <div class="max-w-2xl flex flex-col items-start">
                 <p
                   class="uppercase tracking-widest text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FF8C00] drop-shadow-[0_2px_8px_rgba(255,215,0,0.8)] animate-pulse"
@@ -86,18 +88,18 @@ const featuredShots = [
                   Ram Photo Studio
                 </p>
                 <h2
-                  class="mt-4 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+                  class="mt-2 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
                   style="line-height: 1.1;"
                 >
                   {slide.title}
                 </h2>
                 <p
-                  class="mt-6 text-sm sm:text-base md:text-lg text-[#F3F4F6] max-w-xl leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
-                  style="line-height: 1.6;"
+                  class="mt-2 text-sm sm:text-base md:text-lg text-[#F3F4F6] max-w-xl leading-snug drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]"
+                  style="line-height: 1.4;"
                 >
                   {slide.subtitle}
                 </p>
-                <div class="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                <div class="mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                   <a
                     href="/contact"
                     class="
