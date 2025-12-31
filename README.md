@@ -67,7 +67,7 @@ A comprehensive admin panel with three main sections:
 ```text
 /
 ├── public/
-│   ├── admin-dashboard.js      # Admin dashboard client-side logic
+│   ├── admin-dashboard.js      # Admin dashboard client side logic
 │   └── favicon.svg
 ├── src/
 │   ├── components/
