@@ -83,12 +83,12 @@ const featuredShots = [
               <div class="max-w-2xl flex flex-col items-start">
                 <p
                   class="uppercase tracking-widest text-xs sm:text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FFA500] to-[#FF8C00] drop-shadow-[0_2px_8px_rgba(255,215,0,0.8)] animate-pulse"
-                  style="text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);"
+                 style="text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);"
                 >
                   Ram Photo Studio
                 </p>
                 <h2
-                  class="mt-2 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+                   class="mt-2 text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
                   style="line-height: 1.1;"
                 >
                   {slide.title}
@@ -170,7 +170,7 @@ const featuredShots = [
             data-dot
             data-index={index}
             class="
-            h-2 w-2 rounded-full
+            h-2.5 w-2.5 rounded-full
             transition-all duration-300
             bg-white/50 hover:bg-white/80
           "
@@ -288,11 +288,16 @@ const featuredShots = [
       </div>
       <a
         href="/contact"
-        class="inline-flex items-center gap-2 text-[#D4AF37]
-          font-semibold text-sm hover:text-[#C19A2E]
-          hover:gap-3 transition-all"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
+          hover:from-[#D4A056] hover:to-[#C9954D]
+          hover:scale-105 hover:shadow-[0_8px_30px_rgba(201,149,77,0.5),0_2px_10px_rgba(0,0,0,0.2)]
+          transition-all duration-300
+          shadow-[0_4px_15px_rgba(201,149,77,0.4),0_2px_5px_rgba(0,0,0,0.15),inset_0_-2px_5px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.3)]
+          hover:translate-y-[-2px]
+          active:translate-y-[1px] active:shadow-[0_2px_10px_rgba(201,149,77,0.3),inset_0_2px_5px_rgba(0,0,0,0.3)]"
       >
-        Plan your shoot →
+        Plan your shoot
       </a>
     </div>
 
@@ -330,6 +335,7 @@ const featuredShots = [
   />
 
   <script is:inline>
+    // Hero slider carousel functionality
     const hero = document.getElementById("heroSlider");
     if (hero) {
       const slidesEls = Array.from(hero.querySelectorAll("[data-slide]"));
@@ -351,9 +357,9 @@ const featuredShots = [
           const isActive = i === index;
           if (isActive) {
             dot.classList.remove("bg-white/50");
-            dot.classList.add("bg-white", "w-8");
+            dot.classList.add("bg-white", "w-10");
           } else {
-            dot.classList.remove("bg-white", "w-8");
+            dot.classList.remove("bg-white", "w-10");
             dot.classList.add("bg-white/50");
           }
         });

@@ -1,5 +1,6 @@
 ---
 const navItems = [
+  { name: "Home", link: "/" },
   { name: "About Us", link: "/about-us" },
   { name: "Gallery", link: "/gallery" },
   {
@@ -7,9 +8,9 @@ const navItems = [
     link: "/still-photography",
     items: [
       { name: "Studio Photography", link: "/still-photography#studio" },
-      { name: "Marriage Photography", link: "/still-photography#matrimonial" },
+      { name: "Matrimonial Photography", link: "/still-photography#matrimonial" },
       { name: "Baby Photoshoot", link: "/still-photography#baby" },
-      { name: "Product Photo Shoot", link: "/still-photography#product" },
+      { name: "Product Photoshoot", link: "/still-photography#product" },
       { name: "Outdoor Photography", link: "/still-photography#outdoor" },
       { name: "Event Photography", link: "/still-photography#event" },
     ],
@@ -59,7 +60,7 @@ const path = Astro.url.pathname;
     hidden md:block"
 >
   <div
-    class="max-w-7xl mx-auto flex justify-between items-center px-4 py-0.5 md:px-4"
+    class="max-w-7xl mx-auto flex justify-start items-center gap-6 px-4 py-0.5 md:px-4"
   >
     <!-- Logo - Left Side -->
     <a
@@ -73,20 +74,23 @@ const path = Astro.url.pathname;
       />
     </a>
 
-    <!-- Desktop Menu - Right Side -->
-    <ul class="flex items-center space-x-8">
+    <!-- Desktop Menu - Evenly Distributed -->
+    <ul class="flex items-center justify-evenly flex-1 space-x-4">
       {navItems.map((item) => {
         const dropdownId = item.name.toLowerCase().replace(/\s+/g, "-");
         
         // Check if current page is active
-        const isActive = path.startsWith(item.link) && item.link !== "#";
+        // For home page ("/"), use exact match; for others, use startsWith
+        const isActive = item.link === "/" 
+          ? path === "/" 
+          : path.startsWith(item.link) && item.link !== "#";
 
         return (
           <li class="group relative">
             <div class="flex items-center gap-1">
               <a
                 href={item.link}
-                class={`text-base font-semibold transition-all duration-300 text-[#1a1a1a] relative inline-block
+                class={`text-lg font-semibold transition-all duration-300 text-[#1a1a1a] relative inline-block
                 hover:scale-110 hover:text-[#8B6F47] hover:drop-shadow-[0_0_8px_rgba(139,111,71,0.6)]
                 ${isActive ? "scale-110 text-[#8B6F47]" : ""}
               `}
