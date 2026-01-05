@@ -4,64 +4,76 @@ import CTASection from "../components/CTASection.astro";
 ---
 
 <BaseLayout>
-  <section class="text-center space-y-3 md:space-y-4">
-    <p class="uppercase tracking-[0.3em] text-sm text-[#D97706]">About</p>
-    <h1 class="text-3xl md:text-4xl font-semibold">
-      Crafting Timeless Visual Stories for Over Five Decades
-    </h1>
-    <p
-      class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto text-justify"
+  <section class="text-center space-y-3 md:space-y-4 relative">
+    <!-- Watermark Logo -->
+    <div
+      class="absolute inset-0 flex items-center justify-center pointer-events-none top-5 overflow"
     >
-      With a legacy spanning over five decades, Ram Photo Studio has grown
-      alongside the evolution of photography itself. From the early days of
-      black-and-white imagery to today's digital, cinematic, and large-format
-      technologies, we have continuously pioneered advancements in the region.
-    </p>
-    <div class="flex flex-wrap justify-center gap-3 pt-2">
-      <span
-        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
-      >
-        Premium Quality
-      </span>
-      <span
-        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
-      >
-        Candid Storytelling
-      </span>
-      <span
-        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
-      >
-        On-Time Delivery
-      </span>
-      <span
-        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm"
-      >
-        Professional Studio
-      </span>
+      <img
+        src="/rps-favicon.png"
+        alt="Ram Photo Studio Watermark"
+        class="w-full aspect-square md:w-80 md:h-80 opacity-[0.20] object-contain"
+      />
     </div>
-    <div class="flex flex-wrap justify-center gap-3 pt-4">
-      <a
-        href="/contact"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
-          hover:from-[#D4A056] hover:to-[#C9954D]
-          hover:scale-105 hover:shadow-[0_8px_30px_rgba(201,149,77,0.5),0_2px_10px_rgba(0,0,0,0.2)]
-          transition-all duration-300
-          shadow-[0_4px_15px_rgba(201,149,77,0.4),0_2px_5px_rgba(0,0,0,0.15),inset_0_-2px_5px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.3)]
-          hover:translate-y-[-2px]
-          active:translate-y-[1px] active:shadow-[0_2px_10px_rgba(201,149,77,0.3),inset_0_2px_5px_rgba(0,0,0,0.3)]"
-      >
-        Plan your shoot
-      </a>
-      <a
-        href="/gallery"
-        class="inline-flex items-center gap-2
-          text-[#D97706] font-bold text-lg
-          hover:text-[#D97706] hover:gap-3
-          transition-all duration-300"
-      >
-        View recent work →
-      </a>
+
+    <!-- Content (on top of watermark) -->
+    <div class="relative z-10">
+      <p class="uppercase tracking-[0.3em] text-sm text-[#D97706]">About</p>
+      <h1 class="text-3xl md:text-4xl font-semibold">
+        Crafting Timeless Visual Stories for Over Five Decades
+      </h1>
+      <p class="text-black dark:text-[#CDC3B7] max-w-3xl mx-auto text-justify">
+        With a legacy spanning over five decades, Ram Photo Studio has grown
+        alongside the evolution of photography itself. From the early days of
+        black-and-white imagery to today's digital, cinematic, and large-format
+        technologies, we have continuously pioneered advancements in the region.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 pt-2">
+        <span
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:scale-105 hover:bg-[#D4A373] hover:border-[#8B6F3F] transition-all duration-300 cursor-default"
+        >
+          Premium Quality
+        </span>
+        <span
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:scale-105 hover:bg-[#D4A373] hover:border-[#8B6F3F] transition-all duration-300 cursor-default"
+        >
+          Candid Storytelling
+        </span>
+        <span
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:scale-105 hover:bg-[#D4A373] hover:border-[#8B6F3F] transition-all duration-300 cursor-default"
+        >
+          On-Time Delivery
+        </span>
+        <span
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:scale-105 hover:bg-[#D4A373] hover:border-[#8B6F3F] transition-all duration-300 cursor-default"
+        >
+          Professional Studio
+        </span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3 pt-4">
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+            bg-gradient-to-r from-[#A67C3A] to-[#8B6F3F] text-white font-semibold
+            hover:from-[#B8894E] hover:to-[#A67C3A]
+            hover:scale-105 hover:shadow-[0_8px_30px_rgba(166,124,58,0.5),0_2px_10px_rgba(0,0,0,0.2)]
+            transition-all duration-300
+            shadow-[0_4px_15px_rgba(166,124,58,0.4),0_2px_5px_rgba(0,0,0,0.15),inset_0_-2px_5px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.3)]
+            hover:translate-y-[-2px]
+            active:translate-y-[1px] active:shadow-[0_2px_10px_rgba(166,124,58,0.3),inset_0_2px_5px_rgba(0,0,0,0.3)]"
+        >
+          Plan your shoot
+        </a>
+        <a
+          href="/gallery"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+            bg-white border border-[#D97706] text-[#D97706]
+            dark:border-[#D4A373] dark:text-[#D4A373]
+            font-semibold hover:bg-[#FFF4E6] transition-all duration-300"
+        >
+          View recent work →
+        </a>
+      </div>
     </div>
   </section>
 
@@ -84,10 +96,10 @@ import CTASection from "../components/CTASection.astro";
         <div
           class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824]
           border-2 border-[#E2D8CB] dark:border-[#3A3630]
-          p-6 shadow-sm"
+          p-6 shadow-sm hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
           <h3 class="text-xl font-semibold mb-2">{item.title}</h3>
-          <p class="text-[#5A5246] dark:text-[#CDC3B7]">{item.desc}</p>
+          <p class="text-black dark:text-[#CDC3B7]">{item.desc}</p>
         </div>
       ))
     }
@@ -105,7 +117,7 @@ import CTASection from "../components/CTASection.astro";
         <h2 class="text-3xl font-semibold">
           Five Decades of Excellence, Perfected
         </h2>
-        <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+        <p class="text-black dark:text-[#CDC3B7] text-justify">
           Our strength lies in a passionate team of photographers,
           cinematographers, editors, and designers who seamlessly blend candid
           emotions with crafted lighting and refined composition. Beyond
@@ -129,11 +141,14 @@ import CTASection from "../components/CTASection.astro";
                 desc: "Edited media, prints, albums, and custom gifts.",
               },
             ].map((step) => (
-              <div class="rounded-xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] border-2 border-[#E2D8CB] dark:border-[#3A3630] dark:bg-[#2F2A25] p-5 hover:shadow-lg transition-shadow duration-300">
-                <h4 class="font-semibold text-lg text-[#D97706]">
+              <div class="rounded-xl bg-white dark:bg-[#2F2A25] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-5 hover:shadow-lg transition-shadow duration-300">
+                <h4
+                  class="text-xl text-[#F59E0B] font-semibold"
+                  style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+                >
                   {step.title}
                 </h4>
-                <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7] mt-2 leading-relaxed">
+                <p class="text-sm text-black dark:text-[#CDC3B7] mt-2 leading-relaxed">
                   {step.desc}
                 </p>
               </div>
@@ -162,7 +177,7 @@ import CTASection from "../components/CTASection.astro";
       <h2 class="text-3xl md:text-4xl font-semibold">
         50+ Years of Trusted Excellence
       </h2>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
+      <p class="text-black dark:text-[#CDC3B7] max-w-3xl mx-auto">
         Serving generations with consistent quality, professionalism, and
         reliability making us one of the most experienced studios in the region.
       </p>
@@ -170,60 +185,60 @@ import CTASection from "../components/CTASection.astro";
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div
-        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
       >
         <h3 class="text-lg font-semibold mb-2">One-Stop Solution</h3>
-        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+        <p class="text-sm text-black dark:text-[#CDC3B7]">
           From studio and outdoor photography to videography, large-format
           printing, scanning, and customized gifts everything under one roof.
         </p>
       </div>
 
       <div
-        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
       >
         <h3 class="text-lg font-semibold mb-2">Candid Storytelling</h3>
-        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+        <p class="text-sm text-black dark:text-[#CDC3B7]">
           We capture real emotions, natural expressions, and meaningful moments
           not just posed images.
         </p>
       </div>
 
       <div
-        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
       >
         <h3 class="text-lg font-semibold mb-2">On-Time Delivery</h3>
-        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+        <p class="text-sm text-black dark:text-[#CDC3B7]">
           Clear communication, guided sessions, fast turnarounds, and dependable
           timelines you can trust.
         </p>
       </div>
 
       <div
-        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
       >
         <h3 class="text-lg font-semibold mb-2">Expert Creative Team</h3>
-        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+        <p class="text-sm text-black dark:text-[#CDC3B7]">
           Our photographers, cinematographers, editors, and designers blend
           creativity with technical precision.
         </p>
       </div>
 
       <div
-        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
       >
         <h3 class="text-lg font-semibold mb-2">Customized Services</h3>
-        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+        <p class="text-sm text-black dark:text-[#CDC3B7]">
           Flexible packages for weddings, portraits, baby shoots, events,
           products, and printing tailored to your needs.
         </p>
       </div>
 
       <div
-        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg transition-shadow"
+        class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] p-6 shadow-sm hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
       >
         <h3 class="text-lg font-semibold mb-2">Local Expertise</h3>
-        <p class="text-sm text-[#5A5246] dark:text-[#CDC3B7]">
+        <p class="text-sm text-black dark:text-[#CDC3B7]">
           Based in your city, available for studio and on location work
           combining local understanding with professional execution.
         </p>
@@ -247,7 +262,7 @@ import CTASection from "../components/CTASection.astro";
     <div class="grid md:grid-cols-2 gap-8">
       <div class="space-y-4">
         <h3 class="text-xl font-semibold text-[#D97706]">Advanced Equipment</h3>
-        <ul class="space-y-3 text-[#5A5246] dark:text-[#CDC3B7]">
+        <ul class="space-y-3 text-black dark:text-[#CDC3B7]">
           <li class="flex items-start gap-2">
             <span class="text-[#D97706] mt-1">✓</span>
             <span
@@ -277,7 +292,7 @@ import CTASection from "../components/CTASection.astro";
         <h3 class="text-xl font-semibold text-[#D97706]">
           Premium Quality Output
         </h3>
-        <ul class="space-y-3 text-[#5A5246] dark:text-[#CDC3B7]">
+        <ul class="space-y-3 text-black dark:text-[#CDC3B7]">
           <li class="flex items-start gap-2">
             <span class="text-[#D97706] mt-1">✓</span>
             <span>Accurate colors and sharp details in every shot</span>
@@ -305,12 +320,12 @@ import CTASection from "../components/CTASection.astro";
         border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-6"
     >
       <h3 class="text-xl font-semibold mb-3">Studio & Team</h3>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7]">
+      <p class="text-black dark:text-[#CDC3B7]">
         Our air-conditioned studios feature dedicated baby photography setups,
         advanced lighting systems, and a calm, client-friendly environment
         designed for comfort and creativity.
       </p>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7] mt-3">
+      <p class="text-black dark:text-[#CDC3B7] mt-3">
         Our photographers, cinematographers, editors, and designers blend
         creativity with technical precision to deliver refined, emotion-driven
         results.
@@ -322,14 +337,14 @@ import CTASection from "../components/CTASection.astro";
     >
       <h3 class="text-xl font-semibold">Words from clients</h3>
       <div class="space-y-3">
-        <blockquote class="text-[#5A5246] dark:text-[#CDC3B7]">
+        <blockquote class="text-black dark:text-[#CDC3B7]">
           “They captured every candid moment without ever feeling intrusive.
           Loved the colors and framing.”
         </blockquote>
         <p class="text-sm text-[#D97706]">— Ayesha & Rohit</p>
       </div>
       <div class="space-y-3">
-        <blockquote class="text-[#5A5246] dark:text-[#CDC3B7]">
+        <blockquote class="text-black dark:text-[#CDC3B7]">
           “Super smooth product shoot. Clean lighting, quick edits, and spot-on
           styling.”
         </blockquote>

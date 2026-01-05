@@ -5,67 +5,89 @@ import CTASection from "../components/CTASection.astro";
 
 <BaseLayout>
   <!-- Hero Section -->
-  <section class="text-center space-y-3 md:space-y-4">
-    <p class="uppercase tracking-[0.3em] text-sm text-[#D97706]">
-      Gift Gallery
-    </p>
-    <h1 class="text-3xl md:text-4xl font-semibold">Personalized Photo Gifts</h1>
-    <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
-      "Sometimes a gift speaks more emotions than words." Transform your
-      cherished moments into lasting keepsakes with our complete range of
-      personalized photo gifts—from sublimation items and LED frames to magic
-      cups and custom cushions. Perfect for birthdays, anniversaries, weddings,
-      festivals, and corporate gifting.
-    </p>
-    <div class="flex flex-wrap justify-center gap-3 pt-2">
-      <a
-        href="#sublimation"
-        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
-      >
-        Sublimation
-      </a>
-      <a
-        href="#cushions"
-        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
-      >
-        Cushions
-      </a>
-      <a
-        href="#led"
-        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
-      >
-        LED Items
-      </a>
-      <a
-        href="#magiccups"
-        class="px-4 py-2 bg-[#FBF7F2] rounded-full border border-[#D9D3CC] dark:border-[#3A3835] text-sm hover:bg-[#E8D5B5] transition-colors cursor-pointer"
-      >
-        Magic Cups
-      </a>
+  <section class="text-center space-y-3 md:space-y-4 relative">
+    <!-- Watermark Logo -->
+    <div
+      class="absolute inset-0 flex items-center justify-center pointer-events-none top-5 overflow"
+    >
+      <img
+        src="/rps-favicon.png"
+        alt="Ram Photo Studio Watermark"
+        class="w-full aspect-square md:w-80 md:h-80 opacity-[0.20] object-contain"
+      />
     </div>
-    <div class="flex flex-wrap justify-center gap-3 pt-4">
-      <a
-        href="/contact"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          bg-gradient-to-r from-[#C9954D] to-[#B8894E] text-white font-semibold
-          hover:from-[#D4A056] hover:to-[#C9954D]
-          hover:scale-105 hover:shadow-[0_8px_30px_rgba(201,149,77,0.5),0_2px_10px_rgba(0,0,0,0.2)]
-          transition-all duration-300
-          shadow-[0_4px_15px_rgba(201,149,77,0.4),0_2px_5px_rgba(0,0,0,0.15),inset_0_-2px_5px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.3)]
-          hover:translate-y-[-2px]
-          active:translate-y-[1px] active:shadow-[0_2px_10px_rgba(201,149,77,0.3),inset_0_2px_5px_rgba(0,0,0,0.3)]"
-      >
-        Order custom gifts
-      </a>
-      <a
-        href="/gallery"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-full
-          border border-[#D97706] text-[#D97706]
-          dark:border-[#D4A373] dark:text-[#D4A373]
-          font-semibold hover:bg-[#D97706]/10 transition"
-      >
-        View examples
-      </a>
+
+    <!-- Content (on top of watermark) -->
+    <div class="relative z-10">
+      <p class="uppercase tracking-[0.3em] text-sm text-[#D97706]">
+        Gift Gallery
+      </p>
+      <h1 class="text-3xl md:text-4xl font-semibold">
+        Personalized Photo Gifts
+      </h1>
+      <p class="text-black dark:text-[#CDC3B7] max-w-3xl mx-auto">
+        "Sometimes a gift speaks more emotions than words." Transform your
+        cherished moments into lasting keepsakes with our complete range of
+        personalized photo gifts—from sublimation items and LED frames to magic
+        cups and custom cushions. Perfect for birthdays, anniversaries,
+        weddings, festivals, and corporate gifting.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 pt-2">
+        <a
+          href="#sublimation"
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:bg-[#D4A373] hover:border-[#8B6F3F] hover:scale-105 transition-all duration-300 cursor-pointer"
+        >
+          Sublimation
+        </a>
+        <a
+          href="#cushions"
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:bg-[#D4A373] hover:border-[#8B6F3F] hover:scale-105 transition-all duration-300 cursor-pointer"
+        >
+          Cushions
+        </a>
+        <a
+          href="#led"
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:bg-[#D4A373] hover:border-[#8B6F3F] hover:scale-105 transition-all duration-300 cursor-pointer"
+        >
+          LED Items
+        </a>
+        <a
+          href="#magiccups"
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:bg-[#D4A373] hover:border-[#8B6F3F] hover:scale-105 transition-all duration-300 cursor-pointer"
+        >
+          Magic Cups
+        </a>
+        <a
+          href="#photoframes"
+          class="px-4 py-2 bg-[#E8D5B5] rounded-full border-2 border-[#A67C3A] dark:border-[#D4A373] text-sm hover:bg-[#D4A373] hover:border-[#8B6F3F] hover:scale-105 transition-all duration-300 cursor-pointer"
+        >
+          Photo Frames
+        </a>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3 pt-4">
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+            bg-gradient-to-r from-[#A67C3A] to-[#8B6F3F] text-white font-semibold
+            hover:from-[#B8894E] hover:to-[#A67C3A]
+            hover:scale-105 hover:shadow-[0_8px_30px_rgba(166,124,58,0.5),0_2px_10px_rgba(0,0,0,0.2)]
+            transition-all duration-300
+            shadow-[0_4px_15px_rgba(166,124,58,0.4),0_2px_5px_rgba(0,0,0,0.15),inset_0_-2px_5px_rgba(0,0,0,0.2),inset_0_2px_5px_rgba(255,255,255,0.3)]
+            hover:translate-y-[-2px]
+            active:translate-y-[1px] active:shadow-[0_2px_10px_rgba(166,124,58,0.3),inset_0_2px_5px_rgba(0,0,0,0.3)]"
+        >
+          Order custom gifts
+        </a>
+        <a
+          href="/gallery"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-full
+            bg-white border border-[#D97706] text-[#D97706]
+            dark:border-[#D4A373] dark:text-[#D4A373]
+            font-semibold hover:bg-[#FFF4E6] transition-all duration-300"
+        >
+          View samples
+        </a>
+      </div>
     </div>
   </section>
 
@@ -78,10 +100,13 @@ import CTASection from "../components/CTASection.astro";
       <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
         Sublimation Gifts
       </h2>
-      <p class="text-lg text-[#D97706] font-medium">
+      <p
+        class="text-xl text-[#F59E0B] font-semibold"
+        style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+      >
         Vibrant prints that last forever
       </p>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+      <p class="text-black dark:text-[#CDC3B7] text-justify">
         Our advanced sublimation printing process ensures rich colors, sharp
         details, and fade-resistant output. Images are permanently transferred
         and do not peel or wear off over time. Products include photo-printed
@@ -90,26 +115,41 @@ import CTASection from "../components/CTASection.astro";
       </p>
       <div class="grid sm:grid-cols-3 gap-3 text-sm">
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]">Products</h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            Products
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             T-shirts, mugs, key rings, plates, tiles, coasters, bottles
           </p>
         </div>
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]">Quality</h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            Quality
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             Dishwasher-safe, fade-resistant, premium materials
           </p>
         </div>
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]">Ideal for</h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            Ideal for
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             Birthdays, anniversaries, festivals, corporate gifts
           </p>
         </div>
@@ -169,10 +209,13 @@ import CTASection from "../components/CTASection.astro";
       <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
         Custom Photo Cushions
       </h2>
-      <p class="text-lg text-[#D97706] font-medium">
+      <p
+        class="text-xl text-[#F59E0B] font-semibold"
+        style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+      >
         Soft, stylish, and personal
       </p>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+      <p class="text-black dark:text-[#CDC3B7] text-justify">
         Turn your favorite photographs into cozy, custom-printed
         cushions—perfect for home décor and thoughtful gifting. Available in
         multiple sizes and shapes with soft, durable, machine-washable fabric
@@ -180,26 +223,41 @@ import CTASection from "../components/CTASection.astro";
       </p>
       <div class="grid sm:grid-cols-3 gap-3 text-sm">
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]">Sizes</h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            Sizes
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             12×12", 16×16", and custom dimensions
           </p>
         </div>
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]">Shapes</h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            Shapes
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             Square, heart, round, and more
           </p>
         </div>
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]">Fabric</h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            Fabric
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             Soft, durable, machine-washable, vibrant printing
           </p>
         </div>
@@ -213,8 +271,13 @@ import CTASection from "../components/CTASection.astro";
       <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
         LED Photo Gifts
       </h2>
-      <p class="text-lg text-[#D97706] font-medium">Light up your memories</p>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+      <p
+        class="text-xl text-[#F59E0B] font-semibold"
+        style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+      >
+        Light up your memories
+      </p>
+      <p class="text-black dark:text-[#CDC3B7] text-justify">
         Add a warm, magical glow to your special moments with our LED photo
         gifts—perfect for bedside tables, desks, and decorative displays. LED
         products include photo frames with adjustable brightness and color
@@ -223,18 +286,28 @@ import CTASection from "../components/CTASection.astro";
       </p>
       <div class="grid sm:grid-cols-2 gap-3 text-sm">
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]">LED Frames</h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            LED Frames
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             Adjustable brightness and color options
           </p>
         </div>
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]">3D Acrylic Lamps</h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            3D Acrylic Lamps
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             Engraved photos or custom designs with night lights
           </p>
         </div>
@@ -292,10 +365,13 @@ import CTASection from "../components/CTASection.astro";
       <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
         Magic Gifts & Interactive Items
       </h2>
-      <p class="text-lg text-[#D97706] font-medium">
+      <p
+        class="text-xl text-[#F59E0B] font-semibold"
+        style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+      >
         Surprises that create smiles
       </p>
-      <p class="text-[#5A5246] dark:text-[#CDC3B7] text-justify">
+      <p class="text-black dark:text-[#CDC3B7] text-justify">
         Make gifting unforgettable with interactive items that reveal hidden
         photos and messages. Magic collection includes magic cups that reveal
         images with hot liquid, magic mirrors with hidden photos or messages,
@@ -304,25 +380,136 @@ import CTASection from "../components/CTASection.astro";
       </p>
       <div class="grid sm:grid-cols-2 gap-3 text-sm">
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]" id="magicmirrors">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+            id="magicmirrors"
+          >
             Magic Collection
           </h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]">
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
             Heat-sensitive cups, magic mirrors, color-changing items
           </p>
         </div>
         <div
-          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
         >
-          <h3 class="font-semibold text-[#D97706]" id="keyrings">
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+            id="keyrings"
+          >
             Custom Key Rings
           </h3>
-          <p class="mt-1 text-[#5A5246] dark:text-[#CDC3B7]" id="colorcups">
+          <p class="mt-1 text-black dark:text-[#CDC3B7]" id="colorcups">
             Personalized key rings and small gift items
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Frames & Decorative Items -->
+  <section
+    id="photoframes"
+    class="mt-16 grid gap-8 md:grid-cols-2 items-center"
+  >
+    <div class="space-y-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
+        Photo-Specific Gift Items
+      </h2>
+      <p
+        class="text-xl text-[#F59E0B] font-semibold"
+        style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+      >
+        Classic to creative—under one roof
+      </p>
+      <p class="text-black dark:text-[#CDC3B7] text-justify">
+        We offer a wide variety of photo-based gifts and frames, crafted with
+        precision and creativity. Perfect for showcasing multiple memories in
+        one elegant display.
+      </p>
+      <div class="space-y-3">
+        <h3
+          class="font-semibold text-[#F59E0B] text-base"
+          style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+        >
+          Options available:
+        </h3>
+        <ul class="space-y-2 text-black dark:text-[#CDC3B7] text-sm">
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">•</span>
+            <span
+              >Photo frames ranging from 4×6 to 24×36 (custom sizes on request)</span
+            >
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">•</span>
+            <span>Customized photo collages with creative layouts</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">•</span>
+            <span>Multi-photo articulated frames</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-[#D97706] mt-1">•</span>
+            <span
+              >Photo cubes, watches, lamps, clocks, and rotating shadow lamps</span
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-3 text-sm">
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
+        >
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            Frames & Collages
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
+            Classic frames, creative collages, articulated multi-photo displays
+          </p>
+        </div>
+        <div
+          class="rounded-2xl bg-gradient-to-br from-[#FBF7F2] to-[#F5EFE0] dark:bg-[#2B2824] border-2 border-[#E2D8CB] dark:border-[#3A3630] shadow-sm p-4 hover:shadow-lg hover:scale-105 hover:border-[#D4A373] transition-all duration-300"
+        >
+          <h3
+            class="font-semibold text-[#F59E0B] text-base"
+            style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
+          >
+            Decorative Items
+          </h3>
+          <p class="mt-1 text-black dark:text-[#CDC3B7]">
+            Photo cubes, watches, lamps, clocks, rotating shadow lamps
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="images/gifts/sublimation1.jpg"
+          alt="Photo frames and collages"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
+      </div>
+      <div
+        class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A]"
+      >
+        <img
+          src="images/gifts/leditem1.webp"
+          alt="Photo decorative items"
+          loading="lazy"
+          class="w-full h-full object-cover transition duration-700 hover:scale-105"
+        />
       </div>
     </div>
   </section>

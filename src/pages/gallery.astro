@@ -109,19 +109,33 @@ const galleryImages = [
 
 <BaseLayout>
   <!-- Header Section -->
-  <section class="text-center space-y-3 md:space-y-4">
-    <p
-      class="uppercase tracking-widest text-xs text-[#D97706] font-semibold"
+  <section class="text-center space-y-3 md:space-y-4 relative">
+    <!-- Watermark Logo -->
+    <div
+      class="absolute inset-0 flex items-center justify-center pointer-events-none top-5 overflow"
     >
-      Portfolio
-    </p>
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-      Gallery Highlights
-    </h1>
-    <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-      A curated look at recent weddings, portraits, product shoots, and
-      keepsakes. Click any image to view it in full size.
-    </p>
+      <img
+        src="/rps-favicon.png"
+        alt="Ram Photo Studio Watermark"
+        class="w-full aspect-square md:w-80 md:h-80 opacity-[0.20] object-contain"
+      />
+    </div>
+
+    <!-- Content (on top of watermark) -->
+    <div class="relative z-10">
+      <p
+        class="uppercase tracking-widest text-xs text-[#D97706] font-semibold"
+      >
+        Portfolio
+      </p>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+        Gallery Highlights
+      </h1>
+      <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        A curated look at recent weddings, portraits, product shoots, and
+        keepsakes. Click any image to view it in full size.
+      </p>
+    </div>
   </section>
 
   <!-- Masonry Grid Gallery -->
