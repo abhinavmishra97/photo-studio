@@ -77,7 +77,7 @@ const path = Astro.url.pathname;
 
     <!-- Desktop Menu - Evenly Distributed -->
     <ul class="flex items-center justify-evenly flex-1 space-x-4">
-      {navItems.map((item) => {
+      {navItems.map((item, index) => {
         const dropdownId = item.name.toLowerCase().replace(/\s+/g, "-");
         
         // Check if current page is active
@@ -87,7 +87,7 @@ const path = Astro.url.pathname;
           : path.startsWith(item.link) && item.link !== "#";
 
         return (
-          <li class="group relative">
+          <li class="group relative" data-nav-item={index}>
             <div class="flex items-center gap-1">
               <a
                 href={item.link}
@@ -105,20 +105,24 @@ const path = Astro.url.pathname;
               </a>
 
               {item.items && (
-                <span
+                <button
                   class={`
-                    text-sm ml-1
+                    text-sm ml-1 p-1 rounded
                     group-hover:rotate-180 group-hover:scale-125 group-hover:text-[#8B6F47]
-                    transition-all duration-300
+                    transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#8B6F47]
                     ${isActive ? "text-[#8B6F47]" : "text-[#1a1a1a]"}
                   `}
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-label={`Toggle ${item.name} submenu`}
+                  data-dropdown-btn={index}
                 >
                   ▼
-                </span>
+                </button>
               )}
             </div>
 
-            <!-- Dropdown - Shows on hover -->
+            <!-- Dropdown - Shows on hover and keyboard focus -->
             {item.items && (
               <ul
                 id={dropdownId}
@@ -132,17 +136,22 @@ const path = Astro.url.pathname;
                   transition-all duration-300 z-50
                   overflow-hidden
                 "
+                role="menu"
+                data-dropdown-menu={index}
               >
-                {item.items.map((sub) => (
-                  <li class="px-2">
+                {item.items.map((sub, subIndex) => (
+                  <li class="px-2" role="none">
                     <a
                       href={sub.link}
                       class="
                         block px-2 py-2.5 rounded
                         text-[#1a1a1a] font-medium
                         hover:bg-[#8B6F47]/20 hover:text-[#8B6F47] hover:pl-4
+                        focus:bg-[#8B6F47]/20 focus:text-[#8B6F47] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#8B6F47]
                         transition-all duration-300
                       "
+                      role="menuitem"
+                      data-dropdown-item={`${index}-${subIndex}`}
                     >
                       {sub.name}
                     </a>
@@ -156,6 +165,122 @@ const path = Astro.url.pathname;
     </ul>
   </div>
 </nav>
+
+<!-- Keyboard Navigation Script for Desktop -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdownBtns = document.querySelectorAll('[data-dropdown-btn]');
+    const dropdownMenus = document.querySelectorAll('[data-dropdown-menu]');
+    let currentOpenDropdown = null;
+
+    // Toggle dropdown with keyboard
+    dropdownBtns.forEach((btn) => {
+      const index = btn.getAttribute('data-dropdown-btn');
+      const menu = document.querySelector(`[data-dropdown-menu="${index}"]`);
+      const navItem = document.querySelector(`[data-nav-item="${index}"]`);
+
+      // Click/Enter/Space to toggle
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleDropdown(index, btn, menu, navItem);
+      });
+
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleDropdown(index, btn, menu, navItem);
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          openDropdown(index, btn, menu, navItem);
+          // Focus first item
+          const firstItem = menu.querySelector('[data-dropdown-item]');
+          if (firstItem) firstItem.focus();
+        } else if (e.key === 'Escape') {
+          closeDropdown(index, btn, menu, navItem);
+        }
+      });
+    });
+
+    // Arrow key navigation within dropdown
+    dropdownMenus.forEach((menu) => {
+      const items = menu.querySelectorAll('[data-dropdown-item]');
+      
+      items.forEach((item, itemIndex) => {
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextItem = items[itemIndex + 1];
+            if (nextItem) nextItem.focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevItem = items[itemIndex - 1];
+            if (prevItem) {
+              prevItem.focus();
+            } else {
+              // Go back to dropdown button
+              const index = menu.getAttribute('data-dropdown-menu');
+              const btn = document.querySelector(`[data-dropdown-btn="${index}"]`);
+              if (btn) btn.focus();
+            }
+          } else if (e.key === 'Escape') {
+            const index = menu.getAttribute('data-dropdown-menu');
+            const btn = document.querySelector(`[data-dropdown-btn="${index}"]`);
+            const navItem = document.querySelector(`[data-nav-item="${index}"]`);
+            closeDropdown(index, btn, menu, navItem);
+            if (btn) btn.focus();
+          }
+        });
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (currentOpenDropdown !== null) {
+        const navItem = document.querySelector(`[data-nav-item="${currentOpenDropdown}"]`);
+        if (navItem && !navItem.contains(e.target)) {
+          const btn = document.querySelector(`[data-dropdown-btn="${currentOpenDropdown}"]`);
+          const menu = document.querySelector(`[data-dropdown-menu="${currentOpenDropdown}"]`);
+          closeDropdown(currentOpenDropdown, btn, menu, navItem);
+        }
+      }
+    });
+
+    function toggleDropdown(index, btn, menu, navItem) {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      
+      if (isOpen) {
+        closeDropdown(index, btn, menu, navItem);
+      } else {
+        openDropdown(index, btn, menu, navItem);
+      }
+    }
+
+    function openDropdown(index, btn, menu, navItem) {
+      // Close any other open dropdown
+      if (currentOpenDropdown !== null && currentOpenDropdown !== index) {
+        const oldBtn = document.querySelector(`[data-dropdown-btn="${currentOpenDropdown}"]`);
+        const oldMenu = document.querySelector(`[data-dropdown-menu="${currentOpenDropdown}"]`);
+        const oldNavItem = document.querySelector(`[data-nav-item="${currentOpenDropdown}"]`);
+        closeDropdown(currentOpenDropdown, oldBtn, oldMenu, oldNavItem);
+      }
+
+      btn.setAttribute('aria-expanded', 'true');
+      menu.classList.remove('opacity-0', 'invisible', 'translate-y-2', 'scale-95');
+      menu.classList.add('opacity-100', 'visible', 'translate-y-0', 'scale-100');
+      currentOpenDropdown = index;
+    }
+
+    function closeDropdown(index, btn, menu, navItem) {
+      btn.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('opacity-100', 'visible', 'translate-y-0', 'scale-100');
+      menu.classList.add('opacity-0', 'invisible', 'translate-y-2', 'scale-95');
+      if (currentOpenDropdown === index) {
+        currentOpenDropdown = null;
+      }
+    }
+  });
+</script>
 
 <!-- Mobile Navbar - Always visible on mobile -->
 <nav

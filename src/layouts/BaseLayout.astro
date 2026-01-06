@@ -70,6 +70,27 @@ import "../styles/theme.css";
             drop-shadow(0 0 80px rgba(212, 175, 55, 0.3));
         }
       }
+
+      @keyframes footerGlow {
+        0%,
+        100% {
+          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+        }
+        50% {
+          filter: drop-shadow(0 2px 4px rgba(90, 74, 47, 0.8))
+            drop-shadow(0 0 8px rgba(90, 74, 47, 0.4));
+        }
+      }
+
+      @keyframes subtleBlink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.85;
+        }
+      }
     </style>
   </head>
 
@@ -98,38 +119,39 @@ import "../styles/theme.css";
       <div class="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-3">
         <div>
           <h3
-            class="text-lg font-semibold hover:scale-105 transition-transform duration-300 inline-block"
+            class="text-2xl font-bold text-[#1a1a1a]"
+            style="text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.2); animation: subtleBlink 3s ease-in-out infinite;"
           >
             Ram Photo Studio
           </h3>
-          <p class="mt-2 text-[#1a1a1a]/80">
+          <p class="mt-2 text-[#1a1a1a]/80 text-lg leading-relaxed">
             Warm, crafted imagery for weddings, portraits, products, and
             keepsakes.
           </p>
         </div>
         <div class="space-y-2">
-          <h4 class="font-semibold">Contact</h4>
+          <h4 class="font-semibold text-xl">Contact</h4>
           <a
             href="tel:+915722297297"
-            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300"
+            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300 text-lg"
           >
             91-5722-297297
           </a>
           <a
             href="tel:+919412733288"
-            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300"
+            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300 text-lg"
           >
             91-9412733288
           </a>
           <a
             href="mailto:ramdigitalphotostudio@gmail.com"
-            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300"
+            class="block hover:text-[#8B6F47] hover:translate-x-2 transition-all duration-300 text-lg"
           >
             ramdigitalphotostudio@gmail.com
           </a>
         </div>
         <div class="space-y-2">
-          <h4 class="font-semibold">Social</h4>
+          <h4 class="font-semibold text-xl">Social</h4>
           <div class="flex gap-4">
             <a
               href="https://www.instagram.com/ram_photo_studio204101?igsh=OWp3cWMweWgybDJj"

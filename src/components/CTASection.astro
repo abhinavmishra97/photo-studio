@@ -3,12 +3,14 @@ interface Props {
     title?: string;
     subtitle?: string;
     description?: string;
+    buttonText?: string;
 }
 
 const {
     title = "Ready to create",
     subtitle = "Let's plan your next shoot.",
     description = "Share your event details and vision — we'll respond with packages, availability, and creative ideas.",
+    buttonText = "Book a Session",
 } = Astro.props;
 ---
 
@@ -59,7 +61,7 @@ const {
           hover:translate-y-[-2px]
           active:translate-y-[1px] active:shadow-[0_2px_10px_rgba(201,149,77,0.3),inset_0_2px_5px_rgba(0,0,0,0.3)]"
         >
-            Plan your shoot
+            {buttonText}
         </a>
     </div>
 </section>
