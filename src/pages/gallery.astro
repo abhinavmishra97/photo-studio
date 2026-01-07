@@ -20,24 +20,28 @@ const stillPhotography = [
 // Videography - 4 videos
 const videography = [
   {
-    src: "/videos/wedding-1.mp4",
-    category: "Wedding Film",
-    poster: "/images/gallery/gallery-1.JPG",
+    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767391248/cinematic_wedding_films_hjwrrn.mp4",
+    category: "Cinematic Wedding Film",
+    poster:
+      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767391248/cinematic_wedding_films_hjwrrn.jpg",
   },
   {
-    src: "/videos/invitation-1.mp4",
-    category: "Invitation Video",
-    poster: "/images/gallery/gallery-3.JPG",
-  },
-  {
-    src: "/videos/teaser-1.mp4",
+    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767390259/teaser_1080P_mcrbor.mp4",
     category: "Wedding Teaser",
-    poster: "/images/gallery/gallery-5.JPG",
+    poster:
+      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767390259/teaser_1080P_mcrbor.jpg",
   },
   {
-    src: "/videos/drone-1.mp4",
+    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767391757/Mani_singh_-_RamPhotoStudioHathras_1080p_h264_online-video-cutter.com_ziprbn.mp4",
+    category: "Professional Editing",
+    poster:
+      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767391757/Mani_singh_-_RamPhotoStudioHathras_1080p_h264_online-video-cutter.com_ziprbn.jpg",
+  },
+  {
+    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767390272/DJI_0013_1_1_c4kmj7.mp4",
     category: "Drone Coverage",
-    poster: "/images/gallery/gallery-9.JPG",
+    poster:
+      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767390272/DJI_0013_1_1_c4kmj7.jpg",
   },
 ];
 
@@ -76,12 +80,12 @@ const giftItems = [
 
 <BaseLayout>
   <!-- Content -->
-  <div class="relative overflow-x-hidden">
+  <div class="relative overflow-x-hidden overflow-y-visible">
     <!-- Hero Section -->
-    <section class="relative text-center space-y-3 md:space-y-4 mb-12">
+    <section class="relative text-center space-y-2 md:space-y-4 mb-4 pt-16">
       <!-- Watermark Logo -->
       <div
-        class="absolute inset-0 flex items-center justify-center pointer-events-none top-5"
+        class="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none"
       >
         <img
           src="/rps-favicon.png"
@@ -154,7 +158,16 @@ const giftItems = [
           {
             videography.concat(videography).map((item) => (
               <div class="slider-item video-item">
-                <img src={item.poster} alt={item.category} />
+                <video poster={item.poster} muted loop playsinline>
+                  <source src={item.src} type="video/mp4" />
+                </video>
+                <!-- Play button overlay -->
+                <div class="play-button-overlay">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="64" height="64">
+                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.6)" stroke="white" stroke-width="1"/>
+                    <path d="M9.5 8.5l7 3.5-7 3.5z"/>
+                  </svg>
+                </div>
                 <div class="slider-overlay">
                   <span class="slider-category">{item.category}</span>
                 </div>
@@ -244,7 +257,7 @@ const giftItems = [
     overflow: visible;
     position: relative;
     width: 100%;
-    padding: 2rem 0;
+    padding: 1rem 0;
   }
 
   .slider-track {
@@ -269,6 +282,12 @@ const giftItems = [
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-style: preserve-3d;
     perspective: 1000px;
+  }
+
+  /* Video items use landscape aspect ratio (16:9) */
+  .slider-item.video-item {
+    width: 560px;
+    height: 315px;
   }
 
   /* When the user hovers over the track, add a VERY subtle blur to others */
@@ -320,6 +339,22 @@ const giftItems = [
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 
+  /* Play button overlay for videos */
+  .play-button-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Hide play button on hover */
+  .video-item:hover .play-button-overlay {
+    opacity: 0;
+  }
+
   @keyframes scroll {
     0% {
       transform: translateX(0);
@@ -369,6 +404,7 @@ const giftItems = [
       if (video) {
         video.pause();
         video.currentTime = 0;
+        video.load(); // Reload to show poster again
       }
     });
   });
