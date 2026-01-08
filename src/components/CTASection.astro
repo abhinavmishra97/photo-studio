@@ -23,7 +23,16 @@ const {
       border-2 border-[#E8D5B5]
       text-[#1a1a1a] shadow-lg"
 >
-    <div>
+    <!-- Centered Logo -->
+    <div class="hidden md:flex items-center justify-center px-6 self-center">
+        <img
+            src="/rps-favicon.png"
+            alt="Ram Photo Studio"
+            class="w-32 h-32 object-contain"
+        />
+    </div>
+
+    <div class="flex-1">
         <p
             class="uppercase tracking-[0.25em] text-sm text-[#6B5744] font-semibold"
         >
@@ -36,7 +45,9 @@ const {
             {description}
         </p>
     </div>
-    <div class="flex gap-3 flex-wrap">
+
+
+    <div class="flex gap-3 flex-wrap md:flex-nowrap">
         <a
             href="tel:+919412000718"
             class="inline-flex items-center gap-2 px-5 py-3 rounded-full

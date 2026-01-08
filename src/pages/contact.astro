@@ -10,8 +10,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <img
       src="/rps-favicon.png"
       alt="Ram Photo Studio Watermark"
-      class="w-[50vw] h-[50vw] md:w-[35vw] md:h-[35vw] lg:w-[30vw] lg:h-[30vw] max-w-xl max-h-xl opacity-[0.15] object-contain"
+      class="w-[50vw] h-[50vw] md:w-[35vw] md:h-[35vw] lg:w-[30vw] lg:h-[30vw] max-w-xl max-h-xl opacity-[0.10] object-contain"
     />
+  </div>
+
+  <!-- Decorative Side Logos -->
+  <div
+    class="hidden lg:block absolute left-16 top-44 -translate-y-1/2 z-0 pointer-events-none"
+  >
+    <img src="/rps-favicon.png" alt="Logo" class="w-32 h-32 object-contain" />
+  </div>
+  <div
+    class="hidden lg:block absolute right-16 top-44 -translate-y-1/2 z-0 pointer-events-none"
+  >
+    <img src="/rps-favicon.png" alt="Logo" class="w-32 h-32 object-contain" />
   </div>
 
   <!-- Content (on top of watermark) -->

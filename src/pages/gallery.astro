@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CTASection from "../components/CTASection.astro";
 
 // Still Photography - 12 images with categories
 const stillPhotography = [
@@ -100,7 +101,7 @@ const giftItems = [
           Our Work
         </p>
         <h1 class="text-3xl md:text-4xl font-semibold">Gallery</h1>
-        <p class="text-[#5A5246] dark:text-[#CDC3B7] max-w-3xl mx-auto">
+        <p class="text-[#1a1a1a] dark:text-[#CDC3B7] max-w-3xl mx-auto">
           Explore our portfolio showcasing stunning photography, cinematic
           videography, premium printing solutions, and personalized gift items.
         </p>
@@ -240,6 +241,9 @@ const giftItems = [
       </div>
     </section>
   </div>
+
+  <!-- CTA Section -->
+  <CTASection />
 </BaseLayout>
 
 <style>
@@ -250,7 +254,7 @@ const giftItems = [
 
   /* Add scroll padding to account for navbar height */
   section[id] {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 130px;
   }
 
   .slider-container {
@@ -409,31 +413,38 @@ const giftItems = [
     });
   });
 
-  // Handle anchor link scrolling with offset
+  // Handle anchor link scrolling with fixed delay
   function scrollToSection() {
     const hash = window.location.hash;
-    if (hash) {
-      const target = document.querySelector(hash);
-      if (target) {
-        // Wait for page to load
-        setTimeout(() => {
-          const navbarHeight = 80; // Adjust based on your navbar height
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition =
-            elementPosition + window.pageYOffset - navbarHeight;
+    if (!hash) return;
 
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        }, 100);
-      }
+    // Prevent default anchor behavior
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.hash);
     }
+
+    const target = document.querySelector(hash) as HTMLElement;
+    if (!target) return;
+
+    // Wait for page to settle, then scroll
+    setTimeout(() => {
+      const navbarHeight = 130;
+      const elementPosition = target.offsetTop;
+      const offsetPosition = elementPosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }, 500); // Fixed 500ms delay
   }
 
   // Scroll on page load
-  window.addEventListener("load", scrollToSection);
+  window.addEventListener('load', scrollToSection);
 
-  // Scroll when hash changes (for same-page navigation)
-  window.addEventListener("hashchange", scrollToSection);
+  // Scroll when hash changes
+  window.addEventListener('hashchange', scrollToSection);
+
+  // Also on DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', scrollToSection);
 </script>
