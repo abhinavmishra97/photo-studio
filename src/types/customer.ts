@@ -5,6 +5,7 @@ export interface Customer {
     name: string;
     spouse_name?: string | null;  // Optional: spouse/partner name
     phone: string;
+    email?: string | null;  // Optional: email for automated greetings
     birthday?: string | null;  // Optional: ISO date string (YYYY-MM-DD)
     anniversary?: string | null;  // Optional: ISO date string (YYYY-MM-DD)
     location?: string | null;  // Optional: address/location
@@ -17,6 +18,7 @@ export interface CustomerInsert {
     name: string;
     spouse_name?: string | null;
     phone: string;
+    email?: string | null;
     birthday?: string | null;
     anniversary?: string | null;
     location?: string | null;
@@ -28,6 +30,7 @@ export interface CustomerUpdate {
     name?: string;
     spouse_name?: string | null;
     phone?: string;
+    email?: string | null;
     birthday?: string | null;
     anniversary?: string | null;
     location?: string | null;

@@ -7,7 +7,7 @@ export const prerender = false;
 export const POST: APIRoute = async ({ request }) => {
     try {
         const body = await request.json();
-        const { id, name, phone, birthday, anniversary, notes } = body;
+        const { id, name, spouse_name, phone, email, birthday, anniversary, location, city, notes } = body;
 
         // Validate required fields
         if (!id) {
@@ -20,9 +20,13 @@ export const POST: APIRoute = async ({ request }) => {
         // Build update object (only include provided fields)
         const updateData: any = {};
         if (name !== undefined) updateData.name = name;
+        if (spouse_name !== undefined) updateData.spouse_name = spouse_name;
         if (phone !== undefined) updateData.phone = phone;
+        if (email !== undefined) updateData.email = email;
         if (birthday !== undefined) updateData.birthday = birthday;
         if (anniversary !== undefined) updateData.anniversary = anniversary;
+        if (location !== undefined) updateData.location = location;
+        if (city !== undefined) updateData.city = city;
         if (notes !== undefined) updateData.notes = notes;
 
         // Update customer

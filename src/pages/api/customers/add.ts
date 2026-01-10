@@ -7,7 +7,7 @@ export const prerender = false;
 export const POST: APIRoute = async ({ request }) => {
     try {
         const body = await request.json();
-        const { name, phone, birthday, anniversary, notes } = body;
+        const { name, spouse_name, phone, email, birthday, anniversary, location, city, notes } = body;
 
         // Validate required fields
         if (!name || !phone) {
@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
         // Insert customer
         const { data, error } = await supabaseAdmin
             .from('customers')
-            .insert([{ name, phone, birthday, anniversary, notes }])
+            .insert([{ name, spouse_name, phone, email, birthday, anniversary, location, city, notes }])
             .select()
             .single();
 
