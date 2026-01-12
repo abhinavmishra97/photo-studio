@@ -116,10 +116,7 @@ const giftItems = [
         >
           Still Photography
         </h2>
-        <p
-          class="text-[#F59E0B] text-lg font-semibold"
-          style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
-        >
+        <p class="text-[#f97316] text-lg font-bold">
           Capturing timeless moments with precision and artistry
         </p>
       </div>
@@ -147,10 +144,7 @@ const giftItems = [
         >
           Videography
         </h2>
-        <p
-          class="text-[#F59E0B] text-lg font-semibold"
-          style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
-        >
+        <p class="text-[#f97316] text-lg font-bold">
           Cinematic storytelling that brings your memories to life
         </p>
       </div>
@@ -187,10 +181,7 @@ const giftItems = [
         >
           Printing Solutions
         </h2>
-        <p
-          class="text-[#F59E0B] text-lg font-semibold"
-          style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
-        >
+        <p class="text-[#f97316] text-lg font-bold">
           Professional printing services for all your needs
         </p>
       </div>
@@ -218,10 +209,7 @@ const giftItems = [
         >
           Gift Items
         </h2>
-        <p
-          class="text-[#F59E0B] text-lg font-semibold"
-          style="text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);"
-        >
+        <p class="text-[#f97316] text-lg font-bold">
           Personalized gifts that celebrate your special moments
         </p>
       </div>
@@ -258,17 +246,24 @@ const giftItems = [
   }
 
   .slider-container {
-    overflow: visible;
+    overflow-x: hidden; /* Hide horizontal overflow from animation */
+    overflow-y: visible; /* Allow vertical expansion for hover */
     position: relative;
     width: 100%;
-    padding: 1rem 0;
+    padding: 3rem 0; /* Vertical padding to reserve space for hover expansion */
   }
 
   .slider-track {
     display: flex;
     gap: 1rem;
     animation: scroll 40s linear infinite;
+    animation-play-state: paused; /* Paused by default */
     will-change: transform;
+  }
+
+  /* Start animation after page loads */
+  .slider-track.animate {
+    animation-play-state: running;
   }
 
   .slider-track:hover {
@@ -281,11 +276,13 @@ const giftItems = [
     height: 400px;
     position: relative;
     border-radius: 0.75rem;
-    overflow: visible;
+    overflow: visible; /* Allow hover expansion */
     cursor: pointer;
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-style: preserve-3d;
     perspective: 1000px;
+    transform-origin: center center; /* Scale from center */
+    z-index: 1; /* Base z-index for stacking */
   }
 
   /* Video items use landscape aspect ratio (16:9) */
@@ -300,12 +297,12 @@ const giftItems = [
     transform: scale(0.98);
   }
 
-  /* The active item pops out cleanly without being too dramatic */
+  /* The active item pops out cleanly - translate FIRST, then scale */
   .slider-item:hover {
     filter: none !important;
     opacity: 1 !important;
-    transform: scale(1.1) translateY(-10px) !important;
-    z-index: 50;
+    transform: translateY(-20px) scale(1.1) !important; /* Translate first, then scale */
+    z-index: 50; /* Raise above all other items */
     box-shadow:
       0 20px 40px -10px rgba(0, 0, 0, 0.4),
       0 0 0 1px rgba(255, 255, 255, 0.2);
@@ -379,9 +376,17 @@ const giftItems = [
 
   /* Responsive */
   @media (max-width: 768px) {
+    .slider-container {
+      padding: 2rem 0; /* Adjust padding for mobile */
+    }
+
     .slider-item {
       width: 250px;
       height: 350px;
+    }
+
+    .slider-item:hover {
+      transform: translateY(-15px) scale(1.08) !important; /* Slightly less expansion on mobile */
     }
 
     @keyframes scroll {
@@ -413,38 +418,61 @@ const giftItems = [
     });
   });
 
-  // Handle anchor link scrolling with fixed delay
-  function scrollToSection() {
+  // Handle hash navigation for anchor scrolling
+  function handleHashNavigation() {
     const hash = window.location.hash;
-    if (!hash) return;
+    if (hash) {
+      // Longer delay to let the page render completely when coming from another page
+      setTimeout(() => {
+        const target = document.querySelector(hash);
+        if (target) {
+          const navbarHeight = 130;
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight;
 
-    // Prevent default anchor behavior
-    if (window.location.hash) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.hash);
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 300); // Increased delay for cross-page navigation
     }
-
-    const target = document.querySelector(hash) as HTMLElement;
-    if (!target) return;
-
-    // Wait for page to settle, then scroll
-    setTimeout(() => {
-      const navbarHeight = 130;
-      const elementPosition = target.offsetTop;
-      const offsetPosition = elementPosition - navbarHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }, 500); // Fixed 500ms delay
   }
 
-  // Scroll on page load
-  window.addEventListener('load', scrollToSection);
+  // Handle hash on DOM ready (before images load)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleHashNavigation);
+  } else {
+    handleHashNavigation();
+  }
 
-  // Scroll when hash changes
-  window.addEventListener('hashchange', scrollToSection);
+  // Handle hash on page load (after everything loads)
+  window.addEventListener('load', () => {
+    handleHashNavigation();
+  });
 
-  // Also on DOMContentLoaded
-  document.addEventListener('DOMContentLoaded', scrollToSection);
+  // Handle hash changes (when clicking links)
+  window.addEventListener('hashchange', () => {
+    handleHashNavigation();
+  });
+
+  // Start slider animations after page load and layout is stable
+  function startSliderAnimations() {
+    // Wait longer for any anchor scrolling to complete
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        // Add 'animate' class to all slider tracks to start animations
+        document.querySelectorAll('.slider-track').forEach(track => {
+          track.classList.add('animate');
+        });
+      }, 1500); // Increased delay to 1.5 seconds to ensure scrolling completes
+    });
+  }
+
+  // Start animations after page is fully loaded
+  if (document.readyState === 'complete') {
+    startSliderAnimations();
+  } else {
+    window.addEventListener('load', startSliderAnimations);
+  }
 </script>
