@@ -4,79 +4,74 @@ import CTASection from "../components/CTASection.astro";
 
 // Still Photography - 12 images with categories
 const stillPhotography = [
-  { src: "/images/gallery/gallery-1.JPG", category: "Matrimonial Photoshoot" },
-  { src: "/images/gallery/gallery-3.JPG", category: "Wedding Photography" },
-  { src: "/images/gallery/gallery-4.JPG", category: "Outdoor Photography" },
-  { src: "/images/gallery/gallery-5.JPG", category: "Couple Photoshoot" },
-  { src: "/images/gallery/gallery-6.JPG", category: "Studio Portrait" },
-  { src: "/images/gallery/gallery-8.JPG", category: "Wedding Details" },
-  { src: "/images/gallery/gallery-9.JPG", category: "Candid Photography" },
-  { src: "/images/gallery/gallery-11.jpg", category: "Baby Photoshoot" },
-  { src: "/images/gallery/gallery-12.JPG", category: "Studio Photography" },
-  { src: "/images/gallery/gallery-15.JPG", category: "Outdoor Portrait" },
-  { src: "/images/gallery/gallery-16.JPG", category: "Bridal Photography" },
-  { src: "/images/gallery/gallery-18.JPG", category: "Product Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219363/DSC_0991_oiznbv.jpg", category: "Baby Photoshoot" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219656/DSC00272_dcse7a.jpg", category: "Product Photoshoot" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219334/Photo-64_ndnunh.jpg", category: "Wedding Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219337/Photo-83_nng9hq.jpg", category: "Outdoor Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768220095/1D0A7213_v51yx6.jpg", category: "Couple Photoshoot" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219649/DSC00250_dcjhoa.jpg", category: "Product Photoshoot" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219385/Photo-12_cibe2n.jpg", category: "Studio Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768220065/Photo-76_ovrnxf.jpg", category: "Bridal Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219343/Photo-25_biaonr.jpg", category: "Candid Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219382/DSC_1001_vdtdmr.jpg", category: "Baby Photoshoot" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219634/2_ndy8rz.jpg", category: "Studio Portrait" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768219359/Photo-56_ng129s.jpg", category: "Bridal Photography" },
 ];
 
 // Videography - 4 videos
 const videography = [
   {
-    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767391248/cinematic_wedding_films_hjwrrn.mp4",
+    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1768306777/Reel_2_1_nhtdwt.mp4",
     category: "Cinematic Wedding Film",
     poster:
-      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767391248/cinematic_wedding_films_hjwrrn.jpg",
+      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1768306777/Reel_2_1_nhtdwt.jpg",
   },
   {
-    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767390259/teaser_1080P_mcrbor.mp4",
+    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1768306781/Teaser----_1_zvby6x.mp4",
     category: "Wedding Teaser",
     poster:
-      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767390259/teaser_1080P_mcrbor.jpg",
+      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1768306781/Teaser----_1_zvby6x.jpg",
   },
   {
-    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767391757/Mani_singh_-_RamPhotoStudioHathras_1080p_h264_online-video-cutter.com_ziprbn.mp4",
+    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1768306778/Tesar_1_c6thnt.mp4",
     category: "Professional Editing",
     poster:
-      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767391757/Mani_singh_-_RamPhotoStudioHathras_1080p_h264_online-video-cutter.com_ziprbn.jpg",
+      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1768306778/Tesar_1_c6thnt.jpg",
   },
   {
-    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767390272/DJI_0013_1_1_c4kmj7.mp4",
+    src: "https://res.cloudinary.com/djrs9oqz7/video/upload/v1768306783/drone_vid_krb095.mov",
     category: "Drone Coverage",
     poster:
-      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1767390272/DJI_0013_1_1_c4kmj7.jpg",
+      "https://res.cloudinary.com/djrs9oqz7/video/upload/v1768306783/drone_vid_krb095.jpg",
   },
 ];
 
 // Printing Solutions - 12 images
 const printingSolutions = [
-  { src: "/images/gallery/gallery-14.jpg", category: "Large Format Printing" },
-  { src: "/images/gallery/gallery-7.JPG", category: "Photo Prints" },
-  { src: "/images/gallery/gallery-10.JPG", category: "Canvas Prints" },
-  { src: "/images/gallery/gallery-13.jpg", category: "Poster Printing" },
-  { src: "/images/gallery/gallery-17.JPG", category: "Banner Printing" },
-  { src: "/images/gallery/gallery-19.webp", category: "Photo Albums" },
-  { src: "/images/gallery/gallery-20.webp", category: "Framed Prints" },
-  { src: "/images/gallery/gallery-1.JPG", category: "Wall Art" },
-  { src: "/images/gallery/gallery-2.webp", category: "LED Wall Display" },
-  { src: "/images/gallery/gallery-4.JPG", category: "Custom Prints" },
-  { src: "/images/gallery/gallery-6.JPG", category: "Professional Prints" },
-  { src: "/images/gallery/gallery-8.JPG", category: "High Quality Prints" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768309128/WhatsApp_Image_2025-12-28_at_3_04_37_PM-Picsart-AiImageEnhancer_prbeew.png", category: "Large Format Printing" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768309144/Canon_TM5300_ncdo3b.jpg", category: "Photo Prints" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768309114/WhatsApp_Image_2025-12-28_at_3.04.36_PM_r2bkmo.jpg", category: "Canvas Prints" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768309137/EpSON_P8000_gxj5e0.jpg", category: "Poster Printing" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768309134/Canon_TM_5300_kspa5s.webp", category: "Banner Printing" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768309141/cameo_5_isfmcy.jpg", category: "Silhoutte printer" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768309148/Canon_TM5300_1_uo8dba.jpg", category: "Canon L36" },
 ];
 
 // Gift Items - 12 images
 const giftItems = [
-  { src: "/images/gifts/sublimation1.jpg", category: "Sublimation Gifts" },
-  { src: "/images/gifts/cushion1.jpg", category: "Photo Cushions" },
-  { src: "/images/gifts/leditem1.webp", category: "LED Items" },
-  { src: "/images/gifts/magiccup1.jpg", category: "Magic Cups" },
-  { src: "/images/gallery/gallery-11.jpg", category: "Photo Frames" },
-  { src: "/images/gallery/gallery-12.JPG", category: "Personalized Gifts" },
-  { src: "/images/gallery/gallery-13.jpg", category: "Custom Mugs" },
-  { src: "/images/gallery/gallery-14.jpg", category: "Photo Keychains" },
-  { src: "/images/gallery/gallery-15.JPG", category: "Memory Boxes" },
-  { src: "/images/gallery/gallery-16.JPG", category: "Photo Calendars" },
-  { src: "/images/gallery/gallery-17.JPG", category: "Decorative Items" },
-  { src: "/images/gallery/gallery-18.JPG", category: "Gift Hampers" },
-];
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308543/customised-gift-items_caksjd.jpg", category: "Sublimation Gifts" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308523/GL19113_1-Picsart-AiImageEnhancer_qbbnuh.png", category: "Photo Cushions" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308541/Unique-gifts-Home-decor-gift-ideas-A-polyresin-lamp-featuring-a-tree-and-deer-printed-pattern-1024x585_1_qdxtdj.webp", category: "LED Items" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308531/3up-winter-drinkware-oct2024-dsk-880x586_jhx6gx.jpg", category: "Magic Cups" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308498/il_570xN.2993883512_bt4r_nql5yh.webp", category: "Photo Frames" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308546/customised-gift-items_kjg01e.jpg", category: "Personalized Gifts" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308490/oye-personalized-temprature-water-bottle_qztjx5.jpg", category: "Custom Prints" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308502/3D-Engraved-Crystal_x9u05z.jpg", category: "Custom Photo Gifts" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308492/62c8482a69604_jft3-_oli7ll.webp", category: "Memory Gifts" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308534/best-gifts-for-wife_ffbois.jpg", category: "Photo Calendars" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308496/heartsnapshotmixphotoart_pflsao.webp", category: "Decorative Items" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308555/020-3-options-for-installing-led_iwtnbm.jpg", category: "LED Walls" },
+]; 
 ---
 
 <BaseLayout>
@@ -89,7 +84,7 @@ const giftItems = [
         class="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none"
       >
         <img
-          src="/rps-favicon.png"
+          src="https://res.cloudinary.com/djrs9oqz7/image/upload/v1767454388/cropped_circle_image_1_npm0nr.png"
           alt="Ram Photo Studio Watermark"
           class="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 opacity-[0.20] object-contain"
         />
@@ -153,14 +148,19 @@ const giftItems = [
           {
             videography.concat(videography).map((item) => (
               <div class="slider-item video-item">
-                <video poster={item.poster} muted loop playsinline>
+                <video poster={item.poster} loop playsinline>
                   <source src={item.src} type="video/mp4" />
                 </video>
-                <!-- Play button overlay -->
+                <!-- Play/Pause button overlay -->
                 <div class="play-button-overlay">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="64" height="64">
+                  <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="64" height="64">
                     <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.6)" stroke="white" stroke-width="1"/>
                     <path d="M9.5 8.5l7 3.5-7 3.5z"/>
+                  </svg>
+                  <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="64" height="64" style="display: none;">
+                    <circle cx="12" cy="12" r="11" fill="rgba(0,0,0,0.6)" stroke="white" stroke-width="1"/>
+                    <rect x="9" y="8" width="2" height="8" fill="white"/>
+                    <rect x="13" y="8" width="2" height="8" fill="white"/>
                   </svg>
                 </div>
                 <div class="slider-overlay">
@@ -346,14 +346,23 @@ const giftItems = [
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    pointer-events: none;
+    pointer-events: auto;
     z-index: 10;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
 
-  /* Hide play button on hover */
-  .video-item:hover .play-button-overlay {
+  .play-button-overlay:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  /* Hide play/pause button when video is playing and not hovering */
+  .video-item.playing .play-button-overlay {
     opacity: 0;
+  }
+
+  .video-item.playing:hover .play-button-overlay {
+    opacity: 1;
   }
 
   @keyframes scroll {
@@ -401,20 +410,47 @@ const giftItems = [
 </style>
 
 <script>
-  // Play video on hover
+  // Play/Pause video on button click
   document.querySelectorAll(".video-item").forEach((item) => {
     const video = item.querySelector("video");
+    const playButton = item.querySelector(".play-button-overlay");
+    const playIcon = item.querySelector(".play-icon") as HTMLElement;
+    const pauseIcon = item.querySelector(".pause-icon") as HTMLElement;
+    
+    // Find the parent slider track
+    const sliderTrack = item.closest(".slider-track") as HTMLElement;
 
-    item.addEventListener("mouseenter", () => {
-      if (video) video.play();
+    if (!video || !playButton || !playIcon || !pauseIcon || !sliderTrack) return;
+
+    // Handle play/pause button click
+    playButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      
+      if (video.paused) {
+        video.play();
+        item.classList.add("playing");
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+        // Pause the slider animation
+        sliderTrack.style.animationPlayState = "paused";
+      } else {
+        video.pause();
+        item.classList.remove("playing");
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+        // Resume the slider animation
+        sliderTrack.style.animationPlayState = "running";
+      }
     });
 
-    item.addEventListener("mouseleave", () => {
-      if (video) {
-        video.pause();
-        video.currentTime = 0;
-        video.load(); // Reload to show poster again
-      }
+    // Reset to paused state when video ends
+    video.addEventListener("ended", () => {
+      item.classList.remove("playing");
+      playIcon.style.display = "block";
+      pauseIcon.style.display = "none";
+      video.currentTime = 0;
+      // Resume the slider animation when video ends
+      sliderTrack.style.animationPlayState = "running";
     });
   });
 
