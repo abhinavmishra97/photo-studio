@@ -71,6 +71,34 @@ const giftItems = [
   { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308534/best-gifts-for-wife_ffbois.jpg", category: "Photo Calendars" },
   { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308496/heartsnapshotmixphotoart_pflsao.webp", category: "Decorative Items" },
   { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768308555/020-3-options-for-installing-led_iwtnbm.jpg", category: "LED Walls" },
+];
+
+// Baby Photoshoot - 12 images
+const babyPhotoshoot = [
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414328/3-months-Baby-Photoshoot-Amrit-Ammu-Photography-Thane-Mumbai-1_1_phmoyo.webp", category: "Newborn Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414336/DSC_1001_1_ipkugr.jpg", category: "Baby Milestone" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414344/8x12---_2_hr2wx8.jpg", category: "Infant Portraits" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414373/DSC_0981_1_fpp6z6.jpg", category: "Baby Studio Session" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414361/1D0A8260_1_olpcva.jpg", category: "Cute Baby Moments" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414349/8x12---_1_wtlqsz.jpg", category: "Baby Props Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414372/DSC_1007_1_hr5apq.jpg", category: "Family with Baby" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414340/DSC_0991_1_xrgfze.jpg", category: "Baby Portraits" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414367/1D0A2148_mwe4pv.jpg", category: "Baby Photoshoot" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414334/5x7-_2_f3glwb.jpg", category: "Studio Session" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414357/1D0A8271_yplet2.jpg", category: "Baby Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414339/baby_photographer_in_Pune_066937_1_njvfbw.jpg", category: "Infant Studio" },
+];
+
+// Matrimonial Photoshoot - 8 images
+const matrimonialPhotoshoot = [
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414302/001_copy_ga0blj.jpg", category: "Matrimonial Profile" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414319/DSC_9705_zlztup.jpg", category: "Bio-Data Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414313/03_copy_hiei3u.jpg", category: "Studio Session" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414305/DSC_1077_1_j4stpt.jpg", category: "Professional Headshot" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414286/04_copy_alghgq.jpg", category: "Formal Studio" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414318/002_copy_kdnzua.jpg", category: "Marriage Photography" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414280/2_1_qduxlv.jpg", category: "Elegant Bridal Portrait" },
+  { src: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768414296/01_copy_nedpcy.jpg", category: "Classic Studio Shot" },
 ]; 
 ---
 
@@ -119,6 +147,62 @@ const giftItems = [
         <div class="slider-track">
           {
             stillPhotography.concat(stillPhotography).map((item) => (
+              <div class="slider-item">
+                <img src={item.src} alt={item.category} />
+                <div class="slider-overlay">
+                  <span class="slider-category">{item.category}</span>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Baby Photoshoot Section -->
+    <section class="mb-16" id="baby">
+      <div class="mb-6">
+        <h2
+          class="text-2xl md:text-3xl font-bold text-[#1a1a1a] dark:text-white mb-2"
+        >
+          Baby Photoshoot
+        </h2>
+        <p class="text-[#f97316] text-lg font-bold">
+          Specialized setup for newborns and infants
+        </p>
+      </div>
+      <div class="slider-container" data-slider="baby">
+        <div class="slider-track">
+          {
+            babyPhotoshoot.concat(babyPhotoshoot).map((item) => (
+              <div class="slider-item">
+                <img src={item.src} alt={item.category} />
+                <div class="slider-overlay">
+                  <span class="slider-category">{item.category}</span>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Matrimonial Photoshoot Section -->
+    <section class="mb-16" id="matrimonial">
+      <div class="mb-6">
+        <h2
+          class="text-2xl md:text-3xl font-bold text-[#1a1a1a] dark:text-white mb-2"
+        >
+          Matrimonial Photoshoot
+        </h2>
+        <p class="text-[#f97316] text-lg font-bold">
+          Clean, confident, and approachable portraits
+        </p>
+      </div>
+      <div class="slider-container" data-slider="matrimonial">
+        <div class="slider-track">
+          {
+            matrimonialPhotoshoot.concat(matrimonialPhotoshoot).map((item) => (
               <div class="slider-item">
                 <img src={item.src} alt={item.category} />
                 <div class="slider-overlay">
