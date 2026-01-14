@@ -314,6 +314,34 @@ const matrimonialPhotoshoot = [
     </section>
   </div>
 
+  <!-- Video Modal -->
+  <div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" aria-label="Close video">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <video id="modalVideo" controls playsinline webkit-playsinline>
+        <source src="" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="image-modal">
+    <div class="image-modal-content">
+      <button class="image-modal-close" aria-label="Close image">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <img id="modalImage" src="" alt="Full size image" />
+    </div>
+  </div>
+
   <!-- CTA Section -->
   <CTASection />
 </BaseLayout>
@@ -467,15 +495,144 @@ const matrimonialPhotoshoot = [
     pointer-events: auto;
   }
 
-  /* Responsive */
+  /* Video Modal Base Styles */
+  .video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .video-modal.active {
+    display: flex;
+  }
+
+  .video-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 90vw;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-modal-content video {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 0.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .video-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+  }
+
+  /* Image Modal Base Styles */
+  .image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .image-modal.active {
+    display: flex;
+  }
+
+  .image-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-modal-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+  }
+
+  .image-modal-close {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .image-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+  }
+
+  /* Mobile Responsive Styles */
   @media (max-width: 768px) {
     .slider-container {
       padding: 2rem 0; /* Adjust padding for mobile */
     }
 
     .slider-item {
-      width: 250px;
-      height: 350px;
+      width: 280px; /* Increased from 250px */
+      height: 400px; /* Increased from 350px */
+    }
+
+    .slider-item.video-item {
+      width: 500px;
+      height: 280px;
     }
 
     .slider-item:hover {
@@ -487,55 +644,255 @@ const matrimonialPhotoshoot = [
         transform: translateX(0);
       }
       100% {
-        transform: translateX(calc(-250px * 12 - 12rem));
+        transform: translateX(calc(-280px * 12 - 12rem));
       }
+    }
+
+    /* Make video items obviously clickable on mobile */
+    .slider-item.video-item {
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Video Modal - Mobile Portrait */
+    .video-modal {
+      padding: 0.5rem;
+    }
+
+    .video-modal-content {
+      max-width: 98vw;
+      max-height: 85vh;
+    }
+
+    .video-modal-content video {
+      max-height: 85vh;
+      max-width: 98vw;
+    }
+
+    .video-modal-close {
+      top: -2.5rem;
+      width: 44px;
+      height: 44px;
+    }
+
+    /* Image Modal - Mobile */
+    .image-modal {
+      padding: 1rem;
+    }
+
+    .image-modal-content {
+      max-width: 95vw;
+      max-height: 85vh;
+    }
+
+    .image-modal-content img {
+      max-height: 85vh;
+    }
+
+    .image-modal-close {
+      top: -2.5rem;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  /* Mobile Landscape Mode - Video Full Screen */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .video-modal {
+      padding: 0;
+    }
+
+    .video-modal-content {
+      max-width: 100vw;
+      max-height: 100vh;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .video-modal-content video {
+      max-width: 100vw;
+      max-height: 100vh;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 0;
+    }
+
+    .video-modal-close {
+      top: 0.75rem;
+      right: 0.75rem;
+      position: fixed;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.8);
+      border-color: rgba(255, 255, 255, 0.6);
+      width: 44px;
+      height: 44px;
+    }
+
+    .video-modal-close:hover {
+      background: rgba(0, 0, 0, 0.9);
+      border-color: rgba(255, 255, 255, 0.8);
     }
   }
 </style>
 
 <script>
-  // Play/Pause video on button click
+  // Video Modal Functionality
+  const videoModal = document.getElementById('videoModal') as HTMLElement;
+  const modalVideo = document.getElementById('modalVideo') as HTMLVideoElement;
+  const modalClose = document.querySelector('.video-modal-close') as HTMLElement;
+
+  // Track if video was playing when modal closes
+  let wasVideoPlaying = false;
+
+  // Detect if device is mobile
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+  // Open video in modal when clicked
   document.querySelectorAll(".video-item").forEach((item) => {
-    const video = item.querySelector("video");
-    const playButton = item.querySelector(".play-button-overlay");
-    const playIcon = item.querySelector(".play-icon") as HTMLElement;
-    const pauseIcon = item.querySelector(".pause-icon") as HTMLElement;
-    
-    // Find the parent slider track
+    const video = item.querySelector("video") as HTMLVideoElement;
+    const playButton = item.querySelector(".play-button-overlay") as HTMLElement;
     const sliderTrack = item.closest(".slider-track") as HTMLElement;
+    
+    if (!video || !playButton) return;
 
-    if (!video || !playButton || !playIcon || !pauseIcon || !sliderTrack) return;
-
-    // Handle play/pause button click
-    playButton.addEventListener("click", (e) => {
+    // Function to open video modal
+    const openVideoModal = async (e: Event) => {
       e.stopPropagation();
       
-      if (video.paused) {
-        video.play();
-        item.classList.add("playing");
-        playIcon.style.display = "none";
-        pauseIcon.style.display = "block";
-        // Pause the slider animation
-        sliderTrack.style.animationPlayState = "paused";
-      } else {
-        video.pause();
-        item.classList.remove("playing");
-        playIcon.style.display = "block";
-        pauseIcon.style.display = "none";
-        // Resume the slider animation
-        sliderTrack.style.animationPlayState = "running";
+      // Get video source
+      const videoSource = video.querySelector('source')?.src;
+      if (videoSource) {
+        // Pause slider animation
+        if (sliderTrack) {
+          sliderTrack.style.animationPlayState = 'paused';
+        }
+
+        // Set modal video source
+        const modalSource = modalVideo.querySelector('source') as HTMLSourceElement;
+        if (modalSource) {
+          modalSource.src = videoSource;
+          modalVideo.load();
+        }
+        
+        // Show modal
+        videoModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        
+        // Wait for video to be ready and play
+        try {
+          await modalVideo.play();
+          wasVideoPlaying = true;
+        } catch (error) {
+          console.log('Video play error:', error);
+          wasVideoPlaying = false;
+        }
+      }
+    };
+
+    // On mobile, clicking anywhere on video item opens modal
+    if (isMobile) {
+      item.addEventListener("click", openVideoModal);
+    } else {
+      // On desktop, only play button opens modal
+      playButton.addEventListener("click", openVideoModal);
+    }
+  });
+
+  // Close modal function
+  function closeVideoModal() {
+    // Pause video
+    modalVideo.pause();
+    modalVideo.currentTime = 0;
+    
+    // Hide modal
+    videoModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+    
+    // Always resume all slider animations when closing
+    document.querySelectorAll('.slider-track').forEach(track => {
+      (track as HTMLElement).style.animationPlayState = 'running';
+    });
+    
+    wasVideoPlaying = false;
+  }
+
+  // Close button click
+  if (modalClose) {
+    modalClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeVideoModal();
+    });
+  }
+
+  // Close on backdrop click
+  videoModal?.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+      closeVideoModal();
+    }
+  });
+
+  // Image Modal Functionality
+  const imageModal = document.getElementById('imageModal') as HTMLElement;
+  const modalImage = document.getElementById('modalImage') as HTMLImageElement;
+  const imageModalClose = document.querySelector('.image-modal-close') as HTMLElement;
+
+  // Open image in modal when clicked (only for non-video slider items)
+  document.querySelectorAll(".slider-item:not(.video-item)").forEach((item) => {
+    const img = item.querySelector("img") as HTMLImageElement;
+    
+    if (!img) return;
+
+    // Make image clickable
+    img.style.cursor = 'pointer';
+
+    // Handle image click - open modal
+    img.addEventListener("click", (e) => {
+      e.stopPropagation();
+      
+      // Get image source
+      const imageSrc = img.src;
+      if (imageSrc) {
+        // Set modal image source
+        modalImage.src = imageSrc;
+        modalImage.alt = img.alt || 'Full size image';
+        
+        // Show modal
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
       }
     });
+  });
 
-    // Reset to paused state when video ends
-    video.addEventListener("ended", () => {
-      item.classList.remove("playing");
-      playIcon.style.display = "block";
-      pauseIcon.style.display = "none";
-      video.currentTime = 0;
-      // Resume the slider animation when video ends
-      sliderTrack.style.animationPlayState = "running";
-    });
+  // Close image modal function
+  function closeImageModal() {
+    imageModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+    modalImage.src = '';
+  }
+
+  // Close button click
+  if (imageModalClose) {
+    imageModalClose.addEventListener('click', closeImageModal);
+  }
+
+  // Close on backdrop click
+  imageModal?.addEventListener('click', (e) => {
+    if (e.target === imageModal) {
+      closeImageModal();
+    }
+  });
+
+  // Close on Escape key (update to handle both modals)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (imageModal.classList.contains('active')) {
+        closeImageModal();
+      }
+      if (videoModal.classList.contains('active')) {
+        closeVideoModal();
+      }
+    }
   });
 
   // Handle hash navigation for anchor scrolling

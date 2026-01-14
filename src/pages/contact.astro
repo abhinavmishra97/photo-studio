@@ -206,7 +206,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         bg-white/90 dark:bg-[#26231F]
         p-6 shadow-sm space-y-4"
       >
-        <h2 class="text-xl font-semibold">Send us your query</h2>
+        <h2 class="text-xl font-semibold">How can we help you</h2>
 
         <!-- Success Message -->
         <div
@@ -314,6 +314,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 name="name"
                 id="name"
                 required
+                minlength="2"
+                maxlength="30"
+                pattern="[A-Za-z\s]+"
+                title="Name should contain only letters and spaces (2-30 characters)"
                 class="mt-1 w-full rounded-lg border border-[#D9D3CC] dark:border-[#3A3835] bg-transparent px-3 py-2 outline-none focus:border-[#2563A8] dark:focus:border-[#60A5FA]"
                 placeholder="Your name"
               />
@@ -325,8 +329,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 name="phone"
                 id="phone"
                 required
+                pattern="[0-9]{10}"
+                minlength="10"
+                maxlength="10"
+                title="Please enter exactly 10 digits"
                 class="mt-1 w-full rounded-lg border border-[#D9D3CC] dark:border-[#3A3835] bg-transparent px-3 py-2 outline-none focus:border-[#2563A8] dark:focus:border-[#60A5FA]"
-                placeholder="+91 XXXXX XXXXX"
+                placeholder="10 digit mobile number"
               />
             </label>
           </div>
@@ -336,6 +344,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               type="email"
               name="email"
               id="email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              title="Please enter a valid email address"
               class="mt-1 w-full rounded-lg border border-[#D9D3CC] dark:border-[#3A3835] bg-transparent px-3 py-2 outline-none focus:border-[#2563A8] dark:focus:border-[#60A5FA]"
               placeholder="your@email.com"
             />
@@ -422,9 +432,78 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       // Store the enquiry ID for later update
       let currentEnquiryId: number | null = null;
 
+      // Form field validation
+      const nameInput = document.getElementById("name") as HTMLInputElement;
+      const phoneInput = document.getElementById("phone") as HTMLInputElement;
+      const emailInput = document.getElementById("email") as HTMLInputElement;
+
+      // Name validation - only letters and spaces, max 30 chars
+      nameInput?.addEventListener("input", (e) => {
+        const target = e.target as HTMLInputElement;
+        // Remove any non-letter/space characters
+        target.value = target.value.replace(/[^A-Za-z\s]/g, "");
+        // Limit to 30 characters
+        if (target.value.length > 30) {
+          target.value = target.value.substring(0, 30);
+        }
+      });
+
+      // Phone validation - only numbers, exactly 10 digits
+      phoneInput?.addEventListener("input", (e) => {
+        const target = e.target as HTMLInputElement;
+        // Remove any non-numeric characters
+        target.value = target.value.replace(/[^0-9]/g, "");
+        // Limit to 10 digits
+        if (target.value.length > 10) {
+          target.value = target.value.substring(0, 10);
+        }
+      });
+
+      // Email validation - show error if invalid format
+      emailInput?.addEventListener("blur", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.value && !target.validity.valid) {
+          target.setCustomValidity("Please enter a valid email address");
+        } else {
+          target.setCustomValidity("");
+        }
+      });
+
       // Handle initial contact form submission
       form?.addEventListener("submit", async (e) => {
         e.preventDefault();
+
+        // Additional validation before submission
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const email = emailInput.value.trim();
+
+        // Validate name
+        if (name.length < 2 || name.length > 30) {
+          errorText.textContent = "Name must be between 2 and 30 characters";
+          errorMessage.classList.remove("hidden");
+          return;
+        }
+
+        if (!/^[A-Za-z\s]+$/.test(name)) {
+          errorText.textContent = "Name should contain only letters and spaces";
+          errorMessage.classList.remove("hidden");
+          return;
+        }
+
+        // Validate phone
+        if (!/^[0-9]{10}$/.test(phone)) {
+          errorText.textContent = "Phone number must be exactly 10 digits";
+          errorMessage.classList.remove("hidden");
+          return;
+        }
+
+        // Validate email if provided
+        if (email && !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email)) {
+          errorText.textContent = "Please enter a valid email address";
+          errorMessage.classList.remove("hidden");
+          return;
+        }
 
         // Hide previous messages
         successMessage.classList.add("hidden");
