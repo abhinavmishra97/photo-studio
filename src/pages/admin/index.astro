@@ -5,6 +5,9 @@ import { supabaseAdmin } from "../../lib/supabaseAdmin.js";
 import type { Enquiry } from "../../types/enquiry";
 import type { Customer } from "../../types/customer";
 
+// Get authenticated user from middleware
+const user = Astro.locals.user;
+
 // Fetch enquiries
 let enquiries: Enquiry[] = [];
 let enquiriesError: string | null = null;
@@ -187,6 +190,39 @@ const {
         class="bg-white dark:bg-[#1A1A1A] text-[#2A2A2A] dark:text-[#EEEAE3] min-h-screen"
     >
         <div class="max-w-7xl mx-auto px-4 py-8">
+            <!-- Admin Header with Logout -->
+            <div class="mb-6 flex items-center justify-between">
+                <div>
+                    <h1
+                        class="text-3xl font-bold text-gray-900 dark:text-white"
+                    >
+                        Admin Dashboard
+                    </h1>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Welcome, {user?.email || "Admin"}
+                    </p>
+                </div>
+                <a
+                    href="/admin/logout"
+                    class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-semibold transition flex items-center gap-2"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        ></path>
+                    </svg>
+                    Logout
+                </a>
+            </div>
+
             <!-- Tab Headers -->
             <div class="mb-6">
                 <div

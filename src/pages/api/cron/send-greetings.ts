@@ -2,8 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { supabaseAdmin } from '../../../lib/supabaseAdmin';
-import { resend } from '../../../lib/resend';
-import { getBirthdayEmailHTML, getAnniversaryEmailHTML } from '../../../lib/emailTemplates';
+import { sendWhatsAppMessage, getBirthdayWhatsAppMessage, getAnniversaryWhatsAppMessage } from '../../../lib/whatsapp';
 import type { Customer } from '../../../types/customer';
 
 export const GET: APIRoute = async ({ request }) => {
@@ -41,13 +40,16 @@ export const GET: APIRoute = async ({ request }) => {
             });
         }
 
-        const emailsSent: string[] = [];
+        const messagesSent: string[] = [];
         const errors: string[] = [];
 
         // Check each customer for birthday or anniversary
         for (const customer of (customers as Customer[])) {
-            // Skip if no email
-            if (!customer.email) continue;
+            // Skip if no phone number
+            if (!customer.phone) {
+                console.log(`⚠️ Skipping ${customer.name} - no phone number`);
+                continue;
+            }
 
             // Check birthday
             if (customer.birthday) {
@@ -57,17 +59,13 @@ export const GET: APIRoute = async ({ request }) => {
 
                 if (birthMonth === todayMonth && birthDay === todayDay) {
                     try {
-                        await resend.emails.send({
-                            from: 'Ram Photo Studio <noreply@ramdigitalphotostudio.com>',
-                            to: customer.email,
-                            subject: `🎉 Happy Birthday ${customer.name}!`,
-                            html: getBirthdayEmailHTML(customer.name),
-                        });
-                        emailsSent.push(`Birthday email to ${customer.name} (${customer.email})`);
-                        console.log(`✅ Birthday email sent to ${customer.name}`);
+                        const message = getBirthdayWhatsAppMessage(customer.name);
+                        await sendWhatsAppMessage(customer.phone, message);
+                        messagesSent.push(`Birthday WhatsApp to ${customer.name} (${customer.phone})`);
+                        console.log(`✅ Birthday WhatsApp sent to ${customer.name}`);
                     } catch (error: any) {
-                        errors.push(`Failed to send birthday email to ${customer.name}: ${error.message}`);
-                        console.error(`❌ Failed to send birthday email to ${customer.name}:`, error);
+                        errors.push(`Failed to send birthday WhatsApp to ${customer.name}: ${error.message}`);
+                        console.error(`❌ Failed to send birthday WhatsApp to ${customer.name}:`, error);
                     }
                 }
             }
@@ -80,17 +78,13 @@ export const GET: APIRoute = async ({ request }) => {
 
                 if (annivMonth === todayMonth && annivDay === todayDay) {
                     try {
-                        await resend.emails.send({
-                            from: 'Ram Photo Studio <noreply@ramdigitalphotostudio.com>',
-                            to: customer.email,
-                            subject: `💕 Happy Anniversary ${customer.name}!`,
-                            html: getAnniversaryEmailHTML(customer.name, customer.spouse_name || undefined),
-                        });
-                        emailsSent.push(`Anniversary email to ${customer.name} (${customer.email})`);
-                        console.log(`✅ Anniversary email sent to ${customer.name}`);
+                        const message = getAnniversaryWhatsAppMessage(customer.name, customer.spouse_name || undefined);
+                        await sendWhatsAppMessage(customer.phone, message);
+                        messagesSent.push(`Anniversary WhatsApp to ${customer.name} (${customer.phone})`);
+                        console.log(`✅ Anniversary WhatsApp sent to ${customer.name}`);
                     } catch (error: any) {
-                        errors.push(`Failed to send anniversary email to ${customer.name}: ${error.message}`);
-                        console.error(`❌ Failed to send anniversary email to ${customer.name}:`, error);
+                        errors.push(`Failed to send anniversary WhatsApp to ${customer.name}: ${error.message}`);
+                        console.error(`❌ Failed to send anniversary WhatsApp to ${customer.name}:`, error);
                     }
                 }
             }
@@ -99,8 +93,8 @@ export const GET: APIRoute = async ({ request }) => {
         return new Response(JSON.stringify({
             success: true,
             date: `${todayMonth}/${todayDay}`,
-            emailsSent: emailsSent.length,
-            emails: emailsSent,
+            messagesSent: messagesSent.length,
+            messages: messagesSent,
             errors: errors.length > 0 ? errors : undefined
         }), {
             status: 200,
@@ -118,3 +112,4 @@ export const GET: APIRoute = async ({ request }) => {
         });
     }
 };
+
