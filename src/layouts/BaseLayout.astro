@@ -318,10 +318,23 @@ import "../styles/theme.css";
           }, 500);
         }
       });
+
+      // Visitor Tracking
+      window.addEventListener("load", function () {
+        // Track visitor on page load
+        fetch("/api/visitors/track", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).catch(() => {
+          // Silently fail if tracking doesn't work
+        });
+      });
     </script>
 
     <!-- Vercel Analytics -->
-    <Analytics />
-    <SpeedInsights />
+    <Analytics debug={false} />
+    <SpeedInsights debug={false} />
   </body>
 </html>

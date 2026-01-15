@@ -18,7 +18,6 @@ try {
   enquiries = data || [];
 } catch (e: any) {
   error = e.message;
-  console.error('Error fetching enquiries:', e);
 }
 
 // Helper function to format date
@@ -234,7 +233,7 @@ function getStatusColor(status: string): string {
           target.textContent = 'Updating...';
 
           try {
-            console.log('Updating status:', { id: enquiryId, status: newStatus });
+
 
             // Call server-side API endpoint
             const response = await fetch('/api/enquiries/update-status', {
@@ -248,7 +247,7 @@ function getStatusColor(status: string): string {
               })
             });
 
-            console.log('Response status:', response.status);
+
             
             // Check if response has content
             const contentType = response.headers.get('content-type');
@@ -257,7 +256,6 @@ function getStatusColor(status: string): string {
             }
 
             const result = await response.json();
-            console.log('Response data:', result);
 
             if (!response.ok) {
               throw new Error(result.error || 'Failed to update status');
@@ -266,7 +264,6 @@ function getStatusColor(status: string): string {
             // Reload page to show updated status
             window.location.reload();
           } catch (error: any) {
-            console.error('Full error:', error);
             alert('Error updating status: ' + error.message);
             
             // Re-enable button
@@ -329,7 +326,6 @@ Contact: +91 9412000718`;
             // Show instructions
             alert('Email text copied! Now:\n1. Open Gmail (gmail.com)\n2. Click Compose\n3. Paste (Ctrl+V) the email\n4. Send');
           } catch (error) {
-            console.error('Copy failed:', error);
             alert('Failed to copy. Please try again or copy manually:\n\n' + emailText);
           }
         });

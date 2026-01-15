@@ -529,8 +529,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             message: formData.get("message") as string,
           };
 
-          console.log("Submitting enquiry:", enquiryData);
-
           // Call API endpoint
           const response = await fetch("/api/submit-enquiry", {
             method: "POST",
@@ -541,7 +539,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           });
 
           const result = await response.json();
-          console.log("API response:", result);
 
           if (!result.success) {
             throw new Error(result.error || "Failed to submit enquiry");
@@ -549,7 +546,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
           // Store the enquiry ID
           currentEnquiryId = result.id;
-          console.log("Enquiry saved with ID:", currentEnquiryId);
 
           // Reset form
           form.reset();
@@ -588,7 +584,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             });
           }
         } catch (error: any) {
-          console.error("Form submission error:", error);
           // Show error message
           errorText.textContent =
             error.message || "Please try again or contact us directly.";
@@ -627,8 +622,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           const formData = new FormData(subscribeForm);
           const email = formData.get("subscribeEmail") as string;
 
-          console.log("Subscribing with email:", email);
-
           // Call API endpoint
           const response = await fetch("/api/subscribe-email", {
             method: "POST",
@@ -642,7 +635,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           });
 
           const result = await response.json();
-          console.log("Subscribe API response:", result);
 
           if (!result.success) {
             throw new Error(result.error || "Failed to subscribe");
@@ -668,7 +660,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             block: "nearest",
           });
         } catch (error: any) {
-          console.error("Subscribe error:", error);
           // Show error message
           errorText.textContent = error.message || "Please try again later.";
           errorMessage.classList.remove("hidden");

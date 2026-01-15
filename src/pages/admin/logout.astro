@@ -7,7 +7,7 @@ import { signOut } from "../../lib/auth";
 const { error } = await signOut(Astro.cookies);
 
 if (error) {
-    console.error("Logout error:", error);
+    // Silently handle logout error
 }
 
 // Redirect to login page
