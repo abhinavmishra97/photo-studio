@@ -17,7 +17,7 @@ export function createSupabaseClient(cookies: AstroCookies) {
     return createClient(supabaseUrl, supabaseAnonKey, {
         auth: {
             flowType: 'pkce',
-            autoRefreshToken: true,
+            autoRefreshToken: false, // Disabled to prevent cookie errors
             detectSessionInUrl: false,
             persistSession: true,
             storage: {

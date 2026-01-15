@@ -1,36 +1,51 @@
--- Create visitors table for tracking website visits
-CREATE TABLE IF NOT EXISTS visitors (
-    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    ip_address TEXT NOT NULL,
-    user_agent TEXT,
-    referer TEXT,
-    visited_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+-- Create a simple visitor statistics table with just counts
+CREATE TABLE IF NOT EXISTS visitor_stats (
+    id INTEGER PRIMARY KEY DEFAULT 1,
+    total_count INTEGER DEFAULT 0,
+    last_updated TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    CONSTRAINT single_row CHECK (id = 1)
 );
 
--- Create index for faster queries on visited_at
-CREATE INDEX IF NOT EXISTS idx_visitors_visited_at ON visitors(visited_at DESC);
-
--- Create index for IP address lookups
-CREATE INDEX IF NOT EXISTS idx_visitors_ip ON visitors(ip_address);
+-- Insert initial row (only one row will ever exist)
+INSERT INTO visitor_stats (id, total_count, last_updated)
+VALUES (1, 0, NOW())
+ON CONFLICT (id) DO NOTHING;
 
 -- Enable Row Level Security
-ALTER TABLE visitors ENABLE ROW LEVEL SECURITY;
+ALTER TABLE visitor_stats ENABLE ROW LEVEL SECURITY;
 
--- Policy: Only authenticated admin users can read visitor data
-CREATE POLICY "Admin users can view visitors"
-    ON visitors
+-- Policy: Only authenticated admin users can read stats
+CREATE POLICY "Admin users can view visitor stats"
+    ON visitor_stats
     FOR SELECT
     TO authenticated
     USING (true);
 
--- Policy: Allow anonymous inserts (for tracking)
-CREATE POLICY "Allow anonymous visitor tracking"
-    ON visitors
-    FOR INSERT
+-- Policy: Allow anonymous updates (for incrementing count)
+CREATE POLICY "Allow anonymous visitor count increment"
+    ON visitor_stats
+    FOR UPDATE
     TO anon
+    USING (true)
     WITH CHECK (true);
 
 -- Grant permissions
-GRANT SELECT ON visitors TO authenticated;
-GRANT INSERT ON visitors TO anon;
+GRANT SELECT ON visitor_stats TO authenticated;
+GRANT UPDATE ON visitor_stats TO anon;
+
+-- Create a function to increment visitor count
+CREATE OR REPLACE FUNCTION increment_visitor_count()
+RETURNS void
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+BEGIN
+    UPDATE visitor_stats
+    SET total_count = total_count + 1,
+        last_updated = NOW()
+    WHERE id = 1;
+END;
+$$;
+
+-- Grant execute permission on the function
+GRANT EXECUTE ON FUNCTION increment_visitor_count() TO anon;

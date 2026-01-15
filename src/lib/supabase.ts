@@ -9,4 +9,10 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 // Public client - can only insert into enquiries table (enforced by RLS)
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+        detectSessionInUrl: false
+    }
+});

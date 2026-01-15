@@ -3,54 +3,39 @@ import { supabaseAdmin } from "../../../lib/supabaseAdmin";
 
 export const GET: APIRoute = async () => {
     try {
-        // Get total unique visitors (count all records)
-        const { count: totalVisitors, error: totalError } = await supabaseAdmin
-            .from("visitors")
-            .select("*", { count: "exact", head: true });
+        // Get the visitor count
+        const { data, error } = await supabaseAdmin
+            .from("visitor_stats")
+            .select("total_count")
+            .eq("id", 1)
+            .single();
 
-        if (totalError) throw totalError;
+        if (error) {
+            // If table doesn't exist yet, return 0
+            return new Response(
+                JSON.stringify({
+                    total: 0,
+                    today: 0,
+                    week: 0,
+                    month: 0,
+                }),
+                {
+                    status: 200,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+        }
 
-        // Get today's visitors
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        const { count: todayVisitors, error: todayError } = await supabaseAdmin
-            .from("visitors")
-            .select("*", { count: "exact", head: true })
-            .gte("visited_at", today.toISOString());
-
-        if (todayError) throw todayError;
-
-        // Get this week's visitors
-        const weekAgo = new Date();
-        weekAgo.setDate(weekAgo.getDate() - 7);
-        weekAgo.setHours(0, 0, 0, 0);
-
-        const { count: weekVisitors, error: weekError } = await supabaseAdmin
-            .from("visitors")
-            .select("*", { count: "exact", head: true })
-            .gte("visited_at", weekAgo.toISOString());
-
-        if (weekError) throw weekError;
-
-        // Get this month's visitors
-        const monthAgo = new Date();
-        monthAgo.setDate(monthAgo.getDate() - 30);
-        monthAgo.setHours(0, 0, 0, 0);
-
-        const { count: monthVisitors, error: monthError } = await supabaseAdmin
-            .from("visitors")
-            .select("*", { count: "exact", head: true })
-            .gte("visited_at", monthAgo.toISOString());
-
-        if (monthError) throw monthError;
+        const totalCount = data?.total_count || 0;
 
         return new Response(
             JSON.stringify({
-                total: totalVisitors || 0,
-                today: todayVisitors || 0,
-                week: weekVisitors || 0,
-                month: monthVisitors || 0,
+                total: totalCount,
+                today: 0,  // Not tracked in simplified version
+                week: 0,   // Not tracked in simplified version
+                month: 0,  // Not tracked in simplified version
             }),
             {
                 status: 200,
@@ -60,11 +45,16 @@ export const GET: APIRoute = async () => {
             }
         );
     } catch (error) {
-        console.error("Error fetching visitor stats:", error);
+        // Return 0 instead of error to prevent breaking the admin dashboard
         return new Response(
-            JSON.stringify({ error: "Failed to fetch visitor statistics" }),
+            JSON.stringify({
+                total: 0,
+                today: 0,
+                week: 0,
+                month: 0,
+            }),
             {
-                status: 500,
+                status: 200,
                 headers: {
                     "Content-Type": "application/json",
                 },
