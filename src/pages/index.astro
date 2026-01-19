@@ -321,8 +321,14 @@ const featuredShots = [
               src={shot.image}
               alt={`${shot.category} - Featured shot ${index + 1}`}
               loading="lazy"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover transition duration-300 group-hover:scale-105"
             />
+            <!-- Overlay for Desktop Hover -->
+            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:flex items-end justify-start p-4">
+              <span class="text-white font-semibold text-lg md:text-xl tracking-wide">
+                {shot.category}
+              </span>
+            </div>
           </div>
         ))
       }
@@ -491,6 +497,9 @@ const featuredShots = [
 
         featuredShots.forEach((shot) => {
           shot.addEventListener("click", () => {
+            // Only open modal on mobile (viewport width < 768px)
+            if (window.innerWidth >= 768) return;
+
             const imgUrl = shot.dataset.image;
             const category = shot.dataset.category;
             if (imgUrl) openModal(imgUrl, category);

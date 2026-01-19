@@ -449,7 +449,7 @@ import CTASection from "../components/CTASection.astro";
   </section>
 
   <section id="event" class="mt-16 grid gap-8 md:grid-cols-2 items-center">
-    <div class="grid grid-cols-2 gap-4">
+    <div class="order-2 md:order-1 grid grid-cols-2 gap-4">
       <div
         class="rounded-2xl overflow-hidden aspect-[4/5] bg-[#E8DFD3] dark:bg-[#1F1D1A] cursor-pointer tap-highlight-transparent"
         data-enlargeable-image
@@ -474,7 +474,7 @@ import CTASection from "../components/CTASection.astro";
         />
       </div>
     </div>
-    <div class="space-y-4">
+    <div class="order-1 md:order-2 space-y-4">
       <h2 class="text-3xl md:text-4xl font-bold text-[#1a1a1a] dark:text-white">
         Event & Celebration Photography
       </h2>
@@ -619,6 +619,9 @@ import CTASection from "../components/CTASection.astro";
 
         enlargeableImages.forEach((container) => {
           container.addEventListener("click", () => {
+            // Only open modal on mobile (viewport width < 768px)
+            if (window.innerWidth >= 768) return;
+
             const img = container.querySelector("img");
             if (img && img.src) openModal(img.src);
           });

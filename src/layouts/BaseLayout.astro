@@ -157,18 +157,29 @@ import "../styles/theme.css";
         relative z-20"
     >
       <div class="max-w-7xl mx-auto px-4 py-8">
-        <!-- Two Column Layout -->
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <!-- Left: Brand -->
-          <div class="space-y-8">
+        <!-- Three Column Layout -->
+        <div class="grid md:grid-cols-12 gap-8 items-center">
+          <!-- Left: Logo -->
+          <div class="md:col-span-2 flex justify-center md:justify-start">
+            <img
+              src="https://res.cloudinary.com/djrs9oqz7/image/upload/v1767454388/cropped_circle_image_1_npm0nr.png"
+              alt="Ram Photo Studio Logo"
+              class="w-32 h-32 md:w-36 md:h-36 object-contain shrink-0 hover:scale-105 transition-transform duration-300 drop-shadow-md"
+            />
+          </div>
+
+          <!-- Middle: Brand Text -->
+          <div
+            class="md:col-span-6 flex flex-col items-center md:items-start text-center md:text-left space-y-4"
+          >
             <h3
-              class="text-5xl md:text-6xl font-bold text-[#3E2723] leading-tight text-center md:text-left"
+              class="text-4xl md:text-6xl font-bold text-[#3E2723] leading-tight text-center md:text-left md:whitespace-nowrap"
               style="animation: premiumGlow 2.5s ease-in-out infinite;"
             >
               Ram Photo Studio
             </h3>
             <p
-              class="text-xl md:text-2xl text-[#1a1a1a]/80 font-medium leading-relaxed"
+              class="text-xl md:text-2xl text-[#1a1a1a]/80 font-medium leading-relaxed max-w-lg"
             >
               Warm, crafted imagery for weddings, portraits, products, and
               keepsakes.
@@ -176,7 +187,9 @@ import "../styles/theme.css";
           </div>
 
           <!-- Right: Contact & Social -->
-          <div class="flex flex-col items-center justify-center space-y-6">
+          <div
+            class="md:col-span-4 flex flex-col items-center justify-center text-center space-y-6"
+          >
             <!-- Contact -->
             <div class="space-y-2 text-center">
               <h4 class="font-bold text-lg text-[#1a1a1a] mb-3">Contact</h4>
