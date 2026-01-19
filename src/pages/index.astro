@@ -315,18 +315,14 @@ const featuredShots = [
           "
             data-featured-shot
             data-image={shot.image}
+            data-category={shot.category}
           >
             <img
               src={shot.image}
               alt={`${shot.category} - Featured shot ${index + 1}`}
               loading="lazy"
-              class="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+              class="w-full h-full object-cover"
             />
-            <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-start p-4">
-              <span class="text-white font-semibold text-lg md:text-xl tracking-wide">
-                {shot.category}
-              </span>
-            </div>
           </div>
         ))
       }
@@ -371,6 +367,17 @@ const featuredShots = [
         alt="Full screen view"
         class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl pointer-events-auto scale-95 transition-transform duration-300"
       />
+      <!-- Caption Overlay -->
+      <!-- Caption Overlay -->
+      <div 
+        id="modalCaptionContainer"
+        class="absolute inset-x-0 bottom-6 flex justify-center pointer-events-none opacity-0 transition-opacity duration-300 delay-100"
+      >
+        <span 
+          id="modalCaption" 
+          class="bg-black/60 backdrop-blur-md text-white/95 px-6 py-2 rounded-full font-bold text-lg md:text-xl tracking-wide shadow-lg border border-white/10"
+        ></span>
+      </div>
     </div>
   </div>
 
@@ -437,53 +444,68 @@ const featuredShots = [
     }
 
     // Image Modal functionality
-    const modal = document.getElementById("imageModal");
-    const modalImg = document.getElementById("modalImg");
-    const closeBtn = document.getElementById("closeModalBtn");
-    const backdrop = document.getElementById("modalBackdrop");
-    const featuredShots = document.querySelectorAll("[data-featured-shot]");
+    (function() {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      const modalCaption = document.getElementById("modalCaption");
+      const modalCaptionContainer = document.getElementById("modalCaptionContainer");
+      const closeBtn = document.getElementById("closeModalBtn");
+      const backdrop = document.getElementById("modalBackdrop");
+      const featuredShots = document.querySelectorAll("[data-featured-shot]");
 
-    if (modal && modalImg && closeBtn && backdrop) {
-      const openModal = (src) => {
-        modalImg.src = src;
-        modal.classList.remove("hidden");
-        // Force reflow to enable transition
-        void modal.offsetWidth;
-        
-        modal.classList.remove("opacity-0");
-        modalImg.classList.remove("scale-95");
-        modalImg.classList.add("scale-100");
-        document.body.style.overflow = "hidden"; // Prevent scrolling
-      };
+      if (modal && modalImg && closeBtn && backdrop) {
+        const openModal = (src, category) => {
+          modalImg.src = src;
+          if (modalCaption) modalCaption.textContent = category || "";
+          
+          modal.classList.remove("hidden");
+          // Force reflow
+          void modal.offsetWidth;
+          
+          modal.classList.remove("opacity-0");
+          modalImg.classList.remove("scale-95");
+          modalImg.classList.add("scale-100");
+          
+          if (modalCaptionContainer) {
+            modalCaptionContainer.classList.remove("opacity-0");
+          }
+          
+          document.body.style.overflow = "hidden";
+        };
 
-      const closeModal = () => {
-        modal.classList.add("opacity-0");
-        modalImg.classList.remove("scale-100");
-        modalImg.classList.add("scale-95");
-        
-        setTimeout(() => {
-          modal.classList.add("hidden");
-          modalImg.src = "";
-          document.body.style.overflow = "";
-        }, 300);
-      };
+        const closeModal = () => {
+          modal.classList.add("opacity-0");
+          modalImg.classList.remove("scale-100");
+          modalImg.classList.add("scale-95");
+          
+          if (modalCaptionContainer) {
+            modalCaptionContainer.classList.add("opacity-0");
+          }
+          
+          setTimeout(() => {
+            modal.classList.add("hidden");
+            modalImg.src = "";
+            document.body.style.overflow = "";
+          }, 300);
+        };
 
-      featuredShots.forEach((shot) => {
-        shot.addEventListener("click", () => {
-          const imgUrl = shot.dataset.image;
-          if (imgUrl) openModal(imgUrl);
+        featuredShots.forEach((shot) => {
+          shot.addEventListener("click", () => {
+            const imgUrl = shot.dataset.image;
+            const category = shot.dataset.category;
+            if (imgUrl) openModal(imgUrl, category);
+          });
         });
-      });
 
-      closeBtn.addEventListener("click", closeModal);
-      backdrop.addEventListener("click", closeModal);
-      
-      // Close on Escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-          closeModal();
-        }
-      });
-    }
+        closeBtn.addEventListener("click", closeModal);
+        backdrop.addEventListener("click", closeModal);
+        
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+            closeModal();
+          }
+        });
+      }
+    })();
   </script>
 </BaseLayout>
