@@ -11,6 +11,7 @@ const slides = [
   },
   {
     image: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768466659/1D0A9943_1_ltwfb6.jpg",
+    mobileImage: "https://res.cloudinary.com/djrs9oqz7/image/upload/v1768861992/1D0A9943_3_lw4fcq.jpg", // Replace this with your specific mobile image
     title: "Signature Portraits",
     subtitle: "Studio portraits that highlight personality and style.",
     cta: { label: "Book a Portrait", href: "/still-photography#studio" },
@@ -79,8 +80,21 @@ const featuredShots = [
             class={`absolute inset-0 transition-opacity duration-700 ease-in-out
             ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}
           `}
-            style={`background-image: url('${slide.image}'); background-size: cover; background-position: center;`}
           >
+            <!-- Desktop Image -->
+            <img 
+              src={slide.image} 
+              alt={slide.title}
+              class="absolute inset-0 w-full h-full object-cover hidden md:block"
+            />
+            
+            <!-- Mobile Image (Fall back to desktop image if not provided) -->
+            <img 
+              src={slide.mobileImage || slide.image} 
+              alt={slide.title}
+              class="absolute inset-0 w-full h-full object-cover md:hidden"
+            />
+
             <!-- Mobile: lighter overlay for brighter images, Desktop: darker overlay -->
             <div class="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/50 md:from-black/60 md:via-black/50 md:to-black/70" />
             <!-- Mobile: content positioned lower with top padding to prevent cutoff, Desktop: centered -->
