@@ -407,7 +407,7 @@ Thank you for being a valued customer of Ram Digital Photo Studio. We hope to ca
 
 Best wishes,
 Ram Digital Photo Studio
-Contact: +91 9412000718`;
+Contact: +91 9412733288`;
       } else if (occasion === 'anniversary') {
         greetingMessage = `💍 Happy Anniversary ${name}! 🎊
 
@@ -417,7 +417,7 @@ Thank you for trusting Ram Digital Photo Studio to capture your precious moments
 
 Warm regards,
 Ram Digital Photo Studio
-Contact: +91 9412000718`;
+Contact: +91 9412733288`;
       }
 
       // Create WhatsApp link

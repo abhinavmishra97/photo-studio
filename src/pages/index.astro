@@ -311,8 +311,10 @@ const featuredShots = [
             class="
             group relative rounded-lg overflow-hidden aspect-[4/5]
             bg-gray-100 dark:bg-gray-800
-            shadow-sm hover:shadow-lg transition
+            shadow-sm hover:shadow-lg transition cursor-pointer tap-highlight-transparent
           "
+            data-featured-shot
+            data-image={shot.image}
           >
             <img
               src={shot.image}
@@ -336,6 +338,41 @@ const featuredShots = [
     subtitle="Let’s plan your next shoot or gift."
     description="Quick response via call/WhatsApp. Flexible studio and on-location options."
   />
+
+  <!-- Image Modal -->
+  <div
+    id="imageModal"
+    class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300"
+    role="dialog"
+    aria-modal="true"
+  >
+    <!-- Backdrop with blur -->
+    <div 
+        id="modalBackdrop"
+        class="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-300"
+    ></div>
+
+    <!-- Close button -->
+    <button
+      id="closeModalBtn"
+      class="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all duration-200 hover:scale-110 focus:outline-none ring-2 ring-white/20"
+      aria-label="Close modal"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Image Container -->
+    <div class="relative z-10 w-full max-w-5xl h-full flex items-center justify-center pointer-events-none">
+       <img
+        id="modalImg"
+        src=""
+        alt="Full screen view"
+        class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl pointer-events-auto scale-95 transition-transform duration-300"
+      />
+    </div>
+  </div>
 
   <script is:inline>
     // Hero slider carousel functionality
@@ -397,6 +434,56 @@ const featuredShots = [
 
       activate(0);
       start();
+    }
+
+    // Image Modal functionality
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    const closeBtn = document.getElementById("closeModalBtn");
+    const backdrop = document.getElementById("modalBackdrop");
+    const featuredShots = document.querySelectorAll("[data-featured-shot]");
+
+    if (modal && modalImg && closeBtn && backdrop) {
+      const openModal = (src) => {
+        modalImg.src = src;
+        modal.classList.remove("hidden");
+        // Force reflow to enable transition
+        void modal.offsetWidth;
+        
+        modal.classList.remove("opacity-0");
+        modalImg.classList.remove("scale-95");
+        modalImg.classList.add("scale-100");
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      };
+
+      const closeModal = () => {
+        modal.classList.add("opacity-0");
+        modalImg.classList.remove("scale-100");
+        modalImg.classList.add("scale-95");
+        
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          modalImg.src = "";
+          document.body.style.overflow = "";
+        }, 300);
+      };
+
+      featuredShots.forEach((shot) => {
+        shot.addEventListener("click", () => {
+          const imgUrl = shot.dataset.image;
+          if (imgUrl) openModal(imgUrl);
+        });
+      });
+
+      closeBtn.addEventListener("click", closeModal);
+      backdrop.addEventListener("click", closeModal);
+      
+      // Close on Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
     }
   </script>
 </BaseLayout>
