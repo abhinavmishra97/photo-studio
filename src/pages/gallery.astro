@@ -228,9 +228,10 @@ const matrimonialPhotoshoot = [
         </p>
       </div>
       <div class="slider-container" data-slider="video">
-        <div class="slider-track">
+        <div class="slider-track video-track">
           {
-            videography.concat(videography).map((item) => (
+            /* Quadruple the items to ensure smooth infinite scroll without gaps */
+            videography.concat(videography).concat(videography).concat(videography).map((item) => (
               <div class="slider-item video-item">
                 <video poster={item.poster} loop playsinline>
                   <source src={item.src} type="video/mp4" />
@@ -399,8 +400,8 @@ const matrimonialPhotoshoot = [
 
   /* Video items use landscape aspect ratio (16:9) */
   .slider-item.video-item {
-    width: 560px;
-    height: 315px;
+    width: 35rem;     /* 560px based on 16px font size */
+    height: 19.6875rem; /* 315px */
   }
 
   /* When the user hovers over the track, add a VERY subtle blur to others */
@@ -631,12 +632,102 @@ const matrimonialPhotoshoot = [
     }
 
     .slider-item.video-item {
-      width: 280px;
-      height: 158px;
+      width: 17.5rem;    /* 280px based on 16px font size */
+      height: 9.875rem;  /* 158px */
     }
 
     .slider-item:hover {
       transform: translateY(-15px) scale(1.08) !important; /* Slightly less expansion on mobile */
+    }
+
+    /* Mobile focused state using a Clone approach */
+    /* We don't change the original item's position because parent transform breaks fixed positioning */
+    .slider-item.mobile-hidden {
+      opacity: 0 !important;
+    }
+
+    /* Styles for the cloned item injected into body */
+    :global(.cloned-slider-item) {
+      position: fixed;
+      z-index: 10000;
+      border-radius: 0.75rem;
+      object-fit: cover;
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow: hidden;
+    }
+
+    :global(.cloned-slider-item img) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    :global(.cloned-slider-item .slider-overlay) {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      opacity: 1 !important;
+    }
+
+    :global(.cloned-slider-item .slider-category) {
+      color: white;
+      font-size: 1.125rem;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    :global(.mobile-clone-backdrop) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(4px);
+      pointer-events: none; /* Crucial fix: don't block clicks when hidden */
+    }
+
+    :global(.mobile-clone-backdrop.active) {
+      opacity: 1;
+      pointer-events: auto; /* Enable clicks only when visible */
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-280px * 12 - 12rem));
+      }
+    }
+
+    /* Make video items obviously clickable on mobile */
+    .slider-item.video-item {
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-280px * 12 - 12rem));
+      }
+    }
+
+    /* Make video items obviously clickable on mobile */
+    .slider-item.video-item {
+      cursor: pointer;
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
     }
 
     @keyframes scroll {
@@ -732,6 +823,61 @@ const matrimonialPhotoshoot = [
     .video-modal-close:hover {
       background: rgba(0, 0, 0, 0.9);
       border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Video track specific scroll animation for mobile */
+    .video-track {
+      animation-name: scroll-video-mobile;
+    }
+
+    @keyframes scroll-video-mobile {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        /* Mobile: (280px item + 16px gap) * 4 items */
+        transform: translateX(calc(-296px * 4));
+      }
+    }
+  }
+
+
+
+  .slider-item.video-item {
+    width: 35rem; /* 560px */
+    height: 19.6875rem; /* 315px (16:9 aspect ratio) */
+  }
+
+  /* Desktop Video Track Animation */
+  .video-track {
+    animation-name: scroll-video;
+  }
+
+  @keyframes scroll-video {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      /* Desktop: (35rem item + 1rem gap) * 4 items = 144rem */
+      transform: translateX(-144rem);
+    }
+  }
+
+  /* Mobile Responsive Updates */
+  @media (max-width: 768px) {
+    .slider-item.video-item {
+      width: 17.5rem; /* 280px */
+      height: 9.875rem; /* 158px */
+    }
+
+    @keyframes scroll-video-mobile {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        /* Mobile: (17.5rem item + 1rem gap) * 4 items = 74rem */
+        transform: translateX(-74rem);
+      }
     }
   }
 </style>
@@ -836,32 +982,195 @@ const matrimonialPhotoshoot = [
   const modalImage = document.getElementById('modalImage') as HTMLImageElement;
   const imageModalClose = document.querySelector('.image-modal-close') as HTMLElement;
 
+  // Track active clone and original item
+  let activeClone: HTMLElement | null = null;
+  let originalItemRef: HTMLElement | null = null;
+  let backdropRef: HTMLElement | null = null;
+
   // Open image in modal when clicked (only for non-video slider items)
-  document.querySelectorAll(".slider-item:not(.video-item)").forEach((item) => {
+  const sliderItems = document.querySelectorAll(".slider-item:not(.video-item)");
+  
+  sliderItems.forEach((item, index) => {
     const img = item.querySelector("img") as HTMLImageElement;
+    const sliderItem = item as HTMLElement;
     
     if (!img) return;
 
     // Make image clickable
     img.style.cursor = 'pointer';
+    sliderItem.style.cursor = 'pointer';
 
-    // Handle image click - open modal
-    img.addEventListener("click", (e) => {
+    // Handle image click/touch
+    const handleImageClick = (e: Event) => {
+      e.preventDefault();
       e.stopPropagation();
       
-      // Get image source
-      const imageSrc = img.src;
-      if (imageSrc) {
-        // Set modal image source
-        modalImage.src = imageSrc;
-        modalImage.alt = img.alt || 'Full size image';
+      // Check if we're on mobile
+      const isMobileView = window.innerWidth <= 768;
+      
+      if (isMobileView) {
+        // MOBILE BEHAVIOR: Clone and center
         
-        // Show modal
-        imageModal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        // If clicking the original item but a clone is active (shouldn't happen if overlay works, but safe check)
+        if (activeClone) {
+          closeMobileFocus();
+          return;
+        }
+
+        openMobileFocus(sliderItem);
+        
+      } else {
+        // DESKTOP BEHAVIOR
+        const imageSrc = img.src;
+        if (imageSrc) {
+          modalImage.src = imageSrc;
+          modalImage.alt = img.alt || 'Full size image';
+          imageModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
       }
-    });
+    };
+
+    // Add event listeners
+    sliderItem.addEventListener("click", handleImageClick, { capture: true });
+    sliderItem.addEventListener("touchend", handleImageClick, { capture: true, passive: false });
   });
+
+  // Function to open mobile focus (Clone Strategy)
+  function openMobileFocus(item: HTMLElement) {
+    
+    // 1. Create backdrop if not exists
+    if (!backdropRef) {
+      backdropRef = document.createElement('div');
+      backdropRef.className = 'mobile-clone-backdrop';
+      document.body.appendChild(backdropRef);
+      // Close on backdrop click
+      backdropRef.addEventListener('click', closeMobileFocus);
+    }
+
+    // 2. Get position of original item
+    const rect = item.getBoundingClientRect();
+    originalItemRef = item;
+
+    // 3. Clone the item shallowly first to avoid deep nesting issues if complex
+    // Actually deep clone is fine, but we need to reset styles
+    const clone = item.cloneNode(true) as HTMLElement;
+    
+    // RESET STYLES CRITICAL FOR VISIBILITY
+    clone.className = 'cloned-slider-item'; // Removed 'slider-item' to avoid inheriting scroll animation or unwanted hover effects
+    clone.style.position = 'fixed';
+    clone.style.top = `${rect.top}px`;
+    clone.style.left = `${rect.left}px`;
+    clone.style.width = `${rect.width}px`;
+    clone.style.height = `${rect.height}px`;
+    clone.style.margin = '0';
+    clone.style.transform = 'none';
+    clone.style.transition = 'none'; // No transition for initial placement
+    clone.style.zIndex = '10000';
+    clone.style.opacity = '1';
+    clone.style.visibility = 'visible';
+    clone.style.display = 'block';
+    
+    // Explicitly set image size
+    const img = clone.querySelector('img');
+    if (img) {
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        img.style.borderRadius = '0.75rem';
+    }
+    
+    // Ensure overlay is visible
+    const overlay = clone.querySelector('.slider-overlay') as HTMLElement;
+    if (overlay) {
+        overlay.style.opacity = '1';
+        overlay.style.display = 'flex';
+    }
+
+    // 4. Append to body
+    document.body.appendChild(clone);
+    activeClone = clone;
+
+    // 5. Handle original item and slider track
+    // Pause animation
+    const track = item.closest('.slider-track') as HTMLElement;
+    if (track) track.style.animationPlayState = 'paused';
+    
+    // Hide original visual (but keep space)
+    item.style.opacity = '0';
+
+    // 6. Trigger animation to center
+    // Force reflow
+    void clone.offsetHeight;
+    
+    // Enable transition for the move
+    clone.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
+    requestAnimationFrame(() => {
+      // Show backdrop
+      if (backdropRef) backdropRef.classList.add('active');
+      
+      // Animate clone to center
+      const viewportW = window.innerWidth;
+      const viewportH = window.innerHeight;
+      
+      // Target dimensions (larger than original)
+      const targetW = Math.min(viewportW * 0.9, 340); // Max 90% width or 340px
+      const targetH = Math.min(viewportH * 0.8, 500); // Max 80% height or 500px
+      
+      // Calculate centered position
+      const targetTop = (viewportH - targetH) / 2;
+      const targetLeft = (viewportW - targetW) / 2;
+      
+      clone.style.top = `${targetTop}px`;
+      clone.style.left = `${targetLeft}px`;
+      clone.style.width = `${targetW}px`;
+      clone.style.height = `${targetH}px`;
+      clone.style.boxShadow = '0 30px 60px -15px rgba(0, 0, 0, 0.6)';
+    });
+
+    // Add click listener to clone to close it
+    activeClone.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeMobileFocus();
+    });
+  }
+
+  // Function to close mobile focus
+  function closeMobileFocus() {
+    if (!activeClone || !originalItemRef) return;
+
+    // 1. Get current position of original item (in case user scrolled)
+    const rect = originalItemRef.getBoundingClientRect();
+
+    // 2. Animate clone back to original position
+    activeClone.style.top = `${rect.top}px`;
+    activeClone.style.left = `${rect.left}px`;
+    activeClone.style.width = `${rect.width}px`;
+    activeClone.style.height = `${rect.height}px`;
+    activeClone.style.boxShadow = 'none';
+
+    // 3. Hide backdrop
+    if (backdropRef) backdropRef.classList.remove('active');
+
+    // 4. After transition, cleanup
+    setTimeout(() => {
+      // Restore original
+      if (originalItemRef) {
+        originalItemRef.style.opacity = '';
+        const track = originalItemRef.closest('.slider-track') as HTMLElement;
+        if (track) track.style.animationPlayState = 'running';
+        originalItemRef = null;
+      }
+
+      // Remove clone
+      if (activeClone) {
+        activeClone.remove();
+        activeClone = null;
+      }
+    }, 400); // Match CSS transition time
+  }
+
 
   // Close image modal function
   function closeImageModal() {
@@ -882,9 +1191,15 @@ const matrimonialPhotoshoot = [
     }
   });
 
-  // Close on Escape key (update to handle both modals)
+  // Close on Escape key (update to handle both modals and mobile focus)
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      // Close mobile focused image
+      if (activeClone && window.innerWidth <= 768) {
+        closeMobileFocus();
+      }
+      
+      // Close modals
       if (imageModal.classList.contains('active')) {
         closeImageModal();
       }
