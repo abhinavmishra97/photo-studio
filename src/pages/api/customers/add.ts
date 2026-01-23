@@ -17,10 +17,33 @@ export const POST: APIRoute = async ({ request }) => {
             });
         }
 
+        // Validate phone number format (10 digits only)
+        const cleanPhone = phone.replace(/\D/g, '');
+        if (cleanPhone.length !== 10) {
+            return new Response(JSON.stringify({ error: 'Phone number must be exactly 10 digits' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
+        // Check for duplicate phone number
+        const { data: existingUsers } = await supabaseAdmin
+            .from('customers')
+            .select('id')
+            .eq('phone', cleanPhone)
+            .limit(1);
+
+        if (existingUsers && existingUsers.length > 0) {
+            return new Response(JSON.stringify({ error: 'A customer with this phone number already exists' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
         // Insert customer
         const { data, error } = await supabaseAdmin
             .from('customers')
-            .insert([{ name, spouse_name, phone, email, birthday, anniversary, location, city, notes }])
+            .insert([{ name, spouse_name, phone: cleanPhone, email, birthday, anniversary, location, city, notes }]) // Saving cleaned phone
             .select()
             .single();
 

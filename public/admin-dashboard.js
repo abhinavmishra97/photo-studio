@@ -1,405 +1,16 @@
+
 // Admin Dashboard JavaScript - Enquiries and Customers functionality
 
 // ============================================
-// ENQUIRIES FUNCTIONALITY
+// GLOBAL STATE
 // ============================================
-
-// Handle status button clicks
-document.querySelectorAll('.status-btn').forEach(btn => {
-  btn.addEventListener('click', async (e) => {
-    const target = e.target;
-    const enquiryId = target.dataset.enquiryId;
-    const newStatus = target.dataset.status;
-    
-    const originalText = target.textContent;
-    
-    try {
-      target.disabled = true;
-      target.textContent = 'Updating...';
-
-      const response = await fetch('/api/enquiries/update-status', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: enquiryId, status: newStatus }),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to update status');
-      }
-
-      // Reload page to show updated status
-      window.location.reload();
-    } catch (error) {
-      console.error('Full error:', error);
-      alert('Error updating status: ' + error.message);
-      
-      // Re-enable button
-      target.disabled = false;
-      target.textContent = originalText;
-    }
-  });
-});
-
-// Handle quick reply forms
-const replyForms = document.querySelectorAll('.reply-form');
-
-replyForms.forEach(form => {
-  const formElement = form;
-  const input = formElement.querySelector('input');
-  const email = formElement.dataset.email;
-  const phone = formElement.dataset.phone;
-  const name = formElement.dataset.name;
-
-  // Handle Copy Email button click
-  const copyEmailBtn = formElement.querySelector('[data-type="copy-email"]');
-  copyEmailBtn?.addEventListener('click', async (e) => {
-    e.preventDefault();
-  
-    const message = input.value.trim();
-    if (!message) {
-      alert('Please type a message');
-      return;
-    }
-
-    // Create formatted email text
-    const emailText = `To: ${email}
-Subject: Re: Your enquiry - Ram Digital Photo Studio
-
-Hi ${name},
-
-${message}
-
-Best regards,
-Ram Digital Photo Studio
-Contact: +91 9412000718`;
-
-    try {
-      // Copy to clipboard
-      await navigator.clipboard.writeText(emailText);
-      
-      // Show success feedback
-      const originalText = copyEmailBtn.innerHTML;
-      copyEmailBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span class="hidden sm:inline">Copied!</span>';
-      copyEmailBtn.classList.add('bg-green-600');
-      
-      setTimeout(() => {
-        copyEmailBtn.innerHTML = originalText;
-        copyEmailBtn.classList.remove('bg-green-600');
-      }, 2000);
-
-      // Clear input
-      input.value = '';
-      
-      // Show instructions
-      alert('Email text copied! Now:\\n1. Open Gmail (gmail.com)\\n2. Click Compose\\n3. Paste (Ctrl+V) the email\\n4. Send');
-    } catch (error) {
-      console.error('Copy failed:', error);
-      alert('Failed to copy. Please try again or copy manually:\\n\\n' + emailText);
-    }
-  });
-
-  // Handle WhatsApp button click
-  const whatsappBtn = formElement.querySelector('[data-type="whatsapp"]');
-  whatsappBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    
-    const message = input.value.trim();
-    if (!message) {
-      alert('Please type a message');
-      return;
-    }
-
-    // Create WhatsApp link with pre-filled message (using actual line breaks)
-    const whatsappMessage = encodeURIComponent(`Hi ${name},
-
-${message}
-
-Best regards,
-Ram Digital Photo Studio`);
-    const whatsappLink = `https://wa.me/${phone}?text=${whatsappMessage}`;
-
-    // Open WhatsApp in new tab
-    window.open(whatsappLink, '_blank');
-
-    // Clear input after sending
-    input.value = '';
-  });
-
-  // Handle SMS button click
-  const smsBtn = formElement.querySelector('[data-type="sms"]');
-  smsBtn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    
-    const message = input.value.trim();
-    if (!message) {
-      alert('Please type a message');
-      return;
-    }
-
-    // Create SMS link with pre-filled message (using actual line breaks)
-    const smsMessage = encodeURIComponent(`Hi ${name},
-
-${message}
-
-Best regards,
-Ram Digital Photo Studio
-Contact: +91 9412000718`);
-    const smsLink = `sms:${phone}?body=${smsMessage}`;
-
-    // Open SMS app
-    window.location.href = smsLink;
-
-    // Clear input after sending
-    setTimeout(() => {
-      input.value = '';
-    }, 500);
-  });
-});
-
-// ============================================
-// CUSTOMERS FUNCTIONALITY
-// ============================================
-
-// Modal elements
-const modal = document.getElementById('customerModal');
-const modalTitle = document.getElementById('modalTitle');
-const customerForm = document.getElementById('customerForm');
-const addCustomerBtn = document.getElementById('addCustomerBtn');
-const cancelBtn = document.getElementById('cancelBtn');
-const saveBtn = document.getElementById('saveBtn');
-
-// Form inputs
-const customerIdInput = document.getElementById('customerId');
-const customerNameInput = document.getElementById('customerName');
-const customerSpouseNameInput = document.getElementById('customerSpouseName');
-const customerPhoneInput = document.getElementById('customerPhone');
-const customerEmailInput = document.getElementById('customerEmail');
-const customerBirthdayInput = document.getElementById('customerBirthday');
-const customerAnniversaryInput = document.getElementById('customerAnniversary');
-const customerLocationInput = document.getElementById('customerLocation');
-const customerCityInput = document.getElementById('customerCity');
-const customerNotesInput = document.getElementById('customerNotes');
-
-// Search
-const searchInput = document.getElementById('searchInput');
-
-// Open modal for adding new customer
-addCustomerBtn?.addEventListener('click', () => {
-  modalTitle.textContent = 'Add Customer';
-  customerForm.reset();
-  customerIdInput.value = '';
-  modal.classList.remove('hidden');
-});
-
-// Close modal
-cancelBtn?.addEventListener('click', () => {
-  modal.classList.add('hidden');
-});
-
-// Close modal on outside click
-modal?.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.classList.add('hidden');
-  }
-});
-
-// Handle form submission
-customerForm?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const customerId = customerIdInput.value;
-  const isEdit = !!customerId;
-
-  const customerData = {
-    id: customerId || undefined,
-    name: customerNameInput.value.trim(),
-    spouse_name: customerSpouseNameInput.value.trim() || null,
-    phone: customerPhoneInput.value.trim(),
-    email: customerEmailInput.value.trim() || null,
-    birthday: customerBirthdayInput.value || null,
-    anniversary: customerAnniversaryInput.value || null,
-    location: customerLocationInput.value.trim() || null,
-    city: customerCityInput.value.trim() || null,
-    notes: customerNotesInput.value.trim() || null,
-  };
-
-  try {
-    saveBtn.disabled = true;
-    saveBtn.textContent = 'Saving...';
-
-    const endpoint = isEdit ? '/api/customers/update' : '/api/customers/add';
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(customerData),
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      throw new Error(result.error || 'Failed to save customer');
-    }
-
-    // Reload page to show updated data
-    window.location.reload();
-  } catch (error) {
-    alert('Error: ' + error.message);
-    saveBtn.disabled = false;
-    saveBtn.textContent = 'Save';
-  }
-});
-
-// Handle edit button clicks
-document.querySelectorAll('.edit-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const target = e.target;
-    const customerData = JSON.parse(target.dataset.customer || '{}');
-
-    modalTitle.textContent = 'Edit Customer';
-    customerIdInput.value = customerData.id;
-    customerNameInput.value = customerData.name;
-    customerSpouseNameInput.value = customerData.spouse_name || '';
-    customerPhoneInput.value = customerData.phone;
-    customerEmailInput.value = customerData.email || '';
-    customerBirthdayInput.value = customerData.birthday || '';
-    customerAnniversaryInput.value = customerData.anniversary || '';
-    customerLocationInput.value = customerData.location || '';
-    customerCityInput.value = customerData.city || '';
-    customerNotesInput.value = customerData.notes || '';
-
-    modal.classList.remove('hidden');
-  });
-});
-
-// Handle delete button clicks
-const deleteModal = document.getElementById('deleteModal');
-const deleteCustomerNameSpan = document.getElementById('deleteCustomerName');
-const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-let pendingDeleteId = null;
-let pendingDeleteButton = null;
-
-document.querySelectorAll('.delete-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const target = e.target;
-    const customerId = target.dataset.customerId;
-    const customerName = target.dataset.customerName;
-
-    // Store the pending delete info
-    pendingDeleteId = customerId;
-    pendingDeleteButton = target;
-
-    // Show modal with customer name
-    deleteCustomerNameSpan.textContent = customerName;
-    deleteModal.classList.remove('hidden');
-  });
-});
-
-// Cancel delete
-cancelDeleteBtn?.addEventListener('click', () => {
-  deleteModal.classList.add('hidden');
-  pendingDeleteId = null;
-  pendingDeleteButton = null;
-});
-
-// Confirm delete
-confirmDeleteBtn?.addEventListener('click', async () => {
-  if (!pendingDeleteId || !pendingDeleteButton) return;
-
-  try {
-    pendingDeleteButton.disabled = true;
-    pendingDeleteButton.textContent = 'Deleting...';
-    deleteModal.classList.add('hidden');
-
-    const response = await fetch('/api/customers/delete', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: pendingDeleteId }),
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      throw new Error(result.error || 'Failed to delete customer');
-    }
-
-    // Reload page to show updated data
-    window.location.reload();
-  } catch (error) {
-    alert('Error: ' + error.message);
-    pendingDeleteButton.disabled = false;
-    pendingDeleteButton.textContent = 'Delete';
-    deleteModal.classList.remove('hidden');
-  }
-});
-
-// Search functionality
-searchInput?.addEventListener('input', (e) => {
-  const searchTerm = e.target.value.toLowerCase();
-  const rows = document.querySelectorAll('.customer-row');
-
-  rows.forEach(row => {
-    const text = row.textContent?.toLowerCase() || '';
-    if (text.includes(searchTerm)) {
-      row.style.display = '';
-    } else {
-      row.style.display = 'none';
-    }
-  });
-});
-
-// ============================================
-// SORT CUSTOMERS BY DATE
-// ============================================
-
-const sortSelect = document.getElementById('sortSelect');
-
-sortSelect?.addEventListener('change', (e) => {
-  const sortOrder = e.target.value;
-  const tbody = document.getElementById('customersTableBody');
-  const rows = Array.from(document.querySelectorAll('.customer-row'));
-
-  rows.sort((a, b) => {
-    const idA = parseInt(a.dataset.customerId);
-    const idB = parseInt(b.dataset.customerId);
-
-    if (sortOrder === 'newest') {
-      return idB - idA; // Higher ID = newer
-    } else {
-      return idA - idB; // Lower ID = older
-    }
-  });
-
-  // Re-append rows in sorted order
-  rows.forEach(row => tbody.appendChild(row));
-});
-
-// ============================================
-// GREETING BUTTONS FUNCTIONALITY
-// ============================================
-
-// Handle greeting button clicks for birthdays and anniversaries
-function initGreetingButtons() {
-  const greetBtns = document.querySelectorAll('.greet-btn');
-  
-  if (greetBtns.length === 0) {
-    // No greeting buttons found, skip initialization
-    return;
-  }
-
-  greetBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const target = e.target.closest('.greet-btn');
-      const phone = target.dataset.phone;
-      const name = target.dataset.name;
-      const occasion = target.dataset.occasion;
-
-      // Create appropriate greeting message
-      let greetingMessage = '';
-      if (occasion === 'birthday') {
-        greetingMessage = `🎂 Happy Birthday ${name}! 🎉
+let selectedCustomers = new Set();
+let selectedEnquiries = new Set();
+let sendingQueue = [];
+let queueIndex = 0;
+let isDeleteMode = false;
+let currentTemplates = {
+    birthday: `🎂 Happy Birthday {name}! 🎉
 
 Wishing you a wonderful day filled with joy and happiness! May this year bring you success, health, and countless beautiful moments.
 
@@ -407,9 +18,8 @@ Thank you for being a valued customer of Ram Digital Photo Studio. We hope to ca
 
 Best wishes,
 Ram Digital Photo Studio
-Contact: +91 9412733288`;
-      } else if (occasion === 'anniversary') {
-        greetingMessage = `💍 Happy Anniversary ${name}! 🎊
+Contact: +91 9412733288`,
+    anniversary: `💍 Happy Anniversary {name}! 🎊
 
 Wishing you both a beautiful day filled with love and cherished memories! May your bond grow stronger with each passing year.
 
@@ -417,72 +27,671 @@ Thank you for trusting Ram Digital Photo Studio to capture your precious moments
 
 Warm regards,
 Ram Digital Photo Studio
-Contact: +91 9412733288`;
-      }
+Contact: +91 9412733288`
+};
 
-      // Create WhatsApp link
-      const whatsappMessage = encodeURIComponent(greetingMessage);
-      const whatsappLink = `https://wa.me/${phone}?text=${whatsappMessage}`;
+let pendingDeleteId = null;
+let pendingDeleteButton = null;
+let pendingDeleteType = 'customer'; // 'customer' | 'enquiry' | 'bulk_enquiry'
 
-      // Open WhatsApp in new tab
-      window.open(whatsappLink, '_blank');
-    });
-  });
+
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+
+function showSuccess(title, message) {
+    const titleEl = document.getElementById('successModalTitle');
+    const msgEl = document.getElementById('successModalMessage');
+    const modal = document.getElementById('successModal');
+    
+    if(titleEl) titleEl.textContent = title;
+    if(msgEl) msgEl.textContent = message;
+    if(modal) modal.classList.remove('hidden');
 }
 
-// Initialize greeting buttons when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initGreetingButtons);
-} else {
-  // DOM already loaded
-  initGreetingButtons();
+function showError(title, message) {
+    const titleEl = document.getElementById('errorModalTitle');
+    const msgEl = document.getElementById('errorModalMessage');
+    const modal = document.getElementById('errorModal');
+    
+    if(titleEl) titleEl.textContent = title;
+    if(msgEl) msgEl.textContent = message;
+    if(modal) modal.classList.remove('hidden');
+}
+
+function updateBulkActionBar() {
+    const count = selectedCustomers.size;
+    const bar = document.getElementById('bulkActionBar');
+    const span = document.getElementById('selectedCount');
+    const modalSpan = document.getElementById('msgRecipientCount');
+    const selectAll = document.getElementById('selectAllCustomers');
+
+    if(span) span.textContent = count;
+    if(modalSpan) modalSpan.textContent = count;
+    
+    if (bar) {
+        if (count > 0) {
+            bar.classList.remove('hidden');
+            bar.classList.add('flex');
+            requestAnimationFrame(() => {
+                bar.classList.remove('translate-y-20', 'opacity-0');
+            });
+        } else {
+            bar.classList.add('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                if(selectedCustomers.size === 0) {
+                    bar.classList.add('hidden');
+                    bar.classList.remove('flex');
+                }
+            }, 300);
+            
+            if(selectAll) selectAll.checked = false;
+        }
+    }
+}
+
+function updateEnquiryBulkUI() {
+    const count = selectedEnquiries.size;
+    const bar = document.getElementById('bulkDeleteActions');
+    const span = document.getElementById('selectedCountEnq');
+    
+    if(span) span.textContent = count;
+    
+    if (bar) {
+        if (count > 0 && isDeleteMode) {
+            bar.classList.remove('hidden');
+        } else {
+            bar.classList.add('hidden');
+        }
+    }
 }
 
 // ============================================
-// TOGGLE SPECIAL OCCASIONS SECTION
+// INITIALIZATION
 // ============================================
 
-function initOccasionsToggle() {
-  const toggleOccasionsBtn = document.getElementById('toggleOccasionsBtn');
-  const occasionsSection = document.getElementById('occasionsSection');
-  const occasionsBtnText = document.getElementById('occasionsBtnText');
+function initDashboard() {
+    console.log('Initializing Admin Dashboard...');
 
-  console.log('Toggle button:', toggleOccasionsBtn);
-  console.log('Occasions section:', occasionsSection);
-  console.log('Button text element:', occasionsBtnText);
+    // 1. Tab Switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.dataset.tab;
+            
+            // Show target, hide others
+            tabContents.forEach(content => {
+                if (content.id === targetTab + 'Content') {
+                    content.classList.remove('hidden');
+                } else {
+                    content.classList.add('hidden');
+                }
+            });
+            
+            // Update buttons
+            tabBtns.forEach(b => {
+                const isActive = b.dataset.tab === targetTab;
+                b.classList.toggle('border-blue-500', isActive);
+                b.classList.toggle('text-blue-600', isActive);
+                b.classList.toggle('dark:text-blue-400', isActive);
+                
+                b.classList.toggle('border-transparent', !isActive);
+                b.classList.toggle('text-gray-500', !isActive);
+                b.classList.toggle('dark:text-gray-400', !isActive);
+            });
+        });
+    });
 
-  if (toggleOccasionsBtn && occasionsSection && occasionsBtnText) {
-    console.log('All elements found, adding click listener');
-    toggleOccasionsBtn.addEventListener('click', () => {
-      console.log('Toggle button clicked!');
-      const isHidden = occasionsSection.classList.contains('hidden');
-      console.log('Is hidden:', isHidden);
-      
-      if (isHidden) {
-        // Show occasions
-        occasionsSection.classList.remove('hidden');
-        occasionsBtnText.textContent = 'Hide Special Occasions';
-        console.log('Showing occasions');
-      } else {
-        // Hide occasions
-        occasionsSection.classList.add('hidden');
-        occasionsBtnText.textContent = 'View Special Occasions';
-        console.log('Hiding occasions');
-      }
+    // 2. Enquiries Status Buttons
+    document.querySelectorAll('.status-btn').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            const target = e.currentTarget; // Use currentTarget
+            const enquiryId = target.dataset.enquiryId;
+            const newStatus = target.dataset.status;
+            const originalText = target.textContent;
+            
+            try {
+                target.disabled = true;
+                target.textContent = '...';
+                
+                const response = await fetch('/api/enquiries/update-status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: enquiryId, status: newStatus }),
+                });
+
+                if (!response.ok) throw new Error('Failed to update');
+                window.location.reload();
+            } catch (error) {
+                showError('Update Failed', error.message);
+                target.disabled = false;
+                target.textContent = originalText;
+            }
+        });
     });
-  } else {
-    console.error('Missing elements:', {
-      button: !!toggleOccasionsBtn,
-      section: !!occasionsSection,
-      text: !!occasionsBtnText
+
+    // 3. Enquiry Reply Forms (Copy/WhatsApp/SMS)
+    document.querySelectorAll('.reply-form').forEach(form => {
+        const input = form.querySelector('input');
+        const { email, phone, name } = form.dataset;
+
+        // Copy Email
+        form.querySelector('[data-type="copy-email"]')?.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const message = input.value.trim();
+            if (!message) return showError('Missing Message', 'Please type a message');
+
+            const emailText = `Hi ${name},\n\n${message}\n\nBest regards,\nRam Digital Photo Studio\nContact: +91 9412733288`;
+            
+            try {
+                await navigator.clipboard.writeText(emailText);
+                showSuccess('Copied!', 'Open Gmail and paste the email.');
+                input.value = '';
+            } catch (err) {
+                showError('Copy Failed', 'Please copy manually.');
+            }
+        });
+
+        // WhatsApp
+        form.querySelector('[data-type="whatsapp"]')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            const message = input.value.trim();
+            if (!message) return showError('Missing Message', 'Please type a message');
+            
+            const text = encodeURIComponent(`Hi ${name},\n\n${message}\n\nBest regards,\nRam Digital Photo Studio`);
+            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+            input.value = '';
+        });
+
+        // SMS
+        form.querySelector('[data-type="sms"]')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            const message = input.value.trim();
+            if (!message) return showError('Missing Message', 'Please type a message');
+            
+            const text = encodeURIComponent(`Hi ${name},\n\n${message}\n\nBest regards,\nRam Digital Photo Studio`);
+            window.location.href = `sms:${phone}?body=${text}`;
+            input.value = '';
+        });
     });
-  }
+
+    // 4. Customers - Toggle Special Occasions
+    const toggleOccasionsBtn = document.getElementById('toggleOccasionsBtn');
+    const occasionsSection = document.getElementById('occasionsSection');
+    const occasionsBtnText = document.getElementById('occasionsBtnText');
+    
+    if (toggleOccasionsBtn && occasionsSection) {
+        toggleOccasionsBtn.addEventListener('click', () => {
+            const isHidden = occasionsSection.classList.contains('hidden');
+            occasionsSection.classList.toggle('hidden');
+            if(occasionsBtnText) {
+                occasionsBtnText.innerHTML = isHidden 
+                    ? '<span class="hidden sm:inline">Hide </span>Special Occasions' 
+                    : '<span class="hidden sm:inline">View </span>Special Occasions';
+            }
+        });
+    }
+
+    // 5. Customers - Add/Edit Modal
+    const customerModal = document.getElementById('customerModal');
+    const addCustomerBtn = document.getElementById('addCustomerBtn');
+    const customerForm = document.getElementById('customerForm');
+    
+    if (addCustomerBtn && customerModal) {
+        addCustomerBtn.addEventListener('click', () => {
+            document.getElementById('modalTitle').textContent = 'Add Customer';
+            if(customerForm) customerForm.reset();
+            document.getElementById('customerId').value = '';
+            customerModal.classList.remove('hidden');
+        });
+    }
+
+    // Close Modals (Generic)
+    document.querySelectorAll('[id$="Modal"]').forEach(modal => {
+        // Find close buttons inside
+        const cancelBtn = modal.querySelector('#cancelBtn'); // Customer modal
+        const closeBtn = modal.querySelector('#closeErrorBtn, #closeSuccessBtn, #closeTemplatesBtn, #closeBulkMsgBtn, #queueCloseBtn');
+        
+        if(cancelBtn) cancelBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        if(closeBtn) closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+        
+        // Outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.add('hidden');
+        });
+    });
+
+    // Form Submission (Add/Edit Customer)
+    if (customerForm) {
+        customerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const saveBtn = document.getElementById('saveBtn');
+            const id = document.getElementById('customerId').value;
+            
+            const formData = {
+                id: id || undefined,
+                name: document.getElementById('customerName').value.trim(),
+                phone: document.getElementById('customerPhone').value.trim(),
+                spouse_name: document.getElementById('customerSpouseName').value.trim() || null,
+                email: document.getElementById('customerEmail').value.trim() || null,
+                birthday: document.getElementById('customerBirthday').value || null,
+                anniversary: document.getElementById('customerAnniversary').value || null,
+                location: document.getElementById('customerLocation').value.trim() || null,
+                city: document.getElementById('customerCity').value.trim() || null,
+                notes: document.getElementById('customerNotes').value.trim() || null,
+            };
+
+            // Validation
+            if (formData.phone.length !== 10) return showError('Invalid Phone', '10 digits required');
+
+            try {
+                if(saveBtn) { saveBtn.disabled = true; saveBtn.textContent = 'Saving...'; }
+                const url = id ? '/api/customers/update' : '/api/customers/add';
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(formData)
+                });
+                
+                if (!res.ok) throw new Error((await res.json()).error || 'Failed');
+                window.location.reload();
+            } catch (err) {
+                showError('Error', err.message);
+                if(saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Save'; }
+            }
+        });
+    }
+    
+    // Phone Input Restriction
+    document.getElementById('customerPhone')?.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    });
+
+    // Edit Customer Buttons
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const data = JSON.parse(e.currentTarget.dataset.customer);
+            document.getElementById('modalTitle').textContent = 'Edit Customer';
+            document.getElementById('customerId').value = data.id;
+            document.getElementById('customerName').value = data.name;
+            document.getElementById('customerPhone').value = data.phone;
+            document.getElementById('customerSpouseName').value = data.spouse_name || '';
+            document.getElementById('customerEmail').value = data.email || '';
+            document.getElementById('customerBirthday').value = data.birthday || '';
+            document.getElementById('customerAnniversary').value = data.anniversary || '';
+            document.getElementById('customerLocation').value = data.location || '';
+            document.getElementById('customerCity').value = data.city || '';
+            document.getElementById('customerNotes').value = data.notes || '';
+            
+            if(customerModal) customerModal.classList.remove('hidden');
+        });
+    });
+
+    // 6. Delete Functionality (Shared)
+    const deleteModal = document.getElementById('deleteModal');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    const deleteNameSpan = document.getElementById('deleteCustomerName');
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+
+    // Delete Buttons (Customer)
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const { customerId, customerName } = e.currentTarget.dataset;
+            pendingDeleteId = customerId;
+            pendingDeleteButton = e.currentTarget;
+            pendingDeleteType = 'customer';
+            if(deleteNameSpan) deleteNameSpan.textContent = customerName;
+            if(deleteModal) deleteModal.classList.remove('hidden');
+        });
+    });
+
+    // Delete Buttons (Enquiry)
+    document.querySelectorAll('.delete-enquiry-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            pendingDeleteId = e.currentTarget.dataset.enquiryId;
+            pendingDeleteButton = e.currentTarget;
+            pendingDeleteType = 'enquiry';
+            if(deleteNameSpan) deleteNameSpan.textContent = 'this enquiry';
+            if(deleteModal) deleteModal.classList.remove('hidden');
+        });
+    });
+    
+    if(cancelDeleteBtn && deleteModal) {
+         cancelDeleteBtn.addEventListener('click', () => deleteModal.classList.add('hidden'));
+    }
+
+    if(confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener('click', async () => {
+            if(!pendingDeleteId) return;
+            
+            try {
+                confirmDeleteBtn.disabled = true;
+                confirmDeleteBtn.textContent = 'Deleting...';
+                
+                if (pendingDeleteType === 'bulk_enquiry') {
+                    // Bulk Delete
+                     const ids = pendingDeleteId; // array
+                     await Promise.all(ids.map(id => fetch('/api/enquiries/delete', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({id})
+                     })));
+                     
+                     ids.forEach(id => {
+                        const cb = document.querySelector(`.enquiry-checkbox[data-id="${id}"]`);
+                        cb?.closest('.rounded-xl')?.remove(); // Updated selector logic might be needed
+                        // Try removing the wrapper if it exists, or just the card
+                        document.querySelectorAll('.enquiry-checkbox').forEach(c => {
+                             if(c.dataset.id === id) {
+                                 // With new structure: checkbox is sibling to card-inner
+                                 // c.parentElement (wrapper) -> parent (flex container) -> remove
+                                 c.closest('.show-checkbox-on-bulk')?.remove();
+                             }
+                        });
+                     });
+                     selectedEnquiries.clear();
+                     updateEnquiryBulkUI();
+                     showSuccess('Deleted', `${ids.length} items removed.`);
+
+                } else {
+                    // Single Delete
+                    const url = pendingDeleteType === 'customer' ? '/api/customers/delete' : '/api/enquiries/delete';
+                    const res = await fetch(url, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ id: pendingDeleteId })
+                    });
+                    
+                    if(!res.ok) throw new Error('Delete failed');
+                    
+                    // UI Update
+                    if(pendingDeleteType === 'customer') {
+                        pendingDeleteButton.closest('tr').remove();
+                    } else {
+                        // Enquiry remove
+                        // If standard delete button inside a card
+                        pendingDeleteButton.closest('.enquiry-card-inner')?.closest('.show-checkbox-on-bulk')?.remove() 
+                        || pendingDeleteButton.closest('.show-checkbox-on-bulk')?.remove(); 
+                    }
+                    showSuccess('Deleted', 'Item removed.');
+                }
+                
+                if(deleteModal) deleteModal.classList.add('hidden');
+            } catch (err) {
+                showError('Delete Failed', err.message);
+            } finally {
+                confirmDeleteBtn.disabled = false;
+                confirmDeleteBtn.textContent = 'Delete';
+                pendingDeleteId = null;
+            }
+        });
+    }
+
+    // 7. Bulk Messaging (Customers)
+    const selectAllCheckbox = document.getElementById('selectAllCustomers');
+    const customerCheckboxes = document.getElementsByClassName('customer-select-checkbox');
+    const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+    const openBulkMsgBtn = document.getElementById('openBulkMsgBtn');
+    
+    if(selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', (e) => {
+            const checked = e.target.checked;
+            selectedCustomers.clear();
+            Array.from(customerCheckboxes).forEach(cb => {
+                const tr = cb.closest('tr');
+                if(tr && tr.style.display !== 'none') {
+                    cb.checked = checked;
+                    if(checked) selectedCustomers.add(cb.dataset.id);
+                }
+            });
+            updateBulkActionBar();
+        });
+    }
+    
+    // Delegate for customer checkboxes
+    document.getElementById('customersTableBody')?.addEventListener('change', (e) => {
+        if(e.target.classList.contains('customer-select-checkbox')) {
+            if(e.target.checked) selectedCustomers.add(e.target.dataset.id);
+            else selectedCustomers.delete(e.target.dataset.id);
+            updateBulkActionBar();
+        }
+    });
+    
+    if(clearSelectionBtn) {
+        clearSelectionBtn.addEventListener('click', () => {
+             selectedCustomers.clear();
+             if(selectAllCheckbox) selectAllCheckbox.checked = false;
+             Array.from(customerCheckboxes).forEach(cb => cb.checked = false);
+             updateBulkActionBar();
+        });
+    }
+    
+    if(openBulkMsgBtn) {
+         openBulkMsgBtn.addEventListener('click', () => {
+             document.getElementById('bulkMsgModal').classList.remove('hidden');
+         });
+    }
+    
+    // Start Sending
+    const startSendingBtn = document.getElementById('startSendingBtn');
+    if(startSendingBtn) {
+        startSendingBtn.addEventListener('click', () => {
+            const template = document.getElementById('bulkMsgInput').value.trim();
+            if(!template) return showError('Error', 'Please enter a message');
+            
+            // Build Queue
+            sendingQueue = [];
+            Array.from(customerCheckboxes).forEach(cb => {
+                if(cb.checked) {
+                    sendingQueue.push({
+                        name: cb.dataset.name,
+                        phone: cb.dataset.phone,
+                        message: template
+                    });
+                }
+            });
+            
+            queueIndex = 0;
+            document.getElementById('bulkMsgModal').classList.add('hidden');
+            document.getElementById('sendingQueueModal').classList.remove('hidden');
+            document.getElementById('queueTotal').textContent = sendingQueue.length;
+            
+            loadQueueItem();
+        });
+    }
+
+    // 8. Templates Management
+    const openTemplatesBtn = document.getElementById('openTemplatesBtn');
+    const templatesModal = document.getElementById('templatesModal');
+    
+    if(openTemplatesBtn && templatesModal) {
+        openTemplatesBtn.addEventListener('click', () => {
+             fetchTemplates().then(() => {
+                 document.getElementById('birthdayTemplateInput').value = currentTemplates.birthday;
+                 document.getElementById('anniversaryTemplateInput').value = currentTemplates.anniversary;
+                 templatesModal.classList.remove('hidden');
+             });
+        });
+    }
+    
+    const templatesForm = document.getElementById('templatesForm');
+    if(templatesForm) {
+        templatesForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = templatesForm.querySelector('button[type="submit"]');
+            const original = btn.textContent;
+            btn.disabled = true; btn.textContent = 'Saving...';
+            
+            const newT = {
+                birthday: document.getElementById('birthdayTemplateInput').value,
+                anniversary: document.getElementById('anniversaryTemplateInput').value
+            };
+            
+            try {
+                const res = await fetch('/api/settings/update', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ templates: newT })
+                });
+                if(!res.ok) throw new Error('Failed');
+                
+                currentTemplates = newT;
+                showSuccess('Saved', 'Templates updated.');
+                templatesModal.classList.add('hidden');
+            } catch(err) {
+                showError('Error', err.message);
+            } finally {
+                btn.disabled = false; btn.textContent = original;
+            }
+        });
+    }
+    
+    // 9. Bulk Delete Enquiries
+    const toggleDeleteModeBtn = document.getElementById('toggleDeleteModeBtn');
+    const confirmBulkDeleteBtn_Enq = document.getElementById('confirmBulkDeleteBtn');
+    
+    if(toggleDeleteModeBtn) {
+        toggleDeleteModeBtn.addEventListener('click', () => {
+            isDeleteMode = !isDeleteMode;
+            toggleDeleteModeBtn.classList.toggle('text-red-500', isDeleteMode);
+            
+            document.querySelectorAll('.show-checkbox-on-bulk').forEach(row => {
+               const wrapper = row.querySelector('.bulk-checkbox-wrapper');
+               const inner = row.querySelector('.enquiry-card-inner');
+               
+               if(wrapper) wrapper.classList.toggle('hidden', !isDeleteMode);
+               if(inner) {
+                   if(isDeleteMode) inner.classList.add('pointer-events-none', 'opacity-60');
+                   else inner.classList.remove('pointer-events-none', 'opacity-60');
+               }
+            });
+            
+            if(!isDeleteMode) {
+                selectedEnquiries.clear();
+                document.querySelectorAll('.enquiry-checkbox').forEach(c => c.checked = false);
+            }
+            updateEnquiryBulkUI();
+        });
+        
+        // Enquiry Checkbox Delegate
+         document.addEventListener('change', (e) => {
+            if(e.target.classList.contains('enquiry-checkbox')) {
+                if(e.target.checked) selectedEnquiries.add(e.target.dataset.id);
+                else selectedEnquiries.delete(e.target.dataset.id);
+                updateEnquiryBulkUI();
+            }
+        });
+        
+        if(confirmBulkDeleteBtn_Enq) {
+            confirmBulkDeleteBtn_Enq.addEventListener('click', () => {
+                if(selectedEnquiries.size === 0) return;
+                pendingDeleteId = Array.from(selectedEnquiries);
+                pendingDeleteType = 'bulk_enquiry';
+                pendingDeleteButton = confirmBulkDeleteBtn_Enq;
+                
+                if(deleteNameSpan) deleteNameSpan.textContent = `${selectedEnquiries.size} enquiries`;
+                if(deleteModal) deleteModal.classList.remove('hidden');
+            });
+        }
+    }
+    
+    // 10. Greeting Buttons
+    document.querySelectorAll('.greet-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const { phone, name, occasion } = e.currentTarget.dataset;
+            const msg = currentTemplates[occasion] || `Happy ${occasion} ${name}!`;
+            const final = msg.replace(/{name}/g, name);
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(final)}`, '_blank');
+        });
+    });
+    
+    // 11. Search & Sort Customers
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    
+    if(searchInput) {
+        searchInput.addEventListener('input', (e) => {
+             const term = e.target.value.toLowerCase();
+             document.querySelectorAll('.customer-row').forEach(row => {
+                 const text = row.textContent.toLowerCase();
+                 row.style.display = text.includes(term) ? '' : 'none';
+             });
+        });
+    }
+    
+    if(sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+             const order = e.target.value;
+             const tbody = document.getElementById('customersTableBody');
+             const rows = Array.from(tbody.querySelectorAll('.customer-row'));
+             
+             rows.sort((a, b) => {
+                 const idA = parseInt(a.dataset.customerId);
+                 const idB = parseInt(b.dataset.customerId);
+                 return order === 'newest' ? idB - idA : idA - idB;
+             });
+             
+             rows.forEach(r => tbody.appendChild(r));
+        });
+    }
+
+    // Initial Fetch (Templates, etc)
+    fetchTemplates();
 }
 
-// Initialize toggle when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initOccasionsToggle);
-} else {
-  // DOM already loaded
-  initOccasionsToggle();
+// Queue Helper
+function loadQueueItem() {
+    if(queueIndex >= sendingQueue.length) {
+        document.getElementById('sendingQueueModal').classList.add('hidden');
+        showSuccess('Finished', 'All messages processed.');
+        return;
+    }
+    const item = sendingQueue[queueIndex];
+    document.getElementById('queueCurrent').textContent = queueIndex + 1;
+    document.getElementById('queueName').textContent = item.name;
+    document.getElementById('queuePhone').textContent = item.phone;
 }
+
+// Queue Buttons outside init to be accessible from helpers if needed, but safer inside init if IDs used.
+// But queue buttons are static.
+// We already attached listeners in initDashboard. (queueCloseBtn, etc).
+// Wait, I missed wrapping queueSendBtn, queueSkipBtn in initDashboard.
+// Let's add them now.
+
+document.addEventListener('DOMContentLoaded', () => {
+    initDashboard();
+    
+    // Queue Actions
+    const queueSendBtn = document.getElementById('queueSendBtn');
+    const queueSkipBtn = document.getElementById('queueSkipBtn');
+    
+    if(queueSendBtn) {
+        queueSendBtn.addEventListener('click', () => {
+            const item = sendingQueue[queueIndex];
+            const msg = item.message.replace(/{name}/g, item.name);
+            window.open(`https://wa.me/${item.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+            queueIndex++;
+            loadQueueItem();
+        });
+    }
+    
+    if(queueSkipBtn) {
+        queueSkipBtn.addEventListener('click', () => {
+            queueIndex++;
+            loadQueueItem();
+        });
+    }
+});
+
+async function fetchTemplates() {
+    try {
+        const res = await fetch('/api/settings/get');
+        if(res.ok) {
+            const data = await res.json();
+            if(data.templates) currentTemplates = { ...currentTemplates, ...data.templates };
+        }
+    } catch(e) { console.error(e); }
+}
+
